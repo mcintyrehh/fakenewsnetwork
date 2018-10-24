@@ -31,9 +31,16 @@ const fakeArticlesSchema = new Schema ({
         type: String,
         required: false
     }],
+    //Sub-document with a referenced Article property
     associatedRealNews: [{
-        type: Schema.Types.ObjectId,
-        ref: "RealArticles" 
+        realNewsArticle: {
+            type: Schema.Types.ObjectId,
+            ref: "RealArticles"
+        },
+        score: {
+            type: Number,
+            default: 0
+        }
     }]
 });
 

@@ -10,6 +10,7 @@ module.exports = {
             could be used for implementing a search input
             */
             .find(req.query)
+            .populate("RealArticles")
             .sort({timeScraped: -1})
             .limit(20)
             .then(dbFArticles => res.json(dbFArticles))
@@ -18,6 +19,7 @@ module.exports = {
     findById: (req, res) => {
         db.FakeArticles
             .findById(req.params.id)
+            .populate("RealArticles")
             .then(dbFArticles => res.json(dbFArticles))
             .catch(err => res.status(422).json(err));
     },
@@ -46,7 +48,7 @@ module.exports = {
     updateWithRealNews: (req, res) => {
         db.FakeArticles
             //send objectId of Real News as realNewsId
-            .findOneAndUpdate({ _id: req.params.id }, {$push: {associatedRealNews: req.body.realNewsId}})
+            .findOneAndUpdate({ _id: req.params.id }, {$push: {associatedRealNews: {$each: [req.body.realNewsId], $sort: {score: -1}}}})
             .then(dbFArticles => res.json(dbFArticles))
             .catch(err => res.status(422).json(err));
     },
