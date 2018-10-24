@@ -47,8 +47,8 @@ module.exports = {
     },
     updateWithRealNews: (req, res) => {
         db.FakeArticles
-            //send objectId of Real News as realNewsId
-            .findOneAndUpdate({ _id: req.params.id }, {$push: {associatedRealNews: {$each: [req.body.realNewsId], $sort: {score: -1}}}})
+            //req.body should be {realNewsArticle: ObjectId(id)}
+            .findOneAndUpdate({ _id: req.params.id }, {$push: {associatedRealNews: {$each: [req.body], $sort: {score: -1}}}},{multi: true})
             .then(dbFArticles => res.json(dbFArticles))
             .catch(err => res.status(422).json(err));
     },
