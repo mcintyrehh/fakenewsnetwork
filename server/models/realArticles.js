@@ -17,6 +17,10 @@ const realArticlesSchema = new Schema ({
     articleType: {
         type: String,
         default: "real"
+    },
+    score: {
+        type: Number,
+        default: 0
     }
 });
 
