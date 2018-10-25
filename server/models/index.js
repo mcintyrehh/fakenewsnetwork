@@ -1,4 +1,5 @@
 module.exports = {
-  Book: require("./book"),
+  FakeArticles: require("./fakeArticles"),
+  RealArticles: require("./realArticles"),
   User: require("./user")
 };
