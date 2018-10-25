@@ -1,6 +1,11 @@
 const router = require("express").Router();
 const fakeNewsController = require("../../controllers/fakeArticlesController");
 
+/*
+    Hava, add scrape route here!
+    Add scrape Controller and import it here as well
+*/
+
 // "/api/fake-articles"
 router
     .route("/")
