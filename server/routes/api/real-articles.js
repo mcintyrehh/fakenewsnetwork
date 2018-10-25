@@ -15,3 +15,5 @@ router
     .get(realNewsController.findById)
     .put(realNewsController.update)
     .delete(realNewsController.remove);
+
+module.exports = router;

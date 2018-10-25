@@ -24,3 +24,6 @@ router
 router
     .route("/real-articles/:id")
     .put(fakeNewsController.updateWithRealNews);
+
+
+module.exports = router;
