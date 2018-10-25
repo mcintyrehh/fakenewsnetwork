@@ -52,7 +52,12 @@ module.exports = {
             .then(dbFArticles => res.json(dbFArticles))
             .catch(err => res.status(422).json(err));
     },
-    //Need to add method here for updating the score of the RealArticles Sub-document, will be able to with postman
+    updateScoreOfAssociatedRealArticle: (req, res) => {
+        db.FakeArticles
+            .findOneAndUpdate({_id: req.params.id, "associatedRealNews._id": req.body.associatedRealNewsId}, {$set: {"associatedRealNews.$.score": req.body.score}})
+            .then(updated => res.json(updated))
+            .catch(err => res.status(422).json(err));
+    },
     remove: (req, res) => {
         db.FakeArticles
             .findByIdAndRemove({ _id: req.params.id })
