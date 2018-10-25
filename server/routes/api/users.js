@@ -9,9 +9,15 @@ router
 // "api/users/saved-fake-articles/:id"
 router
     .route("/saved-fake-articles/:id")
-    .put(userController.updateUserSavedFakeArticles);
+    .post(userController.updateUserSavedFakeArticles)
+    .delete(userController.removeUserSavedFakeArticles);
+
 
 // "api/users/saved-real-articles/:id"
 router 
     .route("/saved-real-articles/:id")
-    .put(userController.updateUserSavedRealArticles);
+    .post(userController.updateUserSavedRealArticles)
+    .delete(userController.removeUserSavedRealArticles);
+
+module.exports = router;
+

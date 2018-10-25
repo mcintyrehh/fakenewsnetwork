@@ -73,5 +73,17 @@ module.exports = {
       .findByIdAndUpdate(req.params.id, {$push: {savedReal: req.body.realArticleId}})
       .then(() => res.json({message: "Article Saved"}))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  removeUserSavedFakeArticles: (req, res) => {
+    db.User
+      .findByIdAndUpdate(req.params.id, {$pull: {savedFake: req.body.fakeArticleId}})
+      .then(() => res.json({message: "Article Saved"}))
+      .catch(err => res.status(422).json(err));
+  },
+  removeUserSavedRealArticles: (req, res) => {
+    db.User
+      .findByIdAndUpdate(req.params.id, {$pull: {savedReal: req.body.realArticleId}})
+      .then(() => res.json({message: "Article Saved"}))
+      .catch(err => res.status(422).json(err));
+  },
 };
