@@ -55,5 +55,23 @@ module.exports = {
 			delete cleanUser.password;
 		}
 		res.json({ user: cleanUser });
-	}
+  },
+  getAllSavedArticles: (req, res) => {
+    db.findById(req.params.id)
+      .populate("FakeArticles", "RealArticles")
+      .then(dbUser => res.json({savedFake: dbUser.savedFake, savedReal: dbUser.savedReal}))
+      .catch(err => res.status(422).json(err));
+  },
+  updateUserSavedFakeArticles: (req, res) => {
+    db.User
+      .findByIdAndUpdate(req.params.id, {$push: {savedFake: req.body.fakeArticleId}})
+      .then(() => res.json({message: "Article Saved"}))
+      .catch(err => res.status(422).json(err));
+  },
+  updateUserSavedRealArticles: (req, res) => {
+    db.User
+      .findByIdAndUpdate(req.params.id, {$push: {savedReal: req.body.realArticleId}})
+      .then(() => res.json({message: "Article Saved"}))
+      .catch(err => res.status(422).json(err));
+  }
 };
