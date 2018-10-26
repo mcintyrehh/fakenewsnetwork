@@ -86,4 +86,5 @@ module.exports = {
       .then(() => res.json({message: "Article Saved"}))
       .catch(err => res.status(422).json(err));
   },
+  //referenced vote history, passing the article id
 };

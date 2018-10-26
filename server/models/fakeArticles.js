@@ -31,7 +31,7 @@ const fakeArticlesSchema = new Schema ({
         type: String,
         required: false
     }],
-    //Sub-document with a referenced property
+    //Sub-document with a referenced property, realNewsArticle property references realArticles Model Schema
     associatedRealNews: [{
         realNewsArticle: {
             type: Schema.Types.ObjectId,

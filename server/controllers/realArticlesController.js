@@ -4,7 +4,7 @@ module.exports = {
     findAll: (req, res) => {
         db.RealArticles
             .find(req.query)
-            .limit(20)
+            .limit(20) //indexing
             .then(dbRArticles => res.json(dbRArticles))
             .catch(err => res.status(422).json(err));
     },
