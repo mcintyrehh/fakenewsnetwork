@@ -10,10 +10,11 @@ const userSchema = new Schema({
   	username: { type: String, unique: false, required: false },
 	password: { type: String, unique: false, required: false },
 	savedFake: [{ type: Schema.Types.ObjectId, ref: "FakeArticles"}],
-	savedReal: [{ type: Schema.Types.ObjectId, ref: "RealArticles"}] 
+	savedReal: [{ type: Schema.Types.ObjectId, ref: "RealArticles"}],
+	votedOn: [{ type: Schema.Types.ObjectId }]
 	/* 
-		After minimum viable product is complete, we can discuss sending to database what user upvotes/downvotes to better tailer what the user will see on the site. 
-		Also need to store which articles the user upvotes/downvotes to make sure they aren't above to vote up or down multiple times, server-side
+		After minimum viable product is complete, we can discuss sending to database what user upvote/downvote to better tailer what the user will see on the site. 
+		Also need to store which articles the user upvote/downvote to make sure they aren't about to vote up or down multiple times, server-side
 	*/
 });
 

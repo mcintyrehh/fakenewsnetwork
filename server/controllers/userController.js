@@ -87,4 +87,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   //referenced vote history, passing the article id
+  addToVotedOn: (req, res) => {
+    db.User
+      .findByIdAndUpdate(req.params.id, {$push: {votedOn: req.body.articleId }})
+      .then(() => res.json({message: "Vote Recorded"}))
+      .catch(err => res.status(422).json(err));
+  },
+  removeFromVotedOn: (req, res) => {
+    db.User
+      .findByIdAndUpdate(req.params.id, {$pull: {votedOn: req.body.articleId }})
+      .then(() => res.json({message: "Vote Recorded"}))
+      .catch(err => res.status(422).json(err));
+  }
 };
