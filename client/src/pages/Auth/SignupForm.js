@@ -57,7 +57,7 @@ class SignupForm extends Component {
         <Row>
           <Col size="md-3"></Col>
           <Col size="md-6">
-            <Card title="Register for React Reading List">
+            <Card title="Sign Up for the best Fake/Real News">
               <form style={{marginTop: 10}}>
                 <label htmlFor="username">First name: </label>
                 <Input
@@ -107,3 +107,4 @@ class SignupForm extends Component {
 }
 
 export default SignupForm;
+
