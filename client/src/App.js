@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import LoginForm from './pages/Auth/LoginForm';
 import SignupForm from './pages/Auth/SignupForm';
 import Nav from "./components/Nav";
@@ -70,8 +70,8 @@ class App extends Component {
 				<div className="Split-Page"></div>
 				<div className="App-Form">
 					<div className="Toggler">
-					 <a href="#" className="Toggler-Item">Sign In</a>
-					 <a href="#" className="Toggler-Item Toggler-Item-Active">Sign Up</a>
+						<a href="/" className="Toggler-Item">Sign In</a>
+						<a href="#" className="Toggler-Item Toggler-Item-Active">Sign Up</a>
 					</div>
 
 					{this.state.loggedIn && (
