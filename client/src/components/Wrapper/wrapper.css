@@ -1,0 +1,11 @@
+.wrapper {
+    background-image: url("/assets/images/chalkboard.jpg");
+    min-height: 100vh;
+    display: flex;
+    flex-flow: row wrap;
+    padding: none;
+    justify-content: space-around;
+    align-content: flex-start;
+    overflow: auto;
+  }
+  

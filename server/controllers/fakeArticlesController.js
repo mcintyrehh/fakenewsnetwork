@@ -37,7 +37,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     updateWithKeywords: (req, res) => {
-        db.FakeArticles
+        db.FakeArticlesp
             /* 
                 req.body.keywords needs to be an array of strings.
             */
