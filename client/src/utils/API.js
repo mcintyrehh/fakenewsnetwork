@@ -1,20 +1,22 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getBooks: function() {
-    return axios.get("/api/books");
-  },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
-  },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
-  },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
-  }
+
+  /*
+    add method for scrape
+  */
+
+  // Gets all FakeArticles, see server-side (fakeArticlesController) for implementing paging and search input, send in req.query.
+  getFakeArticles: () => (
+    axios.get("/api/fake-articles")
+  ),
+  // Get fakeArticle by id
+  getFakeArticle: id => (
+    axios.get(`/api/fake-articles/${id}`)
+  ),
+  
+  // update Score of fakeArticle's associated RealArticle(s) - upvote/downvote
+  updateScore: (id, data) => (
+    axios.put(`/api/fake-articles/update-score/${id}`, data)
+  )
 };
