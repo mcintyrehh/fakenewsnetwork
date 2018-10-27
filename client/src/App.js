@@ -4,10 +4,11 @@ import { Route, Switch, Link } from 'react-router-dom';
 import LoginForm from './pages/Auth/LoginForm';
 import SignupForm from './pages/Auth/SignupForm';
 import Nav from "./components/Nav";
-import Detail from "./pages/Detail";
+import Home from "./pages/Home/Home"
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
 import "./App.css";
+
 
 class App extends Component {
 
@@ -67,29 +68,23 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<div className="Split-Page"></div>
-				<div className="App-Form">
-					<div className="Toggler">
-						<a href="/" className="Toggler-Item">Sign In</a>
-						<a href="#" className="Toggler-Item Toggler-Item-Active">Sign Up</a>
-					</div>
-
-					{this.state.loggedIn && (
-						<div>
-							<Nav user={this.state.user} logout={this.logout} />
-							<div className="main-view">
-
-							</div>
-						</div>
-					)}
-					{!this.state.loggedIn && (
-						<div className="auth-wrapper" style={{ paddingTop: 40 }}>
-							<Route exact path="/" component={() => <LoginForm login={this.login} />} />
-							<Route exact path="/books" component={() => <LoginForm user={this.login} />} />
-							<Route exact path="/signup" component={SignupForm} />
-						</div>
-					)}
-				</div>
+        { this.state.loggedIn && (
+          <div>
+            <Nav user={this.state.user} logout={this.logout}/>
+            <div className="main-view">
+              <Switch>
+                <Route exact path="/" component={ Home } />
+                <Route component={NoMatch} />
+              </Switch>
+            </div>
+          </div>
+        )}
+        { !this.state.loggedIn && (
+          <div className="auth-wrapper">
+            <Route exact path="/" component={() => <Home login={this.login}/>} />
+            <Route exact path="/signup" component={SignupForm} />
+          </div>
+        )}
 			</div>
 		)
 	}
