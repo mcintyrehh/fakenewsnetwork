@@ -11,13 +11,37 @@ const fakeArticlesSchema = new Schema ({
         type: String, 
         required: false
     },
+    url: {
+        type: String,
+        required: true
+    },
+    sourceId: {
+        type: String,
+        required: true
+    },
     author: {
         type: String, 
         required: false
     },
-    excerpt: {
+    summary: {
         type: String,
         required: true
+    },
+    content: [{
+        type: String,
+        required: false
+    }],
+    category: {
+        type: String,
+        required: false
+    },
+    timePublished: {
+        type: Date,
+        required: true
+    },
+    articleSource: {
+        type: String,
+        default: "The Onion"
     },
     articleType: {
         type: String,

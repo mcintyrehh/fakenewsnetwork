@@ -1,0 +1,130 @@
+.App {
+    height: 100%;
+    /* color: aliceblue; */
+    display: flex;
+}
+
+.Split-Page {
+    width: 50%;
+    background-color: aquamarine;
+}
+
+.App-Form {
+    height: 50%;
+    width: 50%;
+    background-color: blue;
+    overflow: auto;
+    padding: 85px 5px;
+    text-decoration-color: black;
+    background: url(./images/news.jpg) no-repeat fixed center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.Toggler {
+    justify-content: flex-end;
+    margin-bottom: -4%;
+    display: flex;
+    padding-right: 10%;
+}
+
+.Toggler-Item {
+    display: inline-block;
+    margin-bottom: 10%;
+    justify-content: flex-end;
+    border: none;
+    outline: none;
+    background-color: aquamarine;
+    font-size: 20px;
+    padding: 10px 25px;
+    
+}
+
+.Toggler-Item-Active {
+    display: inline-block;
+    border: none;
+    background-color: aqua;
+}
+
+.Toggler-Item:first-child {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.Toggler-Item:last-child {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.navbar {
+    font-size: 18px;
+    font-family: fantasy;
+    font-weight: 600;
+    color: black;
+}
+
+.navbar-dark .navbar-brand {
+    color: black;
+    font-size: 40px;
+}
+
+
+.bg-primary {
+    background-color: aquamarine !important;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    font-size: 12px;
+    font-family: fantasy;
+    color: black;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 0.25rem;
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    /* padding: ; */
+    height: -42px;
+}
+
+h5, .h5 {
+    font-size: 30px;
+    text-align: center;
+    color: black;
+}
+
+a {
+    color: rgb(97, 22, 20);
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}

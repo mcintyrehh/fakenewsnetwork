@@ -6,12 +6,20 @@ const realArticlesSchema = new Schema ({
         type: String, 
         required: true
     },
+    url: {
+        type: String,
+        required: true
+    },
     src: {
         type: String,
         required: false
     },
-    excerpt: {
+    summary: {
         type: String, 
+        required: true
+    },
+    articleSource: {
+        type: String,
         required: true
     },
     articleType: {

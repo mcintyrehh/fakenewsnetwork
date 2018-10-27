@@ -42,17 +42,30 @@ module.exports = {
         db.FakeArticles
             /* req.body should include
                 title: 
-                src: 
-                author:
-                excerpt:
-            timeScraped & articleType are given by default, (Date.now, "fake") 
+                src: (not required)
+                url:
+                sourceId:
+                author: (not required)
+                summary:
+                category: (not required)
+                timePublished:
+            timeScraped, articleType, articleSource are given by default, (Date.now, "fake", "The Onion") 
             */
             .create(req.body)
             .then(dbFArticles => res.json(dbFArticles))
             .catch(err => res.status(422).json(err));
     },
+    updateWithContent: (req, res) => {
+        db.FakeArticles
+        /* 
+            req.body.content needs to be an array of strings.
+        */
+        .findOneAndUpdate({ _id: req.params.id }, {$push: {content: {$each: req.body.content}}})
+        .then(dbFArticles => res.json(dbFArticles))
+        .catch(err => res.status(422).json(err));
+    },
     updateWithKeywords: (req, res) => {
-        db.FakeArticlesp
+        db.FakeArticles
             /* 
                 req.body.keywords needs to be an array of strings.
             */
