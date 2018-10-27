@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
+import { Auth } from 'antd';
 import AUTH from '../../utils/AUTH';
 
 class SignupForm extends Component {
@@ -37,12 +38,12 @@ class SignupForm extends Component {
         }).then(response => {
             console.log(response);
             if (!response.data.errmsg) {
-                console.log('youre good');
+                console.log('You are registerd');
                 this.setState({
                     redirectTo: '/'
                 });
             } else {
-                console.log('duplicate');
+                console.log('Already registered');
             }
         });
     }
@@ -53,11 +54,13 @@ class SignupForm extends Component {
         }
 
         return (
+        
             <Container>
                 <Row>
                     <Col size="md-1"></Col>
                     <Col size="md-10">
-                        <Card title="Sign Up for the best Fake/Real News">
+                   
+                        <card title="Sign Up for the best Fake/Real News">
                             <form style={{ marginTop: 10 }}>
                                 <label htmlFor="username">First name: </label>
                                 <Input
@@ -97,11 +100,13 @@ class SignupForm extends Component {
                                 <Link to="/">Login</Link>
                                 <FormBtn onClick={this.handleSubmit}>Register</FormBtn>
                             </form>
-                        </Card>
+                        </card>
+                       
                     </Col>
                     <Col size="md-1"></Col>
                 </Row>
             </Container>
+            
         )
     }
 }

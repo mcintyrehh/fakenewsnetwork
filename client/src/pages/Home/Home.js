@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import Wrapper from '../../components/Wrapper'
+import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
-import { Card } from '../../components/Card'
+import { Card } from '../../components/Card';
 import LoginForm from '../../components/Auth/LoginForm';
 import SignupForm from '../../components/Auth/SignupForm';
 import { Menu, Dropdown, Input, Icon } from 'antd';
 import '../../App.css';
-import './Home.css'
+import './Home.css';
+
 const { Header, Footer, Content } = Layout;
-
-
-
 
 
 class Home extends Component {
@@ -54,6 +52,7 @@ class Home extends Component {
             </Menu>
         );
         return (
+            
             <Wrapper>
                 <Layout>
                     <Header style={{ textAlign: 'right' }}>
@@ -61,7 +60,7 @@ class Home extends Component {
                             <Col span={8}></Col>
                             <Col className="title" span={8}>🕵️‍Fake News Network🕵️️</Col>
                             <Col span={8}>
-
+                                
                                 <Menu
                                     className="menu-bar"
                                     theme="dark"
@@ -94,6 +93,7 @@ class Home extends Component {
                                 <Card></Card>
 
                             </Col>
+                            <Col span={8}><LoginForm></LoginForm></Col>
                             <Col span={8}><SignupForm></SignupForm></Col>
                         </Row>
 
@@ -101,6 +101,7 @@ class Home extends Component {
                     <Footer className="footer">a Team 2 Production</Footer>
                 </Layout>
             </Wrapper>
+            
         )
     }
 }

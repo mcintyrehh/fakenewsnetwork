@@ -16,9 +16,9 @@
     overflow: auto;
     padding: 85px 5px;
     text-decoration-color: black;
-    background: url(./images/news.jpg) no-repeat fixed center;
+    /* background: url(./images/news.jpg) no-repeat fixed center;
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100%; */
 }
 
 .Toggler {
