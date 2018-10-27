@@ -2,19 +2,34 @@ const db = require("../models");
 
 module.exports = {
     findAll: (req, res) => {
-        db.FakeArticles
-            /* req.query 
-            query --> /?title=GOP 
-            yields --> {title: GOP}
-            if empty returns all entries,
-            could be used for implementing a search input
-            */
-            .find(req.query)
-            .populate("RealArticles")
-            .sort({timeScraped: -1})
-            .limit(20)
-            .then(dbFArticles => res.json(dbFArticles))
-            .catch(err => res.status(422).json(err));
+        //lastId displayed in UI for fakeArticles must be sent to server. If truthy in req.body, server will send back id's greater than the lastId (fake articles that aren't being displayed);
+        if (req.query.lastId) {
+            db.FakeArticles
+                /* req.query.lastId is truthy
+                query --> /?lastId=Object(id) 
+                yields --> {lastId: Object(id)}
+                */
+                .find({_id: {$gte: req.query.lastId}})
+                .populate("RealArticles")
+                .sort({timeScraped: -1})
+                .limit(20)
+                .then(dbFArticles => res.json(dbFArticles))
+                .catch(err => res.status(422).json(err));
+        } else {
+            db.FakeArticles
+                /* req.query 
+                query --> /?title=GOP 
+                yields --> {title: GOP}
+                if empty returns all entries,
+                could be used for implementing a search input
+                */
+                .find(req.query)
+                .populate("RealArticles")
+                .sort({timeScraped: -1})
+                .limit(20)
+                .then(dbFArticles => res.json(dbFArticles))
+                .catch(err => res.status(422).json(err));
+        }
     },
     findById: (req, res) => {
         db.FakeArticles
@@ -37,7 +52,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     updateWithKeywords: (req, res) => {
-        db.FakeArticles
+        db.FakeArticlesp
             /* 
                 req.body.keywords needs to be an array of strings.
             */

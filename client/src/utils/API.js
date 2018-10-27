@@ -1,20 +1,51 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getBooks: function() {
-    return axios.get("/api/books");
+
+  /*
+    add method for scrape
+  */
+
+  // gets all FakeArticles, see server-side (fakeArticlesController) for implementing paging and search input, send in req.query.
+  getFakeArticles: () => (
+    axios.get("/api/fake-articles")
+  ),
+  // Get fakeArticle by id
+  getFakeArticleById: id => (
+    axios.get(`/api/fake-articles/${id}`)
+  ),
+  // updates Score of fakeArticle's associated RealArticle, sub-document id needs to be supplied - upvote/downvote
+  updateScore: (id, data) => (
+    axios.put(`/api/fake-articles/update-score/${id}`, data)
+  ),
+  getRealArticles: () => (
+    axios.get("/api/real-articles")
+  ),
+  getRealArticleById: id => (
+    axios.get(`/api/real-articles/${id}`)
+  ),
+  //user specific routes
+  getAllUserSavedArticles: id => (
+    axios.get(`api/users/saved-articles/${id}`)
+  ),
+  updateUserSavedArticles: (id, data, articleType) => {
+    if (articleType === "fake") {
+      return axios.post(`/api/users/saved-fake-articles/${id}`, data);
+    } else if (articleType === "real") {
+      return axios.post(`/api/users/saved-real-articles/${id}`, data);
+    }
   },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  removeUserSavedArticles: (id, data, articleType) => {
+    if (articleType === "fake") {
+      return axios.delete(`/api/users/saved-fake-articles/${id}`, data);
+    } else if (articleType === "real") {
+      return axios.delete(`/api/users/saved-real-articles/${id}`, data);
+    }
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
-  },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
-  }
+  addToVotedOn: (id, data) => (
+    axios.post(`/api/users/votedOn/${id}`, data)
+  ),
+  removeFromVotedOn: (id, data) => (
+    axios.delete(`/api/users/votedOn/${id}`, data)
+  )
 };
