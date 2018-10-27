@@ -30,7 +30,7 @@ class Home extends Component {
     }
     render() {
         return (
-            
+
             <Wrapper>
                 <Layout>
                     <Header style={{ textAlign: 'right' }}>
@@ -38,7 +38,6 @@ class Home extends Component {
                             <Col span={8}></Col>
                             <Col className="title" span={8}><span role="img" aria-label="investigator emoji">🕵️‍</span>Fake News Network<span role="img" aria-label="investigator emoji">🕵️️</span></Col>
                             <Col span={8}>
-                                <Toggle/>
                                 <Row>
                                     <Menu
                                         className="menu-bar"
@@ -51,28 +50,23 @@ class Home extends Component {
                                         <Menu.Item key="3">Log Out</Menu.Item>
                                     </Menu>
                                 </Row>
-
-
-
                             </Col>
                         </Row>
                     </Header>
                     <Content className="main">
                         <Row style={{ textAlign: 'center', color: 'white' }}>
-                            <Col span={8}></Col>
-                            
+                        <Col span={8}><LoginForm></LoginForm></Col>
                             <Col span={8}>
                                 <Card></Card>
                             </Col>
                             <Col span={8}><SignupForm></SignupForm></Col>
-
+                            
                         </Row>
-
                     </Content>
                     <Footer className="footer">a Team 2 Production</Footer>
                 </Layout>
             </Wrapper>
-            
+
         )
     }
 }

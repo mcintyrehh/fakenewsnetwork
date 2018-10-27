@@ -15,7 +15,7 @@
     background-color: blue;
     overflow: auto;
     padding: 85px 5px;
-    text-decoration-color: black;
+    text-decoration-color: white;
     /* background: url(./images/news.jpg) no-repeat fixed center;
     background-repeat: no-repeat;
     background-size: 100%; */
@@ -76,9 +76,9 @@
 label {
     display: inline-block;
     margin-bottom: .5rem;
-    font-size: 12px;
+    font-size: 20px;
     font-family: fantasy;
-    color: black;
+    color: white;
 }
 
 .row {
