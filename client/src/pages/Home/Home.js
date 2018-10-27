@@ -4,12 +4,13 @@ import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
 import { Card } from '../../components/Card';
 import { Menu, Dropdown, Input, Icon } from 'antd';
+import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
 const { Header, Footer, Content } = Layout;
 
 class Home extends Component {
-    
+
     emitEmpty = () => {
         this.userNameInput.focus();
         this.setState({ userName: '' });
@@ -34,17 +35,21 @@ class Home extends Component {
                             <Col span={8}></Col>
                             <Col className="title" span={8}><span role="img" aria-label="investigator emoji">🕵️‍</span>Fake News Network<span role="img" aria-label="investigator emoji">🕵️️</span></Col>
                             <Col span={8}>
+                                <Row>
+                                    <Menu
+                                        className="menu-bar"
+                                        theme="dark"
+                                        mode="horizontal"
+                                        // defaultSelectedKeys={['2']}
+                                        style={{ lineHeight: '64px' }}>
+                                        <Menu.Item key="1">Sign Up</Menu.Item>
+                                        <Menu.Item key="2">Sign In</Menu.Item>
+                                        <Menu.Item key="3">Log Out</Menu.Item>
+                                    </Menu>
+                                </Row>
 
-                                <Menu
-                                    className="menu-bar"
-                                    theme="dark"
-                                    mode="horizontal"
-                                    // defaultSelectedKeys={['2']}
-                                    style={{ lineHeight: '64px' }}>
-                                    <Menu.Item key="1">Sign Up</Menu.Item>
-                                    <Menu.Item key="2">Sign In</Menu.Item>
-                                    <Menu.Item key="3">Log Out</Menu.Item>
-                                </Menu>
+
+
                             </Col>
                         </Row>
 
@@ -59,7 +64,7 @@ class Home extends Component {
                                 <Card></Card>
                                 <Card></Card>
                                 <Card></Card>
-                            </Col>/
+                            </Col>
                             <Col span={8}>
                                 {/* <SignupForm></SignupForm> */}
                             </Col>
