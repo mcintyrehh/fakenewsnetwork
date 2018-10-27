@@ -20,6 +20,11 @@ router
     .put(fakeNewsController.updateWithKeywords)
     .delete(fakeNewsController.remove);
 
+// "/api/fake-articles/add-content/:id"
+router
+    .route("/add-content/:id")
+    .put(fakeNewsController.updateWithContent);
+
 // "/api/fake-articles/update-score/:id"
 router
     .route("/update-score/:id")
