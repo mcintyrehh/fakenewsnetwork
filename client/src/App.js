@@ -1,8 +1,8 @@
 
 import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-import LoginForm from './pages/Auth/LoginForm';
-import SignupForm from './pages/Auth/SignupForm';
+import LoginForm from './components/Auth/LoginForm';
+import SignupForm from './components/Auth/SignupForm';
 import Nav from "./components/Nav";
 import Home from "./pages/Home/Home"
 import NoMatch from "./pages/NoMatch";

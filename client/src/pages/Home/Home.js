@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
-import { Card } from '../../components/Card'
+import { Card } from '../../components/Card';
 import LoginForm from '../../components/Auth/LoginForm';
 import SignupForm from '../../components/Auth/SignupForm';
 import { Menu, Dropdown, Input, Icon } from 'antd';
@@ -30,6 +30,7 @@ class Home extends Component {
     }
     render() {
         return (
+            
             <Wrapper>
                 <Layout>
                     <Header style={{ textAlign: 'right' }}>
@@ -63,19 +64,15 @@ class Home extends Component {
                             <Col span={8}>
                                 <Card></Card>
                             </Col>
-<<<<<<< HEAD
-                            <Col span={8}>
-                                
-                            </Col>
-=======
                             <Col span={8}><SignupForm></SignupForm></Col>
->>>>>>> 7093a563237e7dadf601b6c57c5227166ec8a687
+
                         </Row>
 
                     </Content>
                     <Footer className="footer">a Team 2 Production</Footer>
                 </Layout>
             </Wrapper>
+            
         )
     }
 }
