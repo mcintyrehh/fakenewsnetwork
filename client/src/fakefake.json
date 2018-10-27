@@ -1,5 +1,6 @@
 [
     {
+        "id":"1",
         "title": "Why Rioting Is the Next Big Self-Care Trend for Women",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
@@ -33,10 +34,11 @@
         ]
     },
     {
-        "title": "Why Rioting Is the Next Big Self-Care Trend for Women",
+        "id":"2",
+        "title": "Why Testing is Important",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
-        "excerpt": "In our never-ending quest to uplift and heal ourselves, it’s easy to get overwhelmed by all the different types of self-care that exist: from drinking…",
+        "excerpt": "TEST 2",
         "articleType": "fake",
         "timeScraped": "date",
         "keywords": [
@@ -66,10 +68,11 @@
         ]
     },
     {
-        "title": "Why Rioting Is the Next Big Self-Care Trend for Women",
+        "id":"3",
+        "title": "Why We Love React",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
-        "excerpt": "In our never-ending quest to uplift and heal ourselves, it’s easy to get overwhelmed by all the different types of self-care that exist: from drinking…",
+        "excerpt": "TEST 3",
         "articleType": "fake",
         "timeScraped": "date",
         "keywords": [
@@ -99,6 +102,7 @@
         ]
     },
     {
+        "id":"4",
         "title": "Why Rioting Is the Next Big Self-Care Trend for Women",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
