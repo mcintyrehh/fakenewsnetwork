@@ -35,6 +35,7 @@ class Home extends Component {
                             <Col span={8}></Col>
                             <Col className="title" span={8}><span role="img" aria-label="investigator emoji">🕵️‍</span>Fake News Network<span role="img" aria-label="investigator emoji">🕵️️</span></Col>
                             <Col span={8}>
+                                <Toggle/>
                                 <Row>
                                     <Menu
                                         className="menu-bar"
@@ -52,21 +53,16 @@ class Home extends Component {
 
                             </Col>
                         </Row>
-
-
                     </Header>
                     <Content className="main">
                         <Row style={{ textAlign: 'center', color: 'white' }}>
                             <Col span={8}></Col>
+                            
                             <Col span={8}>
-                                <Card></Card>
-                                <Card></Card>
-                                <Card></Card>
-                                <Card></Card>
                                 <Card></Card>
                             </Col>
                             <Col span={8}>
-                                {/* <SignupForm></SignupForm> */}
+                                
                             </Col>
                         </Row>
 
