@@ -56,11 +56,11 @@ class Home extends Component {
                     </Header>
                     <Content className="main">
                         <Row style={{ textAlign: 'center', color: 'white' }}>
-                            <Col span={8}></Col>
+                            <Col span={8}><LoginForm></LoginForm></Col>
                             <Col span={8}>
                                 {fakeJSON.map( fake => <Card fake={fake} key={fake.id}/>)}
                             </Col>
-                            <Col span={8}></Col>
+                            <Col span={8}><SignupForm></SignupForm></Col>
                         </Row>
                     </Content>
                     <Footer className="footer">a Team 2 Production</Footer>
