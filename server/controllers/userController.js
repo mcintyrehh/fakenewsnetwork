@@ -59,7 +59,7 @@ module.exports = {
   getAllSavedArticles: (req, res) => {
     db.findById(req.params.id)
       .populate("FakeArticles", "RealArticles")
-      .then(dbUser => res.json({savedFake: dbUser.savedFake, savedReal: dbUser.savedReal}))
+      .then(dbUser => res.json({savedFake: dbUser.savedFake, savedReal: dbUser.savedReal, votedOn: dbUser.votedOn}))
       .catch(err => res.status(422).json(err));
   },
   updateUserSavedFakeArticles: (req, res) => {
@@ -86,4 +86,17 @@ module.exports = {
       .then(() => res.json({message: "Article Saved"}))
       .catch(err => res.status(422).json(err));
   },
+  //referenced vote history, passing the article id
+  addToVotedOn: (req, res) => {
+    db.User
+      .findByIdAndUpdate(req.params.id, {$push: {votedOn: req.body.articleId }})
+      .then(() => res.json({message: "Vote Recorded"}))
+      .catch(err => res.status(422).json(err));
+  },
+  removeFromVotedOn: (req, res) => {
+    db.User
+      .findByIdAndUpdate(req.params.id, {$pull: {votedOn: req.body.articleId }})
+      .then(() => res.json({message: "Vote Recorded"}))
+      .catch(err => res.status(422).json(err));
+  }
 };

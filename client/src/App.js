@@ -1,24 +1,26 @@
+
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import LoginForm from './pages/Auth/LoginForm';
 import SignupForm from './pages/Auth/SignupForm';
 import Nav from "./components/Nav";
 import Home from "./pages/Home/Home"
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
+import "./App.css";
 
 
 class App extends Component {
-  
-  constructor() {
-    super();
-    
+
+	constructor() {
+		super();
+
 		this.state = {
 			loggedIn: false,
 			user: null
-    };
-  }
-  
+		};
+	}
+
 	componentDidMount() {
 		AUTH.getUser().then(response => {
 			console.log(response.data);
@@ -37,8 +39,8 @@ class App extends Component {
 	}
 
 	logout = (event) => {
-    event.preventDefault();
-    
+		event.preventDefault();
+
 		AUTH.logout().then(response => {
 			console.log(response.data);
 			if (response.status === 200) {
@@ -52,15 +54,15 @@ class App extends Component {
 
 	login = (username, password) => {
 		AUTH.login(username, password).then(response => {
-      console.log(response);
-      if (response.status === 200) {
-        // update the state
-        this.setState({
-          loggedIn: true,
-          user: response.data.user
-        });
-      }
-    });
+			console.log(response);
+			if (response.status === 200) {
+				// update the state
+				this.setState({
+					loggedIn: true,
+					user: response.data.user
+				});
+			}
+		});
 	}
 
 	render() {

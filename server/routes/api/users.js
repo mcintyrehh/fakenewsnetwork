@@ -19,5 +19,11 @@ router
     .post(userController.updateUserSavedRealArticles)
     .delete(userController.removeUserSavedRealArticles);
 
+// "api/users/votedOn/:id"
+router
+    .route("/votedOn/:id")
+    .post(userController.addToVotedOn)
+    .delete(userController.removeFromVotedOn);
+
 module.exports = router;
 
