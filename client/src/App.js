@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home"
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
 
+
 class App extends Component {
   
   constructor() {
@@ -77,8 +78,8 @@ class App extends Component {
           </div>
         )}
         { !this.state.loggedIn && (
-          <div className="auth-wrapper" style={{paddingTop:40}}>
-            <Route exact path="/" component={ Home } />
+          <div className="auth-wrapper">
+            <Route exact path="/" component={() => <Home login={this.login}/>} />
             <Route exact path="/signup" component={SignupForm} />
           </div>
         )}

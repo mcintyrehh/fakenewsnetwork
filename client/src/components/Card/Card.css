@@ -1,0 +1,25 @@
+img {
+    width: 80%;
+    /* height: 100%; */
+}
+.side-info-block {
+    /* background-color: black; */
+    border-color: black;
+    /* height: 100%; */
+}
+.card-div {
+    text-align: center;
+    margin-top: 15px;
+    border: thin solid white;
+    border-radius: 25px;
+    overflow: auto;
+}
+.card-title {
+    font-size: 18pt
+}
+.fav-div {
+    color: gold;
+}
+.news-btn {
+    margin-top: 10px;
+}
