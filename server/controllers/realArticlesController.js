@@ -2,11 +2,19 @@ const db = require("../models");
 
 module.exports = {
     findAll: (req, res) => {
-        db.RealArticles
-            .find(req.query)
-            .limit(20) //indexing
-            .then(dbRArticles => res.json(dbRArticles))
-            .catch(err => res.status(422).json(err));
+        if (req.query.lastId) {
+            db.RealArticles
+                .find({_id: {$gte: req.query.lastId}})
+                .limit(20) //indexing
+                .then(dbRArticles => res.json(dbRArticles))
+                .catch(err => res.status(422).json(err));
+        } else {
+            db.RealArticles
+                .find(req.query)
+                .limit(20) //indexing
+                .then(dbRArticles => res.json(dbRArticles))
+                .catch(err => res.status(422).json(err));
+        }
     },
     findById: (req, res) => {
         db.RealArticles
