@@ -31,7 +31,7 @@ class Home extends Component {
     }
     render() {
         return (
-            
+
             <Wrapper>
                 <Layout>
                     <Header style={{ textAlign: 'right' }}>
@@ -66,7 +66,7 @@ class Home extends Component {
                     <Footer className="footer">a Team 2 Production</Footer>
                 </Layout>
             </Wrapper>
-            
+
         )
     }
 }

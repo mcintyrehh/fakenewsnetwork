@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
-// import "./SignupForm.css"; 
+import "../../components/Auth/SignupForm.css"; 
 
 
 class LoginForm extends Component {
@@ -58,7 +58,7 @@ class LoginForm extends Component {
 										value={this.state.password}
 										onChange={this.handleChange}
 									/>
-									<Link to="./components/Auth/SignupForm">Register</Link>
+									<Link to="/signup">Register</Link>
 									<FormBtn onClick={this.handleSubmit}>Login</FormBtn>
 								</form>
 							</card>
