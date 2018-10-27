@@ -9,8 +9,9 @@ import { Menu, Dropdown, Input, Icon } from 'antd';
 import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
+import fakefake from '../../fakefake.json';
 const { Header, Footer, Content } = Layout;
-
+const fakeJSON = fakefake;
 class Home extends Component {
 
     emitEmpty = () => {
@@ -55,12 +56,11 @@ class Home extends Component {
                     </Header>
                     <Content className="main">
                         <Row style={{ textAlign: 'center', color: 'white' }}>
-                        <Col span={8}><LoginForm></LoginForm></Col>
+                            <Col span={8}></Col>
                             <Col span={8}>
-                                <Card></Card>
+                                {fakeJSON.map( fake => <Card fake={fake} key={fake.id}/>)}
                             </Col>
-                            <Col span={8}><SignupForm></SignupForm></Col>
-                            
+                            <Col span={8}></Col>
                         </Row>
                     </Content>
                     <Footer className="footer">a Team 2 Production</Footer>
