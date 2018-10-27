@@ -3,6 +3,8 @@ import { Layout } from 'antd';
 import Wrapper from '../../components/Wrapper'
 import { Row, Col } from 'antd';
 import { Card } from '../../components/Card'
+import LoginForm from '../../components/Auth/LoginForm';
+import SignupForm from '../../components/Auth/SignupForm';
 import { Menu, Dropdown, Input, Icon } from 'antd';
 import '../../App.css';
 import './Home.css'
@@ -92,7 +94,7 @@ class Home extends Component {
                                 <Card></Card>
 
                             </Col>
-                            <Col span={8}></Col>
+                            <Col span={8}><SignupForm></SignupForm></Col>
                         </Row>
 
                     </Content>
