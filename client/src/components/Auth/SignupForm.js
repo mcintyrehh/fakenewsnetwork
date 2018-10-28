@@ -29,7 +29,6 @@ class SignupForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // TODO - validate!
         AUTH.signup({
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -54,13 +53,12 @@ class SignupForm extends Component {
         }
 
         return (
-        
+
             <Container>
                 <Row>
                     <Col size="md-1"></Col>
                     <Col size="md-10">
-                   
-                        <card title="Sign Up for the best Fake/Real News">
+                        <div title="Sign Up for the best Fake/Real News">
                             <form style={{ marginTop: 10 }}>
                                 <label htmlFor="username">First name: </label>
                                 <Input
@@ -98,15 +96,14 @@ class SignupForm extends Component {
                                     onChange={this.handleChange}
                                 />
                                 <Link to="/">Login</Link>
-                                <FormBtn onClick={this.handleSubmit}>Register</FormBtn>
+                                <FormBtn onClick={this.handleSubmit}>Sign Up</FormBtn>
                             </form>
-                        </card>
-                       
+                        </div>
                     </Col>
                     <Col size="md-1"></Col>
                 </Row>
             </Container>
-            
+
         )
     }
 }
