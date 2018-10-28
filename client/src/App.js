@@ -4,7 +4,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import LoginForm from './components/Auth/LoginForm';
 import SignupForm from './components/Auth/SignupForm';
 import Nav from "./components/Nav";
-import Home from "./pages/Home/Home"
+import Home from "./pages/Home/Home";
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
 import "./App.css";
@@ -56,7 +56,7 @@ class App extends Component {
 		AUTH.login(username, password).then(response => {
 			console.log(response);
 			if (response.status === 200) {
-				// update the state
+
 				this.setState({
 					loggedIn: true,
 					user: response.data.user
@@ -68,23 +68,26 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-        { this.state.loggedIn && (
-          <div>
-            <Nav user={this.state.user} logout={this.logout}/>
-            <div className="main-view">
-              <Switch>
-                <Route exact path="/" component={ Home } />
-                <Route component={NoMatch} />
-              </Switch>
-            </div>
-          </div>
-        )}
-        { !this.state.loggedIn && (
-          <div className="auth-wrapper">
-            <Route exact path="/" component={() => <Home login={this.login}/>} />
-            <Route exact path="/signup" component={SignupForm} />
-          </div>
-        )}
+				{this.state.loggedIn && (
+					<div>
+						<Nav user={this.state.user} logout={this.logout} />
+						<div className="main-view">
+							<Switch>
+								<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+								<Route component={NoMatch} />
+							</Switch>
+						</div>
+					</div>
+				)}
+				{!this.state.loggedIn && (
+					<div className="auth-wrapper">
+						<Switch>
+							<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+							<Route exact path="/signup" component={SignupForm} />
+							<Route component={NoMatch} />
+						</Switch>
+					</div>
+				)}
 			</div>
 		)
 	}

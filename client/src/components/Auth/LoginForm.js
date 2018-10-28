@@ -42,7 +42,7 @@ class LoginForm extends Component {
 					<Row>
 						<Col size="md-1"></Col>
 						<Col size="md-10">
-							<card title="Fake/Real News Login">
+							<div title="Fake/Real News Login">
 								<form style={{ marginTop: 10 }}>
 									<label htmlFor="username">Username: </label>
 									<Input
@@ -58,10 +58,10 @@ class LoginForm extends Component {
 										value={this.state.password}
 										onChange={this.handleChange}
 									/>
-									<Link to="/signup">Register</Link>
+									<Link to="/signup">Sign up</Link>
 									<FormBtn onClick={this.handleSubmit}>Login</FormBtn>
 								</form>
-							</card>
+							</div>
 						</Col>
 						<Col size="md-1"></Col>
 					</Row>

@@ -7,17 +7,17 @@ const Nav = (props) => {
   let greeting;
 
   if (props.user === null) {
-    greeting = <p>Hello guest</p>
+    greeting = <p>Welcome</p>
   } else if (props.user.firstName) {
     greeting = (
       <Fragment>
-        Welcome back, <strong>{props.user.firstName} {props.user.lastName}</strong>
+        Ready for more crazy news <strong>{props.user.firstName} {props.user.lastName} ? </strong>
       </Fragment>
     )
   } else if (props.user.username) {
     greeting = (
       <Fragment>
-        Welcome back, <strong>{props.user.username} </strong>
+        Ready for more crazy news <strong>{props.user.username} ? </strong>
       </Fragment>
     )
   }
