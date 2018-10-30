@@ -31,23 +31,24 @@ class Home extends Component {
         };
     }
     displayRealNews = (article) => {
+        const emptyNewsArray = []
         this.setState({ outerColWidth: 2 });
         this.setState({ innerColWidth: 10 });
         const realNewsVar = article.associatedRealNews;
-        // console.log(realNewsVar);
-        console.log("real news")
+        console.log("whole realNews obj");
+        console.log(realNewsVar);
+        console.log("real news");
         realNewsVar.map(x=> console.log(x));
-        console.log("fake News")
+        console.log("fake News");
         fakeJSON.map(fake =>console.log(fake));
-        this.setState({ realNews: realNewsVar.map(x=>this.state.realNews.push(x.realNewsArticle)) });
-        console.log(this.state.realNews);
-        console.log(this.state.realNews[0])
-        // console.log(this.state.realNews.map(x=>console.log(x.id)));
+        realNewsVar.map(x=>emptyNewsArray.push(x))
+        this.setState({ realNews: emptyNewsArray });
     }
     onChangeUserName = (e) => {
         this.setState({ userName: e.target.value });
     }
     render() {
+        console.log(this.state)
         return (
 
             <Wrapper>

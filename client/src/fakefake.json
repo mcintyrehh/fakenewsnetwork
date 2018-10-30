@@ -1,12 +1,12 @@
 [
     {
-        "id":"1",
+        "id": "1",
         "title": "Why Rioting Is the Next Big Self-Care Trend for Women",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
-        "excerpt": "In our never-ending quest to uplift and heal ourselves, it’s easy to get overwhelmed by all the different types of self-care that exist: from drinking…",
+        "summary": "In our never-ending quest to uplift and heal ourselves, it’s easy to get overwhelmed by all the different types of self-care that exist: from drinking…",
         "articleType": "fake",
-        "url":"https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
+        "url": "https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
         "timeScraped": "date",
         "keywords": [
             "court",
@@ -16,22 +16,22 @@
         "associatedRealNews": [
             {
                 "realNewsArticle": {
-                    "id":"1",
+                    "id": "1",
                     "title": "Real News",
-                    "src": "www.associatedpress.com",
+                    "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
                     "url": "www.bbc.com",
-                    "excerpt": "This is a real news article",
+                    "summary": "This is a real news article",
                     "articleType": "real"
                 },
                 "score": 0
             },
             {
                 "realNewsArticle": {
-                    "id":"2",
+                    "id": "2",
                     "title": "Real News BBC",
-                    "src": "www.bbc.com/img",
+                    "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
                     "url": "www.bbc.com",
-                    "excerpt": "This is a bbc news article",
+                    "summary": "This is a bbc news article",
                     "articleType": "real"
                 },
                 "score": 0
@@ -39,14 +39,14 @@
         ]
     },
     {
-        "id":"2",
+        "id": "2",
         "title": "Why Testing is Important",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
-        "excerpt": "TEST 2",
+        "summary": "TEST 2",
         "articleType": "fake",
         "timeScraped": "date",
-        "url":"https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
+        "url": "https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
         "keywords": [
             "court",
             "dems",
@@ -57,7 +57,7 @@
                 "realNewsArticle": {
                     "title": "Real News",
                     "src": "www.associatedpress.com",
-                    "excerpt": "This is a real news article",
+                    "summary": "This is a real news article",
                     "articleType": "real"
                 },
                 "score": 0
@@ -66,7 +66,7 @@
                 "realNewsArticle": {
                     "title": "Real News BBC",
                     "src": "www.bbc.com",
-                    "excerpt": "This is a bbc news article",
+                    "summary": "This is a bbc news article",
                     "articleType": "real"
                 },
                 "score": 0
@@ -74,12 +74,12 @@
         ]
     },
     {
-        "id":"3",
+        "id": "3",
         "title": "Why We Love React",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
-        "url":"https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
-        "excerpt": "TEST 3",
+        "url": "https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
+        "summary": "TEST 3",
         "articleType": "fake",
         "timeScraped": "date",
         "keywords": [
@@ -92,7 +92,7 @@
                 "realNewsArticle": {
                     "title": "Real News",
                     "src": "www.associatedpress.com",
-                    "excerpt": "This is a real news article",
+                    "summary": "This is a real news article",
                     "articleType": "real"
                 },
                 "score": 0
@@ -101,7 +101,7 @@
                 "realNewsArticle": {
                     "title": "Real News BBC",
                     "src": "www.bbc.com",
-                    "excerpt": "This is a bbc news article",
+                    "summary": "This is a bbc news article",
                     "articleType": "real"
                 },
                 "score": 0
@@ -109,12 +109,12 @@
         ]
     },
     {
-        "id":"4",
+        "id": "4",
         "title": "Why Rioting Is the Next Big Self-Care Trend for Women",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
-        "url":"https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
-        "excerpt": "In our never-ending quest to uplift and heal ourselves, it’s easy to get overwhelmed by all the different types of self-care that exist: from drinking…",
+        "url": "https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
+        "summary": "In our never-ending quest to uplift and heal ourselves, it’s easy to get overwhelmed by all the different types of self-care that exist: from drinking…",
         "articleType": "fake",
         "timeScraped": "date",
         "keywords": [
@@ -127,7 +127,7 @@
                 "realNewsArticle": {
                     "title": "Real News",
                     "src": "www.associatedpress.com",
-                    "excerpt": "This is a real news article",
+                    "summary": "This is a real news article",
                     "articleType": "real"
                 },
                 "score": 0
@@ -136,11 +136,152 @@
                 "realNewsArticle": {
                     "title": "Real News BBC",
                     "src": "www.bbc.com",
-                    "excerpt": "This is a bbc news article",
+                    "summary": "This is a bbc news article",
                     "articleType": "real"
                 },
                 "score": 0
             }
         ]
+    },
+    {
+        "sourceID": "onion1830079021",
+        "title": "Coleman Unveils New Slowly Leaking Air Mattress For House Guests Who Won’t Take A Hint",
+        "url": "https: //www.theonion.com/coleman-unveils-new-slowly-leaking-air-mattress-for-hou-1830079021",
+        "category": "News in Brief",
+        "timePublished": "2018-10-29T19: 26: 00.000Z",
+        "summary": "WICHITA, KS—Touting their new product as a necessary innovation in short-stay accommodations, camping and portable sleeping gear manufacturer Coleman unveiled the SinkRest this Monday, an air mattress featuring built-in gradual leaks for house guests who refuse to take a hint. “We’ve specifically designed this…",
+        "content": [
+            "WICHITA, KS—Touting their new product as a necessary innovation in short-stay accommodations, camping and portable sleeping gear manufacturer Coleman unveiled the SinkRest this Monday, an air mattress featuring built-in gradual leaks for house guests who refuse to take a hint. “We’ve specifically designed this mattress to guarantee that after two or three uncomfortable nights, any guest overstaying their welcome will leave with mild to moderate back pain,” said Coleman spokesperson Jana Penn, adding that the new mattress comes with a custom-dilating pinprick feature allowing customers to tailor the degree of discomfort to the specific irritant level of any given guest. “Adjustable pneumatic outflow levels allow guests to either sink at an excruciatingly gradual rate through the mattress, waking up as an achy hot dog in a soggy bun, or to feel their joints crack against the floor after only a few tosses and turns. With the SinkRest family of products, overtaxed hosts can be confident that after a few nights of tossing and turning, clueless guests will have no choice but to realize they’d be better off at a motel.” To commemorate the excruciating portable bed’s introduction, those buying any size SinkRest mattress in the next 60 days will receive a thin, scratchy blanket free of charge."
+        ],
+        "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
+        "source": "The Onion",
+        "keywords": [
+            "coleman",
+            "gradual",
+            "pinprick",
+            "overtaxed",
+            "house guests",
+            "beds",
+            "short-stay",
+            "achy",
+            "overstaying",
+            "excruciatingly",
+            "air mattress",
+            "scratchy"
+        ]
+    },
+    {
+        "sourceID": "onion1830077614",
+        "title": "New Study Shows Majority Of Late Afternoon Sleepiness At Work Caused By Undetected Carbon Monoxide Leak",
+        "url": "https: //www.theonion.com/new-study-shows-majority-of-late-afternoon-sleepiness-a-1830077614",
+        "category": "News in Brief",
+        "timePublished": "2018-10-29T18: 41: 00.000Z",
+        "summary": "WASHINGTON—Investigating a sudden uptick in nationwide on-the-job somnolence, the United States Occupational Safety and Health Administration released a study Monday showing that the majority of late afternoon sleepiness in the American workplace is in fact caused by an undetected carbon monoxide leak. “Our…",
+        "content": [
+            "WASHINGTON—Investigating a sudden uptick in nationwide on-the-job somnolence, the United States Occupational Safety and Health Administration released a study Monday showing that the majority of late afternoon sleepiness in the American workplace is in fact caused by an undetected carbon monoxide leak. “Our investigations found that a lack of focus, weariness, or general disinclination to perform at a job after normal lunch hours is most likely a sign that an employee is breathing in colorless, odorless, noxious fumes,” said lead researcher Mario Garrison, noting that over half the people who are feeling any kind of exhaustion or sluggishness at their place of employment between the hours of noon and 3 p.m. are being slowly poisoned at their desks or workstations. “Employees who become sleepy and close their eyes during the afternoon are in danger of never opening them again. The buildup of gas can be slow, as carbon monoxide is slightly lighter than air, so it may go unnoticed the entire morning. But make no mistake: From your first workplace yawn, you could be dead within an hour.” Garrison suggested that anyone who was feeling even the slightest bit tired in the afternoon hours at their place of employment should take the rest of the day off."
+        ],
+        "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
+        "source": "The Onion",
+        "keywords": [
+            "carbon monoxide",
+            "garrison",
+            "noxious fumes",
+            "disinclination",
+            "dead within",
+            "gas can",
+            "sluggishness",
+            "somnolence",
+            "on-the-job",
+            "odorless",
+            "health administration",
+            "sleepiness"
+        ]
+    },
+    {
+        "sourceID": "onion1830077401",
+        "title": "Trump Slams Worldwide Jewish Conspiracy For Not Doing More To Prevent Synagogue Shooting",
+        "url": "https: //politics.theonion.com/trump-slams-worldwide-jewish-conspiracy-for-not-doing-m-1830077401",
+        "category": "News in Brief",
+        "timePublished": "2018-10-29T18: 33: 00.000Z",
+        "summary": "WASHINGTON—In the aftermath of a shooting at a Pittsburgh synagogue that left 11 people dead, President Donald Trump reportedly slammed the worldwide Jewish conspiracy Monday for not doing more to prevent the violent attack. “I condemn in the strongest possible terms the shadowy global cabal of Jewish people who,…",
+        "content": [
+            "WASHINGTON—In the aftermath of a shooting at a Pittsburgh synagogue that left 11 people dead, President Donald Trump reportedly slammed the worldwide Jewish conspiracy Monday for not doing more to prevent the violent attack. “I condemn in the strongest possible terms the shadowy global cabal of Jewish people who, despite the fact that they control everything on Earth, weren’t even able to stop a single shooter,” said Trump in a press conference, adding that he didn’t understand why the worldwide Jewish conspiracy didn’t simply hypnotize the killer through the television or create a massive storm that would have stopped him from leaving his house. “This entire tragedy could have been avoided if the Jews had simply manipulated the global economy and the banks to ensure that the shooter didn’t have enough money to afford a gun or ammunition. It is an absolute shame that the worldwide Jewish plot failed to telepathically communicate the imminent danger to the people in the building, or use their minds to erect an invisible, impenetrable barrier around the entire synagogue.” Trump ended his speech by calling for unity in the worldwide Jewish conspiracy to prevent future anti-Semitic hate crimes with their mystical powers."
+        ],
+        "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
+        "source": "The Onion",
+        "keywords": [
+            "jewish conspiracy",
+            "synagogue",
+            "mystical powers",
+            "hypnotize",
+            "telepathically",
+            "imminent danger",
+            "impenetrable",
+            "hate crimes",
+            "shadowy",
+            "cabal",
+            "erect",
+            "the global economy"
+        ]
+    },
+    {
+        "sourceID": "onion1830077292",
+        "title": "Man Doesn’t Get Why People Waste Money On Therapist When They Could Just Emotionally Crush Girlfriend",
+        "url": "https: //local.theonion.com/man-doesn-t-get-why-people-waste-money-on-therapist-whe-1830077292",
+        "category": "News in Brief",
+        "timePublished": "2018-10-29T18: 30: 00.000Z",
+        "summary": "BOLINGBROOK, IL—Explaining that seeking professional psychological help was a big scam when there were better, cheaper alternatives, local man Justin Treanor told reporters Monday that he doesn’t understand why people waste money on a therapist when they could just emotionally crush their girlfriend. “A therapist can…",
+        "content": [
+            "BOLINGBROOK, IL—Explaining that seeking professional psychological help was a big scam when there were better, cheaper alternatives, local man Justin Treanor told reporters Monday that he doesn’t understand why people waste money on a therapist when they could just emotionally crush their girlfriend. “A therapist can cost hundreds of dollars for just one session, but taking your problems out on the one who loves you is free,” said Treanor, adding that his romantic partner was always there when he needed to work things out by destroying her spirit, while scheduling an appointment with a therapist was time-consuming and could take weeks. “Why wait a month and possibly have to take time off of work to see a counselor when my girl is already right there to belittle and blame at home? Besides, if I’m going to confront my demons, I’d rather have someone I know and trust to lash out at.” Treanor added that he knew it was the right decision when he experienced a recent breakthrough that resulted in his girlfriend crying herself to sleep."
+        ],
+        "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
+        "source": "The Onion",
+        "keywords": [
+            "treanor",
+            "therapist",
+            "bolingbrook",
+            "cheaper alternatives",
+            "who loves you",
+            "why wait",
+            "lash out",
+            "belittle",
+            "always there",
+            "time-consuming",
+            "on the one",
+            "counselor"
+        ]
+    },
+    {
+        "sourceID": "onion1830074803",
+        "title": "MTA Unveils $28 Billion Plan To Renovate Subway Masturbators",
+        "url": "https: //www.theonion.com/mta-unveils-28-billion-plan-to-renovate-subway-masturb-1830074803",
+        "category": "News in Brief",
+        "timePublished": "2018-10-29T17: 10: 00.000Z",
+        "summary": "NEW YORK—In what many are calling a long-awaited overhaul to New York’s underground network of flashers, perverts, and yankers, the Metropolitan Transportation Authority unveiled a $28 billion plan Monday to renovate their citywide fleet of subway masturbators. “This incredible initiative will bring new life to the…",
+        "content": [
+            "NEW YORK—In what many are calling a long-awaited overhaul to New York’s underground network of flashers, perverts, and      yankers, the Metropolitan Transportation Authority unveiled a $28 billion plan Monday to renovate their citywide fleet of subway     masturbators. “This incredible initiative will bring new life to the 6, 400 aging, outdated sexual deviants that currently pleasure themselves alongside New York City’s 5.7 million commuters per day, said MTA CEO John Lhota, adding that by the end of 2019, residents can expect the city’s updated perverts to masturbate more frequently, more reliably, and in 30 percent more locations. “Sadly, the city has allowed many of these subway masturbators to become old and outdated, and their nude, damaged bodies—many of which date back to the 1960s—are a frequent eyesore. While there will inevitably be delays during the upcoming renovations, the result will be the most clean, efficient, and consistent sex criminals New York has ever seen.” Lhota excitedly added that the plan was expected to make the subway riding experience 75 percent less safe for women."
+        ],
+        "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
+        "source": "The Onion",
+        "keywords": [
+            "lhota",
+            "masturbators",
+            "perverts",
+            "subway",
+            "outdated",
+            "yankers",
+            "sex criminals",
+            "6",
+            "400",
+            "sexual deviants",
+            "underground network",
+            "flashers",
+            "transportation authority"
+        ]
+    },
+    {
+        "sourceID": "onion1830074653",
+        "title": "‘Fox & Friends’ Denounces Bombing Suspect As Overenthusiastic Fan Whose Heart Basically In Right Place",
+        "url": "https: //www.theonion.com/fox-friends-denounces-bombing-suspect-a"
     }
 ]
