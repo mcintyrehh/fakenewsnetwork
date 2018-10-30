@@ -45,7 +45,6 @@ function scrapeFake() {
          //console.log(fakeArr);
       });
 
-      fakeArr.push("DUMMY");
       return fakeArr;
 
    });
