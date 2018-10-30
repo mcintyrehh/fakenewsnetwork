@@ -34,9 +34,15 @@ class Home extends Component {
         this.setState({ outerColWidth: 2 });
         this.setState({ innerColWidth: 10 });
         const realNewsVar = article.associatedRealNews;
-        console.log(realNewsVar);
-        this.setState({ realNews: realNewsVar.map(x=>this.state.realNews.push(x)) });
+        // console.log(realNewsVar);
+        console.log("real news")
+        realNewsVar.map(x=> console.log(x));
+        console.log("fake News")
+        fakeJSON.map(fake =>console.log(fake));
+        this.setState({ realNews: realNewsVar.map(x=>this.state.realNews.push(x.realNewsArticle)) });
         console.log(this.state.realNews);
+        console.log(this.state.realNews[0])
+        // console.log(this.state.realNews.map(x=>console.log(x.id)));
     }
     onChangeUserName = (e) => {
         this.setState({ userName: e.target.value });
