@@ -6,6 +6,7 @@
         "author": "Henry",
         "excerpt": "In our never-ending quest to uplift and heal ourselves, it’s easy to get overwhelmed by all the different types of self-care that exist: from drinking…",
         "articleType": "fake",
+        "url":"https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
         "timeScraped": "date",
         "keywords": [
             "court",
@@ -15,8 +16,10 @@
         "associatedRealNews": [
             {
                 "realNewsArticle": {
+                    "id":"1",
                     "title": "Real News",
                     "src": "www.associatedpress.com",
+                    "url": "www.bbc.com",
                     "excerpt": "This is a real news article",
                     "articleType": "real"
                 },
@@ -24,8 +27,10 @@
             },
             {
                 "realNewsArticle": {
+                    "id":"2",
                     "title": "Real News BBC",
-                    "src": "www.bbc.com",
+                    "src": "www.bbc.com/img",
+                    "url": "www.bbc.com",
                     "excerpt": "This is a bbc news article",
                     "articleType": "real"
                 },
@@ -41,6 +46,7 @@
         "excerpt": "TEST 2",
         "articleType": "fake",
         "timeScraped": "date",
+        "url":"https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
         "keywords": [
             "court",
             "dems",
@@ -72,6 +78,7 @@
         "title": "Why We Love React",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
+        "url":"https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
         "excerpt": "TEST 3",
         "articleType": "fake",
         "timeScraped": "date",
@@ -106,6 +113,7 @@
         "title": "Why Rioting Is the Next Big Self-Care Trend for Women",
         "src": "https://thehardtimes.net/wp-content/uploads/2018/10/shutterstock_258165035-1024x538.jpg",
         "author": "Henry",
+        "url":"https://thehardtimes.net/hardstyle/why-rioting-is-the-next-big-self-care-trend-for-women/",
         "excerpt": "In our never-ending quest to uplift and heal ourselves, it’s easy to get overwhelmed by all the different types of self-care that exist: from drinking…",
         "articleType": "fake",
         "timeScraped": "date",

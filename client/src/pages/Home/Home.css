@@ -5,7 +5,8 @@
     color: white;
 }
 .main {
-    background-image: url("/Assets/Images/chalkboard.jpg")
+    background-image: url("/Assets/Images/chalkboard.jpg");
+    width: 100vw;
 }
 .title {
     text-align: center;

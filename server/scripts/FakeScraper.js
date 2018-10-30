@@ -50,7 +50,78 @@ function scrapeFake() {
 
    });
 
+// Current code:
 
+var corpus = "Here is some Yoda talk: Venus and Sabrina Williams play a lot of tennis, sometimes at Wimbledon do they play tennis, Venus and Serena tennis play";
+var textObj = {
+   "id": 1,
+   "title": "Test Title",
+   "body": corpus
+};
+var postObj = {
+   "language": "en",
+   "significantTerms": 1,
+   "texts": [textObj]
+};
+var apiKey = "apiKey=" + "0af74c60beb320f29653f316238cda9a";
+var endpoint = "https://api.gavagai.se/v3/keyword";
+var fullURL = endpoint + "?" + apiKey;
+var configObj = {
+   "url": fullURL,
+   "data": postObj
+};
+var cb = (err,res2) => {
+   if (err) {
+      console(err);
+   } else {
+      console.log("ERR: ", err);
+      console.log("DATA: ", res2.data);
+      console.log("STATUS: ", res2.status);
+      console.log("STATUS TEXT: ", res2.statusText);
+      console.log("HEADERS: ", res2.headers);
+      console.log("CONFIG: ", res2.config);
+   }
+};
+
+
+request.post(configObj, cb);
+
+// And here is the reply:
+/*
+ERR:  null
+DATA:  undefined
+STATUS:  undefined
+STATUS TEXT:  undefined
+HEADERS:  { server: 'openresty/1.7.4.1',
+date: 'Sun, 28 Oct 2018 16:25:27 GMT',
+'content-type': 'application/json; charset=utf-8',
+'transfer-encoding': 'chunked',
+connection: 'close' }
+CONFIG:  undefined
+GET /key - - ms - -
+ERR:  null
+DATA:  undefined
+STATUS:  undefined
+STATUS TEXT:  undefined
+HEADERS:  { server: 'openresty/1.7.4.1',
+date: 'Sun, 28 Oct 2018 16:25:54 GMT',
+'content-type': 'application/json; charset=utf-8',
+'transfer-encoding': 'chunked',
+connection: 'close' }
+CONFIG:  undefined
+GET /key - - ms - -
+ERR:  null
+DATA:  undefined
+STATUS:  undefined
+STATUS TEXT:  undefined
+HEADERS:  { server: 'openresty/1.7.4.1',
+date: 'Sun, 28 Oct 2018 16:27:54 GMT',
+'content-type': 'application/json; charset=utf-8',
+'transfer-encoding': 'chunked',
+connection: 'close' }
+CONFIG:  undefined
+GET /key - - ms - -
+*/
 
    
 
