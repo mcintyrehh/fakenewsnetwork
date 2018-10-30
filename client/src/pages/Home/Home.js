@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
-import { Card } from '../../components/Card';
+import { Card, RealCard } from '../../components/Card';
 import LoginForm from '../../components/Auth/LoginForm';
 import SignupForm from '../../components/Auth/SignupForm';
-import { Menu, Dropdown, Input, Icon } from 'antd';
-import Toggle from '../../components/Toggle'
+import { Menu } from 'antd';
+// import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
 import fakefake from '../../fakefake.json';
@@ -24,8 +24,25 @@ class Home extends Component {
         this.state = {
             username: '',
             password: '',
-            redirectTo: null
+            redirectTo: null,
+            outerColWidth: 8,
+            innerColWidth: 8,
+            realNews: []
         };
+    }
+    displayRealNews = (article) => {
+        this.setState({ outerColWidth: 2 });
+        this.setState({ innerColWidth: 10 });
+        const realNewsVar = article.associatedRealNews;
+        // console.log(realNewsVar);
+        console.log("real news")
+        realNewsVar.map(x=> console.log(x));
+        console.log("fake News")
+        fakeJSON.map(fake =>console.log(fake));
+        this.setState({ realNews: realNewsVar.map(x=>this.state.realNews.push(x.realNewsArticle)) });
+        console.log(this.state.realNews);
+        console.log(this.state.realNews[0])
+        // console.log(this.state.realNews.map(x=>console.log(x.id)));
     }
     onChangeUserName = (e) => {
         this.setState({ userName: e.target.value });
@@ -56,12 +73,18 @@ class Home extends Component {
                         </Row>
                     </Header>
                     <Content className="main">
+                        {/* Here is where the main content will be displayed
+                        it is comprised of four columns with variable width, depending on which view we want set*/}
                         <Row style={{ textAlign: 'center', color: 'white' }}>
-                            <Col span={8}>{!this.props.isLoggedIn && <LoginForm login={this.props.login}></LoginForm>}</Col>
-                            <Col span={8}>
-                                {fakeJSON.map(fake => <Card fake={fake} key={fake.id} />)}
+                            
+                            <Col span={this.state.outerColWidth}>{!this.props.isLoggedIn && <LoginForm login={this.props.login}></LoginForm>}</Col>
+
+                            <Col span={this.state.innerColWidth}>
+                                {fakeJSON.map(fake => <Card fake={fake} key={fake.id} displayRealNews={this.displayRealNews} />)}
                             </Col>
-                            <Col span={8}>{!this.props.isLoggedIn && <SignupForm></SignupForm>}</Col>
+
+                            <Col span={this.state.innerColWidth}>{this.state.realNews && this.state.realNews.map(real=> <RealCard real={real} key={real.id}></RealCard>)}</Col>
+                            <Col span={this.state.outerColWidth}>{!this.props.isLoggedIn && <SignupForm></SignupForm>}</Col>
                         </Row>
                     </Content>
                     <Footer className="footer">a Team 2 Production</Footer>
