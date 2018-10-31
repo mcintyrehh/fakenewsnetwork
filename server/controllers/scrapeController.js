@@ -62,11 +62,6 @@ module.exports = {
                             .catch(err => res.end(err))
                         : console.log("Article already in Database");
                     })
-
-                db.FakeArticles
-                    .create(data)
-                    .then(dbFArticle => console.log(dbFArticle))
-                    .catch(err => res.end(err));
              });
              res.json({message: "Scrape Complete"})
         });
