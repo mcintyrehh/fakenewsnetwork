@@ -9,11 +9,13 @@ import { Menu } from 'antd';
 // import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
+import API from '../../utils/API'
 import fakefake from '../../fakefake.json';
 const { Header, Footer, Content } = Layout;
 const fakeJSON = fakefake;
 
 class Home extends Component {
+    
 
     emitEmpty = () => {
         this.userNameInput.focus();
@@ -27,20 +29,27 @@ class Home extends Component {
             redirectTo: null,
             outerColWidth: 8,
             innerColWidth: 8,
+            fakeNews:[],
             realNews: []
+
         };
+    }
+    componentDidMount() {
+        this.loadFakeArticles();
+    }
+    loadFakeArticles = () => {
+        API.getFakeArticles()
+        .then(res =>
+            this.setState({ fakeNews: res.data })
+          )
+          .catch(err => console.log(err));
     }
     displayRealNews = (article) => {
         const emptyNewsArray = []
         this.setState({ outerColWidth: 2 });
         this.setState({ innerColWidth: 10 });
         const realNewsVar = article.associatedRealNews;
-        console.log("whole realNews obj");
-        console.log(realNewsVar);
-        console.log("real news");
         realNewsVar.map(x=> console.log(x));
-        console.log("fake News");
-        fakeJSON.map(fake =>console.log(fake));
         realNewsVar.map(x=>emptyNewsArray.push(x))
         this.setState({ realNews: emptyNewsArray });
     }
@@ -81,7 +90,7 @@ class Home extends Component {
                             <Col span={this.state.outerColWidth}>{!this.props.isLoggedIn && <LoginForm login={this.props.login}></LoginForm>}</Col>
 
                             <Col span={this.state.innerColWidth}>
-                                {fakeJSON.map(fake => <Card fake={fake} key={fake.id} displayRealNews={this.displayRealNews} />)}
+                                {this.state.fakeNews.map(fake => <Card fake={fake} key={fake.id} displayRealNews={this.displayRealNews} />)}
                             </Col>
 
                             <Col span={this.state.innerColWidth}>{this.state.realNews && this.state.realNews.map(real=> <RealCard real={real} key={real.id}></RealCard>)}</Col>
