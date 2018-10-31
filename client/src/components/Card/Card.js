@@ -17,7 +17,7 @@ export const Card = (props) => (
         <h3 className="card-title">
           <a target="_blank" href={props.fake.url}>{props.fake.title}</a>
         </h3>
-        <div className="card-text p-0 excerpt">{props.fake.excerpt}</div>          
+        <div className="card-text p-0 summary">{props.fake.summary}</div>          
       </div>
     </Col> 
   </Row>
