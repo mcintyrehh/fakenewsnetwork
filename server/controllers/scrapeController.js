@@ -46,6 +46,22 @@ module.exports = {
                 const src = "https://i.kinja-img.com/gawker-media/image/upload/s--BuS4lF0---/c_scale,f_auto,fl_progressive,q_80,w_800/qxxnebzl24iewavbdmtd.jpg";
                 //console.log(obj);
                 //console.log(fakeArr);
+                let notInDatabase = 0;
+                console.log(notInDatabase);
+                db.FakeArticles
+                    .find()
+                    .then(fakeArticles => {
+                        fakeArticles.map(fArticle => {
+                            (fArticle.sourceId !== sourceId) ? notInDatabase++ : console.log("Found");
+                        });
+
+                        (notInDatabase === fakeArticles.length) ?
+                        db.FakeArticles
+                            .create(data)
+                            .then(dbFArticle => console.log(dbFArticle))
+                            .catch(err => res.end(err))
+                        : console.log("Article already in Database");
+                    })
 
                 db.FakeArticles
                     .create(data)
