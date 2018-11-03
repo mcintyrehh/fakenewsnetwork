@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const db = require("../models");
 
 module.exports = {
@@ -49,7 +50,7 @@ module.exports = {
                 summary:
                 category: (not required)
                 timePublished:
-            timeScraped, articleType, articleSource are given by default, (Date.now, "fake", "The Onion") 
+            timeScraped, articleType, articleSource are given by default, (Date.now, "fake", "The Onion")
             */
             .create(req.body)
             .then(dbFArticles => res.json(dbFArticles))
@@ -60,9 +61,9 @@ module.exports = {
         /* 
             req.body.content needs to be an array of strings.
         */
-        .findOneAndUpdate({ _id: req.params.id }, {$push: {content: {$each: req.body.content}}})
-        .then(dbFArticles => res.json(dbFArticles))
-        .catch(err => res.status(422).json(err));
+            .findOneAndUpdate({ _id: req.params.id }, {$push: {content: {$each: req.body.content}}})
+            .then(dbFArticles => res.json(dbFArticles))
+            .catch(err => res.status(422).json(err));
     },
     updateWithKeywords: (req, res) => {
         db.FakeArticles

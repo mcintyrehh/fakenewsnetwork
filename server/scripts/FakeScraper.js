@@ -45,7 +45,6 @@ function scrapeFake() {
          //console.log(fakeArr);
       });
 
-      fakeArr.push("DUMMY");
       return fakeArr;
 
    });
@@ -127,9 +126,60 @@ GET /key - - ms - -
 
 }
 
-function getFakeContent() {
-   // TO DO
-   // Algorithm is created, it just needs to be turned into code
+// fakeURLs to use for testing purposes:
+var testURLs = ["https://politics.theonion.com/trump-boys-smash-father-s-cell-phone-to-search-for-chin-1830032021",
+   "https://www.clickhole.com/disaster-a-no-nonsense-grandma-has-started-hanging-her-1829721726",
+   "https://politics.theonion.com/midterms-predicted-to-have-largest-voter-in-decades-1829999895",
+   "https://www.theonion.com/study-finds-effectiveness-of-medical-treatment-skyrocke-1829999052"
+];
+
+function getFakeContent(theURL) {
+   
+     // Note: the scrapeDetailFn is wrapped in the getFakeContent function because my ultimate vision
+     // was to have getFakeContent handle multiple URLs at once. It doesn't do that yet. But I'm leaving
+     // the structure as is, because I know that this code works.
+     let scrapeFakeDetailFn = (theURL) => {
+      let thenFn = (response) => {
+         let $ = cheerio.load(response.data);
+         let articleNode = $('article')[0];
+         let targetParagraphs = $("p", articleNode);
+         let theContent = $(targetParagraphs[0]).text(); 
+         let contentArr = [theContent]; // this variable contains what we need, for now at least
+         console.log(" and the content is: ", contentArr);
+
+         // the content array is returned here, it may work work to process it inline though
+         // if relying on the return statement here, the calling code needs to be written
+         // to handle asynchronous operations, such as axios.all, promise.all, and/or async/await
+         return contentArr;
+          
+      // keep the following debug map function in the code for debugging purposes
+      // it is not currently used, but may be used again for troubleshooting
+         let debugMapFn = (i, par) => {
+            console.log("\n ****   ****  **********    ********** *************");
+            if (i===0) { // change this condition according to needs
+               console.log("ON PAR NUMBER ", i, " and this is what I see: ");
+               console.log($(par));
+               console.log("\n and there is just the text: * * * * *")
+               console.log($(par).text());
+            }
+         };
+
+   
+      };
+
+      let catchFn = (err) => {
+         setTimeout(function () {
+            throw err;
+         }, 1);
+      };
+
+      axios.get(theURL)
+         .then(thenFn)
+         .catch(catchFn);
+   };
+   
+   scrapeFakeDetailFn(theURL);
+   
 }
 
 function getFakeKeywords() {
