@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import LoginForm from './components/Auth/LoginForm';
+import LoginForm from './components/Auth/LoginForm';
 import SignupForm from './components/Auth/SignupForm';
 import Nav from "./components/Nav";
 import Home from "./pages/Home/Home";

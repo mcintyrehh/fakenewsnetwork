@@ -92,5 +92,13 @@ module.exports = {
             .findByIdAndRemove({ _id: req.params.id })
             .then(() => res.json({message: "Removal Successful"}))
             .catch(err => res.status(422).json(err));
-    }
+    },
+    clearAll: (req, res) => {
+        db.FakeArticles
+           .deleteMany(({}))
+           .then((stuffBack) => res.json({
+              message: "All fake articles have been cleared now",
+              response: stuffBack
+           }));
+     },
 }
