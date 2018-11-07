@@ -2,12 +2,15 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import LoginForm from './components/Auth/LoginForm';
-import SignupForm from './components/Auth/SignupForm';
+// import SignupForm from './components/Auth/SignupForm';
 import Nav from "./components/Nav";
 import Home from "./pages/Home/Home";
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
 import "./App.css";
+import Navbar from "./components/NavBarAnt";
+import SigninDrawer from "./pages/SignupDrawer";
+import { throws } from 'assert';
 
 
 class App extends Component {
@@ -17,7 +20,8 @@ class App extends Component {
 
 		this.state = {
 			loggedIn: false,
-			user: null
+			user: null,
+			drawerVisibility: false
 		};
 	}
 
@@ -35,7 +39,7 @@ class App extends Component {
 					user: null
 				});
 			}
-		});
+		})
 	}
 
 	logout = (event) => {
@@ -50,6 +54,17 @@ class App extends Component {
 				});
 			}
 		});
+	}
+
+	showDrawer = () => {
+		this.setState({drawerVisibility: true });
+	}
+
+	hideDrawer = () => {
+		this.setState({drawerVisibility: false });
+	}
+	handleSubmit = () => {
+		this.setState({drawerVisibility: false })
 	}
 
 	login = (username, password) => {
@@ -68,27 +83,10 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				{this.state.loggedIn && (
-					<div>
-						<Nav user={this.state.user} logout={this.logout} />
-						<div className="main-view">
-							<Switch>
-								<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
-								<Route component={NoMatch} />
-							</Switch>
-						</div>
-					</div>
-				)}
-				{!this.state.loggedIn && (
-					<div className="auth-wrapper">
-						<Switch>
-							<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
-							<Route exact path="/signup" component={SignupForm} />
-							<Route component={NoMatch} />
-						</Switch>
-					</div>
-				)}
+				<Navbar clickDrawer={this.showDrawer}/>
+				<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
 			</div>
+	
 		)
 	}
 }
