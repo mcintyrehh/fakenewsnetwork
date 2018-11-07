@@ -11,7 +11,7 @@ module.exports = {
                 yields --> {lastId: Object(id)}
                 */
                 .find({_id: {$gte: req.query.lastId}})
-                .populate("RealArticles")
+                .populate("associatedRealNews.realNewsArticle")
                 .sort({timeScraped: -1})
                 .limit(20)
                 .then(dbFArticles => res.json(dbFArticles))
@@ -25,7 +25,7 @@ module.exports = {
                 could be used for implementing a search input
                 */
                 .find(req.query)
-                .populate("RealArticles")
+                .populate("associatedRealNews.realNewsArticle")
                 .sort({timeScraped: -1})
                 .limit(20)
                 .then(dbFArticles => res.json(dbFArticles))
@@ -35,7 +35,7 @@ module.exports = {
     findById: (req, res) => {
         db.FakeArticles
             .findById(req.params.id)
-            .populate("RealArticles")
+            .populate("associatedRealNews.realNewsArticle")
             .then(dbFArticles => res.json(dbFArticles))
             .catch(err => res.status(422).json(err));
     },

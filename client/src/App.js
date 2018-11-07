@@ -12,6 +12,9 @@ import NoMatch from "./pages/NoMatch";
 import HeaderDiv from "./components/HeaderDiv";
 import AUTH from './utils/AUTH';
 import "./App.css";
+import Navbar from "./components/NavBarAnt";
+import SigninDrawer from "./pages/SignupDrawer";
+import { throws } from 'assert';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -22,7 +25,8 @@ class App extends Component {
 
 		this.state = {
 			loggedIn: false,
-			user: null
+			user: null,
+			drawerVisibility: false
 		};
 	}
 
@@ -40,7 +44,7 @@ class App extends Component {
 					user: null
 				});
 			}
-		});
+		})
 	}
 
 	logout = (event) => {
@@ -57,6 +61,17 @@ class App extends Component {
 		});
 	}
 
+	showDrawer = () => {
+		this.setState({drawerVisibility: true });
+	}
+
+	hideDrawer = () => {
+		this.setState({drawerVisibility: false });
+	}
+	handleSubmit = () => {
+		this.setState({drawerVisibility: false })
+	}
+
 	login = (username, password) => {
 		AUTH.login(username, password).then(response => {
 			console.log(response);
@@ -71,6 +86,11 @@ class App extends Component {
 
 	render() {
 		return (
+			// <div className="App">
+			// 	<Navbar clickDrawer={this.showDrawer}/>
+			// 	<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
+			// </div>
+	
 			<Router>
 				<div className="App">
 					{this.state.loggedIn && (
@@ -82,7 +102,7 @@ class App extends Component {
 								</Header>
 							</Header>
 							<Layout>
-								<Sider>Sider</Sider>
+								<Navbar clickDrawer={this.showDrawer}/>
 								<Content>
 									<div className="main-view">
 										<Switch>
@@ -102,7 +122,7 @@ class App extends Component {
 									<HeaderDiv></HeaderDiv>
 								</Header>
 								<Layout className="content">
-									<Sider>Sider</Sider>
+									<Navbar clickDrawer={this.showDrawer}/>
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
@@ -112,6 +132,7 @@ class App extends Component {
 											</Switch>
 										</div>
 									</Content>
+									<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
 								</Layout>
 								<Footer className="footer">a Team 2 Production</Footer>
 							</Layout>
