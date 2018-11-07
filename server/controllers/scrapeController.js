@@ -19,15 +19,15 @@ module.exports = {
                 var title = titleNodeArr.map(titleMapFn)[0];
                 var url = titleNodeArr.map(linkMapFn)[0];
        
-                // TO DO: Get category for real
+              
                 let obj = {};
-                const category = "DUMMY CATEGORY NOW";
+                const category = "News in Brief";
        
                 var timeNode = $('time', $(el));
-                var timePublished = new Date(timeNode.attr('datetime')); // DB TESTED
+                var timePublished = new Date(timeNode.attr('datetime')); 
        
                 var summaryDivNode = $('div.excerpt', $(el)).get();
-                var summary = $('p', summaryDivNode).text(); // DB TESTED
+                var summary = $('p', summaryDivNode).text(); 
                 // TO DO: fix content
                 const content = summary; // for now, this will be updated later to include all of the article
        
@@ -41,9 +41,8 @@ module.exports = {
                     timePublished: timePublished,
                 }
        
-                // TO DO: Get the correct image
-                // DUMMY DATA is being used for now
-                const src = "https://i.kinja-img.com/gawker-media/image/upload/s--BuS4lF0---/c_scale,f_auto,fl_progressive,q_80,w_800/qxxnebzl24iewavbdmtd.jpg";
+                // For now, the image is just the onion logo
+                const src = "https://i.kym-cdn.com/entries/icons/facebook/000/010/280/onion.jpg"; // onion logo image
                 //console.log(obj);
                 //console.log(fakeArr);
                 let notInDatabase = 0;
