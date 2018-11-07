@@ -1,17 +1,22 @@
 
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 // import LoginForm from './components/Auth/LoginForm';
-// import SignupForm from './components/Auth/SignupForm';
+
+import SignupForm from './components/Auth/SignupForm';
+import { Layout } from 'antd';
 import Nav from "./components/Nav";
 import Home from "./pages/Home/Home";
 import NoMatch from "./pages/NoMatch";
+import HeaderDiv from "./components/HeaderDiv";
 import AUTH from './utils/AUTH';
 import "./App.css";
 import Navbar from "./components/NavBarAnt";
 import SigninDrawer from "./pages/SignupDrawer";
 import { throws } from 'assert';
 
+const { Header, Footer, Sider, Content } = Layout;
 
 class App extends Component {
 
@@ -71,7 +76,6 @@ class App extends Component {
 		AUTH.login(username, password).then(response => {
 			console.log(response);
 			if (response.status === 200) {
-
 				this.setState({
 					loggedIn: true,
 					user: response.data.user
@@ -82,11 +86,60 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				<Navbar clickDrawer={this.showDrawer}/>
-				<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
-			</div>
+			// <div className="App">
+			// 	<Navbar clickDrawer={this.showDrawer}/>
+			// 	<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
+			// </div>
 	
+			<Router>
+				<div className="App">
+					{this.state.loggedIn && (
+						<Layout>
+							<Header>
+								{/* <Nav user={this.state.user} logout={this.logout} /> */}
+								<Header style={{ textAlign: 'right' }}>
+									<HeaderDiv></HeaderDiv>
+								</Header>
+							</Header>
+							<Layout>
+								<Navbar clickDrawer={this.showDrawer}/>
+								<Content>
+									<div className="main-view">
+										<Switch>
+											<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route component={NoMatch} />
+										</Switch>
+									</div>
+								</Content>
+							</Layout>
+							<Footer className="footer">a Team 2 Production</Footer>
+						</Layout>
+					)}
+					{!this.state.loggedIn && (
+						<div className="auth-wrapper">
+							<Layout>
+								<Header className="header" style={{ textAlign: 'right' }}>
+									<HeaderDiv></HeaderDiv>
+								</Header>
+								<Layout className="content">
+									<Navbar clickDrawer={this.showDrawer}/>
+									<Content>
+										<div className="auth-wrapper">
+											<Switch>
+												<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+												<Route exact path="/signup" component={SignupForm} />
+												<Route component={NoMatch} />
+											</Switch>
+										</div>
+									</Content>
+									<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
+								</Layout>
+								<Footer className="footer">a Team 2 Production</Footer>
+							</Layout>
+						</div>
+					)}
+				</div>
+			</Router>
 		)
 	}
 }
