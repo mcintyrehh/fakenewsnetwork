@@ -7,6 +7,10 @@ const scrapeController = require("../../controllers/scrapeController");
 router
     .route("/scrape")
     .get(scrapeController.scrape);
+//"/api/fake-articles/clear"
+router
+    .route("./clear")
+    .get(fakeNewsController.clearAll);
 // "/api/fake-articles"
 router
     .route("/")
