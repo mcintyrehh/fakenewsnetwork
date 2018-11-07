@@ -1,28 +1,53 @@
 import React from 'react';
 import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker } from 'antd';
+import AUTH from "../../utils/AUTH";
 
 const { Option } = Select;
 
 class DrawerForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { firstName: "", lastName: "", username: "", password: "", confirmPassword:""}
+    this.state = { firstName: "", lastName: "", username: "", password: "", confirmPassword:"", registered: false}
   }
 
+  handleInput = event => {
+    const { name, value } = event.target;
+    this.setState({[name]: value });
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        AUTH.signup({
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          username: this.state.username,
+          password: this.state.password
+        }).then(response => {
+          console.log(response);
+          if (!response.data.errmsg) {
+            console.log("you're good");
+            this.setState({registered: true, firstName: "", lastName: "", username: "", password: "", confirmPassword: "" });
+          } else {
+            console.log("duplicate");
+          }
+        });
+
+      }
+    });
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
       <div>
-        {/* <Button type="primary" onClick={this.showDrawer}>
-          Create
-        </Button> */}
         <Drawer
-          title="Create"
+          title="Register"
           width={720}
           placement="right"
           onClose={this.props.hideDrawer}
           maskClosable={false}
-          visible={this.props.visible}
+          visible={(this.state.registered) ? false: this.props.visible}
           style={{
             height: 'calc(100% - 55px)',
             overflow: 'auto',
@@ -60,14 +85,14 @@ class DrawerForm extends React.Component {
                 <Form.Item label="Password">
                   {getFieldDecorator('Password', {
                     rules: [{ required: true, message: 'please provide your first name.' }],
-                  })(<Input placeholder="Confirm Password" name="password" onChange={this.handleInput}/>)}
+                  })(<Input placeholder="Confirm Password" type="password" name="password" onChange={this.handleInput}/>)}
                 </Form.Item>
               </Col>
               <Col span={12}>
               <Form.Item label="Confirm Password">
                   {getFieldDecorator('Confirm Password', {
                     rules: [{ required: true, message: 'please provide your last name.' }],
-                  })(<Input placeholder="Password" name="confirmPassword" onChange={this.handleInput}/>)}
+                  })(<Input placeholder="Password" type="password" name="confirmPassword" onChange={this.handleInput}/>)}
                 </Form.Item>
               </Col>
             </Row>
@@ -93,7 +118,7 @@ class DrawerForm extends React.Component {
             >
               Cancel
             </Button>
-            <Button onClick={this.handleSubmit} type="primary">Submit</Button>
+            <Button onClick={this.handleSubmit} type="primary">Register</Button>
           </div>
         </Drawer>
       </div>

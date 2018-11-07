@@ -86,10 +86,6 @@ class App extends Component {
 
 	render() {
 		return (
-			// <div className="App">
-			// 	<Navbar clickDrawer={this.showDrawer}/>
-			// 	<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
-			// </div>
 	
 			<Router>
 				<div className="App">
@@ -102,7 +98,9 @@ class App extends Component {
 								</Header>
 							</Header>
 							<Layout>
-								<Navbar clickDrawer={this.showDrawer}/>
+								<Sider>
+									<Navbar clickDrawer={this.showDrawer}/>
+								</Sider>
 								<Content>
 									<div className="main-view">
 										<Switch>
@@ -122,6 +120,7 @@ class App extends Component {
 									<HeaderDiv></HeaderDiv>
 								</Header>
 								<Layout className="content">
+								
 									<Navbar clickDrawer={this.showDrawer}/>
 									<Content>
 										<div className="auth-wrapper">
