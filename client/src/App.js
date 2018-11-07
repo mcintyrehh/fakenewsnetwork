@@ -1,7 +1,9 @@
 
 import React, { Component } from 'react';
+
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 // import LoginForm from './components/Auth/LoginForm';
+
 import SignupForm from './components/Auth/SignupForm';
 import { Layout } from 'antd';
 import Nav from "./components/Nav";
