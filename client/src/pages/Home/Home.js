@@ -27,8 +27,8 @@ class Home extends Component {
             username: '',
             password: '',
             redirectTo: null,
-            outerColWidth: 8,
-            innerColWidth: 8,
+            outerColWidth: 6,
+            innerColWidth: 10,
             fakeNews:[],
             realNews: []
 
@@ -62,26 +62,7 @@ class Home extends Component {
 
             <Wrapper>
                 <Layout>
-                    <Header style={{ textAlign: 'right' }}>
-                        <Row className="logo">
-                            <Col span={8}></Col>
-                            <Col className="title" span={8}><span role="img" aria-label="investigator emoji">🕵️‍</span>Fake News Network<span role="img" aria-label="investigator emoji">🕵️️</span></Col>
-                            <Col span={8}>
-                                <Row>
-                                    <Menu
-                                        className="menu-bar"
-                                        theme="dark"
-                                        mode="horizontal"
-                                        // defaultSelectedKeys={['2']}
-                                        style={{ lineHeight: '64px' }}>
-                                        <Menu.Item key="1">Sign Up</Menu.Item>
-                                        <Menu.Item key="2">Sign In</Menu.Item>
-                                        <Menu.Item key="3">Log Out</Menu.Item>
-                                    </Menu>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Header>
+                    
                     <Content className="main">
                         {/* Here is where the main content will be displayed
                         it is comprised of four columns with variable width, depending on which view we want set*/}
@@ -90,14 +71,13 @@ class Home extends Component {
                             <Col span={this.state.outerColWidth}>{!this.props.isLoggedIn && <LoginForm login={this.props.login}></LoginForm>}</Col>
 
                             <Col span={this.state.innerColWidth}>
-                                {this.state.fakeNews.map(fake => <Card fake={fake} key={fake.id} displayRealNews={this.displayRealNews} />)}
+                                {this.state.fakeNews.map(fake => <Card fake={fake} img={"https://www.vectorlogo.zone/logos/theonion/theonion-card.png"}key={fake.id} displayRealNews={this.displayRealNews} />)}
                             </Col>
 
                             <Col span={this.state.innerColWidth}>{this.state.realNews && this.state.realNews.map(real=> <RealCard real={real} key={real.id}></RealCard>)}</Col>
                             <Col span={this.state.outerColWidth}>{!this.props.isLoggedIn && <SignupForm></SignupForm>}</Col>
                         </Row>
                     </Content>
-                    <Footer className="footer">a Team 2 Production</Footer>
                 </Layout>
             </Wrapper>
 
