@@ -9,7 +9,7 @@ router
     .get(scrapeController.scrape);
 //"/api/fake-articles/clear"
 router
-    .route("./clear")
+    .route("/clear")
     .get(fakeNewsController.clearAll);
 // "/api/fake-articles"
 router
