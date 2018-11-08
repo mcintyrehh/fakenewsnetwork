@@ -38,8 +38,9 @@ class Navbar extends React.Component {
                 <Menu.Item key="6">Saved Real Articles</Menu.Item>
                 </SubMenu>
               <SubMenu key="sub4" title="Manage Account">
-                <Menu.Item key="7"><div style={{width: "100%"}} onClick={this.props.clickDrawer}>Login</div></Menu.Item>
-                <Menu.Item key="8">Logout</Menu.Item>
+                <Menu.Item key="7"><div style={{width: "100%"}} onClick={this.props.clickDrawer}>Register</div></Menu.Item>
+                <Menu.Item key="8"><div style={{width: "100%"}} onClick={this.props.clickLoginDrawer}>Login</div></Menu.Item>
+                <Menu.Item key="9">Logout</Menu.Item>
               </SubMenu>
             </SubMenu>
           </Menu>

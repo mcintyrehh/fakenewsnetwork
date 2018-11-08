@@ -18,12 +18,13 @@ class DrawerForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
+      const { firstName, lastName, username, password } = values;
       if (!err) {
         AUTH.signup({
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          username: this.state.username,
-          password: this.state.password
+          firstName,
+          lastName,
+          username,
+          password
         }).then(response => {
           console.log(response);
           if (!response.data.errmsg) {
@@ -65,7 +66,7 @@ class DrawerForm extends React.Component {
               </Col>
               <Col span={12}>
               <Form.Item label="Last Name">
-                  {getFieldDecorator('LastName', {
+                  {getFieldDecorator('lastName', {
                     rules: [{ required: true, message: 'please provide your last name.' }],
                   })(<Input placeholder="Last Name" name="lastName" onChange={this.handleInput}/>)}
                 </Form.Item>
@@ -74,7 +75,7 @@ class DrawerForm extends React.Component {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item label="Username">
-                  {getFieldDecorator('Username', {
+                  {getFieldDecorator('username', {
                     rules: [{ required: true, message: 'please provide your first name.' }],
                   })(<Input placeholder="Username" name="username" onChange={this.handleInput}/>)}
                 </Form.Item>
@@ -83,15 +84,15 @@ class DrawerForm extends React.Component {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item label="Password">
-                  {getFieldDecorator('Password', {
-                    rules: [{ required: true, message: 'please provide your first name.' }],
+                  {getFieldDecorator('password', {
+                    rules: [{ required: true, message: 'please provide a password.' }],
                   })(<Input placeholder="Confirm Password" type="password" name="password" onChange={this.handleInput}/>)}
                 </Form.Item>
               </Col>
               <Col span={12}>
               <Form.Item label="Confirm Password">
-                  {getFieldDecorator('Confirm Password', {
-                    rules: [{ required: true, message: 'please provide your last name.' }],
+                  {getFieldDecorator('confirmPassword', {
+                    rules: [{ required: true, message: 'please re-enter your password.' }],
                   })(<Input placeholder="Password" type="password" name="confirmPassword" onChange={this.handleInput}/>)}
                 </Form.Item>
               </Col>
