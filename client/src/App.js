@@ -28,7 +28,8 @@ class App extends Component {
 			loggedIn: false,
 			user: null,
 			signUpDrawerVisibility: false,
-			loginDrawerVisibility: false
+			loginDrawerVisibility: false,
+			menuWidth: 256
 		};
 	}
 
@@ -110,7 +111,7 @@ class App extends Component {
 								</Header>
 							</Header>
 							<Layout>
-								<Sider width={256}>
+								<Sider width={this.state.menuWidth}>
 									<Navbar user={this.state.user} logout={this.logout} />
 								</Sider>
 								<Content>
