@@ -41,7 +41,7 @@ const fakeArticlesSchema = new Schema ({
     },
     articleSource: {
         type: String,
-        // default: "The Onion"
+        default: "The Onion"
     },
     articleType: {
         type: String,
