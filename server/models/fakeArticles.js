@@ -17,7 +17,8 @@ const fakeArticlesSchema = new Schema ({
     },
     sourceId: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     author: {
         type: String, 

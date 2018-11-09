@@ -39,6 +39,13 @@ module.exports = {
             .then(dbFArticles => res.json(dbFArticles))
             .catch(err => res.status(422).json(err));
     },
+    findBySourceId: (req, res) => {
+      db.FakeArticles
+          .find({sourceId: req.params.sourceId })
+          .populate("associatedRealNews.realNewsArticle")
+          .then(dbFArticles => res.json(dbFArticles))
+          .catch(err => res.status(422).json(err));
+  },
     create: (req, res) => {
         db.FakeArticles
             /* req.body should include
@@ -101,4 +108,4 @@ module.exports = {
               response: stuffBack
            }));
      },
-}
+};
