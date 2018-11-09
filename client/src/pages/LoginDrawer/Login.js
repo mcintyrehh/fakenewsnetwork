@@ -21,10 +21,8 @@ class DrawerForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       const { username, password } = values;
       if (!err) {
-        AUTH.login(username, password).then(response => {
-          console.log(response)
-          this.setState({loggedIn: true, redirectTo: "/"});
-        })
+        this.props.login(username, password);
+        this.setState({loggedIn: true });
       }
     });
   }

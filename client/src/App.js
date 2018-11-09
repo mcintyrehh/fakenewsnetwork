@@ -145,7 +145,7 @@ class App extends Component {
 											</Switch>
 										
 											<SigninDrawer visible={this.state.signUpDrawerVisibility} hideDrawer={this.hideSignUpDrawer} triggerLogin={this.switchDrawers}/>
-											<LoginDrawer visible={this.state.loginDrawerVisibility} hideDrawer={this.hideLoginDrawer} />
+											<LoginDrawer visible={this.state.loginDrawerVisibility} hideDrawer={this.hideLoginDrawer} login={this.login} />
 										</div>
 									</Content>
 								</Layout>
