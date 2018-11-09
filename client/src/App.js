@@ -14,6 +14,7 @@ import AUTH from './utils/AUTH';
 import "./App.css";
 import Navbar from "./components/NavBarAnt";
 import SigninDrawer from "./pages/SignupDrawer";
+import LoginDrawer from "./pages/LoginDrawer";
 import { throws } from 'assert';
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -26,7 +27,8 @@ class App extends Component {
 		this.state = {
 			loggedIn: false,
 			user: null,
-			drawerVisibility: false
+			signUpDrawerVisibility: false,
+			loginDrawerVisibility: false
 		};
 	}
 
@@ -61,16 +63,26 @@ class App extends Component {
 		});
 	}
 
-	showDrawer = () => {
-		this.setState({drawerVisibility: true });
+	showSignUpDrawer = () => {
+		this.setState({signUpDrawerVisibility: true });
 	}
 
-	hideDrawer = () => {
-		this.setState({drawerVisibility: false });
+	hideSignUpDrawer = () => {
+		this.setState({signUpDrawerVisibility: false });
 	}
-	handleSubmit = () => {
-		this.setState({drawerVisibility: false })
+
+	showLoginDrawer = () => {
+		this.setState({loginDrawerVisibility: true });
 	}
+
+	hideLoginDrawer = () => {
+		this.setState({loginDrawerVisibility: false });
+	}
+
+	switchDrawers = () => {
+		this.setState({signUpDrawerVisibility: false, loginDrawerVisibility: true});
+	}
+
 
 	login = (username, password) => {
 		AUTH.login(username, password).then(response => {
@@ -86,10 +98,6 @@ class App extends Component {
 
 	render() {
 		return (
-			// <div className="App">
-			// 	<Navbar clickDrawer={this.showDrawer}/>
-			// 	<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
-			// </div>
 	
 			<Router>
 				<div className="App">
@@ -102,7 +110,9 @@ class App extends Component {
 								</Header>
 							</Header>
 							<Layout>
-								<Navbar clickDrawer={this.showDrawer}/>
+								<Sider width={256}>
+									<Navbar user={this.state.user} logout={this.logout} />
+								</Sider>
 								<Content>
 									<div className="main-view">
 										<Switch>
@@ -122,7 +132,9 @@ class App extends Component {
 									<HeaderDiv></HeaderDiv>
 								</Header>
 								<Layout className="content">
-									<Navbar clickDrawer={this.showDrawer}/>
+									<Sider width={256}>
+										<Navbar clickDrawer={this.showSignUpDrawer} clickLoginDrawer={this.showLoginDrawer}/>
+									</Sider>
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
@@ -130,9 +142,11 @@ class App extends Component {
 												<Route exact path="/signup" component={SignupForm} />
 												<Route component={NoMatch} />
 											</Switch>
+										
+											<SigninDrawer visible={this.state.signUpDrawerVisibility} hideDrawer={this.hideSignUpDrawer} triggerLogin={this.switchDrawers}/>
+											<LoginDrawer visible={this.state.loginDrawerVisibility} hideDrawer={this.hideLoginDrawer} />
 										</div>
 									</Content>
-									<SigninDrawer visible={this.state.drawerVisibility} hideDrawer={this.hideDrawer} submit={this.handleSubmit}/>
 								</Layout>
 								<Footer className="footer">a Team 2 Production</Footer>
 							</Layout>
