@@ -26,6 +26,8 @@ class Navbar extends React.Component {
             defaultOpenKeys={['sub1']}
             mode="inline"
           >
+          {(this.props.user) ? <div className="logo"> Hello {this.props.user.firstName}</div> : <div className="logo">Real Fake News</div>}
+          
             <SubMenu key="sub1" title={<span><Icon type="home" /><span>FNN</span></span>}>
               <MenuItemGroup key="g1" title="Articles">
                 <Menu.Item key="1">The Fake News</Menu.Item>
@@ -40,7 +42,7 @@ class Navbar extends React.Component {
               <SubMenu key="sub4" title="Manage Account">
                 <Menu.Item key="7"><div style={{width: "100%"}} onClick={this.props.clickDrawer}>Register</div></Menu.Item>
                 <Menu.Item key="8"><div style={{width: "100%"}} onClick={this.props.clickLoginDrawer}>Login</div></Menu.Item>
-                <Menu.Item key="9">Logout</Menu.Item>
+                <Menu.Item key="9"><div style={{width: "100%"}} onClick={this.props.logout}>Logout</div></Menu.Item>
               </SubMenu>
             </SubMenu>
           </Menu>

@@ -110,8 +110,7 @@ class App extends Component {
 								</Header>
 							</Header>
 							<Layout>
-								<Sider>
-									{/* <Navbar clickDrawer={this.showSignUpDrawer} clickLoginDrawer={this.showLoginDrawer}/> */}
+								<Sider width={256}>
 									<Navbar user={this.state.user} logout={this.logout} />
 								</Sider>
 								<Content>
@@ -133,8 +132,9 @@ class App extends Component {
 									<HeaderDiv></HeaderDiv>
 								</Header>
 								<Layout className="content">
-								
-									<Navbar clickDrawer={this.showSignUpDrawer} clickLoginDrawer={this.showLoginDrawer}/>
+									<Sider width={256}>
+										<Navbar clickDrawer={this.showSignUpDrawer} clickLoginDrawer={this.showLoginDrawer}/>
+									</Sider>
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
