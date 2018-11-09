@@ -35,7 +35,11 @@ class Navbar extends React.Component {
             mode="inline"
             inlineCollapsed={this.state.collapsed}
           >
-            <div style={{ textAlign: "center" }} className="logo"> Hello {this.props.user.firstName}</div>
+          {
+            (this.props.collapsed) ?
+              <div style={{ textAlign: "center" }} className="logo">Menu</div>
+            : <div style={{ textAlign: "center" }} className="logo"> Hello {this.props.user.firstName}</div>
+          }
 
             <SubMenu key="sub1" title={<span><Icon type="home" /><span>FNN</span></span>}>
               <MenuItemGroup key="g1" title="Articles">
@@ -65,8 +69,12 @@ class Navbar extends React.Component {
             mode="inline"
             inlineCollapsed={this.state.collapsed}
           >
-
-            <div style={{ textAlign: "center" }} className="logo">Real Fake News</div>
+          
+          {
+            (this.props.collapsed) ?
+              <div style={{ textAlign: "center" }} className="logo">Menu</div>
+            : <div style={{ textAlign: "center" }} className="logo">Real Fake News</div>
+          }
 
             <SubMenu key="sub1" title={<span><Icon type="home" /><span>FNN</span></span>}>
               <MenuItemGroup key="g1" title="Articles">
