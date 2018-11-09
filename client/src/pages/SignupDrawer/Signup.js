@@ -29,7 +29,11 @@ class DrawerForm extends React.Component {
           console.log(response);
           if (!response.data.errmsg) {
             console.log("you're good");
-            this.setState({registered: true, firstName: "", lastName: "", username: "", password: "", confirmPassword: "" });
+
+            AUTH.login(username, password).then (response => {
+              this.setState({registered: true, firstName: "", lastName: "", username: "", password: "", confirmPassword: "" });
+            })
+            // this.setState({registered: true, firstName: "", lastName: "", username: "", password: "", confirmPassword: "" });
           } else {
             console.log("duplicate");
           }
