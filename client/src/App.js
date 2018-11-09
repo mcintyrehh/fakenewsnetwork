@@ -147,7 +147,7 @@ class App extends Component {
 										collapsible
 										collapsed={this.state.collapsed}
 										onCollapse={this.onCollapse} >
-										<Navbar clickDrawer={this.showSignUpDrawer} clickLoginDrawer={this.showLoginDrawer} />
+										<Navbar clickDrawer={this.showSignUpDrawer} collapsed={this.onCollapse}clickLoginDrawer={this.showLoginDrawer} />
 									</Sider>
 									<Content>
 										<div className="auth-wrapper">
