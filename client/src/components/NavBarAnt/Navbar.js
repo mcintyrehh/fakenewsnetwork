@@ -29,7 +29,6 @@ class Navbar extends React.Component {
           <Menu
             theme="dark"
             onClick={this.handleClick}
-            // style={{ width: 256 }}
             defaultSelectedKeys={[]}
             defaultOpenKeys={['sub1', 'sub2']}
             mode="inline"
@@ -63,18 +62,13 @@ class Navbar extends React.Component {
           <Menu
             theme="dark"
             onClick={this.handleClick}
-            style={{ width: 256 }}
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
             mode="inline"
             inlineCollapsed={this.state.collapsed}
           >
-          
-          {
-            (this.props.collapsed) ?
-              <div style={{ textAlign: "center" }} className="logo">Menu</div>
-            : <div style={{ textAlign: "center" }} className="logo">Real Fake News</div>
-          }
+
+             <div style={{ textAlign: "center" }} className="logo"> RFN</div> 
 
             <SubMenu key="sub1" title={<span><Icon type="home" /><span>FNN</span></span>}>
               <MenuItemGroup key="g1" title="Articles">
