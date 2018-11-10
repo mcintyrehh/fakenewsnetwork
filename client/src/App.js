@@ -29,8 +29,9 @@ class App extends Component {
 			user: null,
 			signUpDrawerVisibility: false,
 			loginDrawerVisibility: false,
-			menuWidth: 256
+			// menuWidth: 256
 		};
+
 	}
 
 	componentDidMount() {
@@ -49,7 +50,10 @@ class App extends Component {
 			}
 		})
 	}
-
+	onCollapse = (collapsed) => {
+		console.log(collapsed);
+		this.setState({ collapsed });
+	}
 	logout = (event) => {
 		event.preventDefault();
 
@@ -65,23 +69,23 @@ class App extends Component {
 	}
 
 	showSignUpDrawer = () => {
-		this.setState({signUpDrawerVisibility: true });
+		this.setState({ signUpDrawerVisibility: true });
 	}
 
 	hideSignUpDrawer = () => {
-		this.setState({signUpDrawerVisibility: false });
+		this.setState({ signUpDrawerVisibility: false });
 	}
 
 	showLoginDrawer = () => {
-		this.setState({loginDrawerVisibility: true });
+		this.setState({ loginDrawerVisibility: true });
 	}
 
 	hideLoginDrawer = () => {
-		this.setState({loginDrawerVisibility: false });
+		this.setState({ loginDrawerVisibility: false });
 	}
 
 	switchDrawers = () => {
-		this.setState({signUpDrawerVisibility: false, loginDrawerVisibility: true});
+		this.setState({ signUpDrawerVisibility: false, loginDrawerVisibility: true });
 	}
 
 
@@ -99,7 +103,7 @@ class App extends Component {
 
 	render() {
 		return (
-	
+
 			<Router>
 				<div className="App">
 					{this.state.loggedIn && (
@@ -111,9 +115,14 @@ class App extends Component {
 								</Header>
 							</Header>
 							<Layout>
-								<Sider width={this.state.menuWidth}>
+								<Sider
+									width={256}
+									collapsible
+									collapsed={this.state.collapsed}
+									onCollapse={this.onCollapse} >
 									<Navbar user={this.state.user} logout={this.logout} />
 								</Sider>
+
 								<Content>
 									<div className="main-view">
 										<Switch>
@@ -133,8 +142,12 @@ class App extends Component {
 									<HeaderDiv></HeaderDiv>
 								</Header>
 								<Layout className="content">
-									<Sider width={256}>
-										<Navbar clickDrawer={this.showSignUpDrawer} clickLoginDrawer={this.showLoginDrawer}/>
+									<Sider
+										width={256}
+										collapsible
+										collapsed={this.state.collapsed}
+										onCollapse={this.onCollapse} >
+										<Navbar clickDrawer={this.showSignUpDrawer} collapsed={this.onCollapse}clickLoginDrawer={this.showLoginDrawer} />
 									</Sider>
 									<Content>
 										<div className="auth-wrapper">
