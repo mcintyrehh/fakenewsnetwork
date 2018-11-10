@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignupForm from './components/Auth/SignupForm';
 import { Layout } from 'antd';
 import Home from "./pages/Home/Home";
+import Detail from "./pages/Detail/Detail";
 import Saved from "./pages/Saved/Saved";
 import NoMatch from "./pages/NoMatch";
 import HeaderDiv from "./components/HeaderDiv";
@@ -123,6 +124,7 @@ class App extends Component {
 									<div className="main-view">
 										<Switch>
 											<Route exact path="/" component={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/articles/:id" render={props => <Detail {...props} user={this.state.user} />} />
 											<Route exact path="/saved-articles" component={() => <Saved user={this.state.user} />}/>
 											<Route component={NoMatch} />
 										</Switch>
