@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
-import { Card, RealCard } from '../../components/Card';
+import  Card from '../../components/Card';
+import { RealCard } from '../../components/Card';
 import LoginForm from '../../components/Auth/LoginForm';
 import SignupForm from '../../components/Auth/SignupForm';
-import { Menu } from 'antd';
 // import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
@@ -72,7 +72,6 @@ class Home extends Component {
                             <Col span={this.state.innerColWidth}>
                                 {this.state.fakeNews.map(fake => <Card fake={fake} img={"https://www.vectorlogo.zone/logos/theonion/theonion-card.png"}key={fake.id} displayRealNews={this.displayRealNews} />)}
                             </Col>
-
                             <Col span={this.state.innerColWidth}>{this.state.realNews && this.state.realNews.map(real=> <RealCard real={real} key={real.id}></RealCard>)}</Col>
                             <Col span={this.state.outerColWidth}>{!this.props.isLoggedIn && <SignupForm></SignupForm>}</Col>
                         </Row>
