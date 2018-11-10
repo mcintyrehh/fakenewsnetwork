@@ -1,5 +1,7 @@
+require("dotenv").config();
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('3f30010330714ea2a7c2f418233d5304');
+const apiKey = require('../key');
+const newsapi = new NewsAPI("apiKey.newsapi_key");
 
 // Stuff to do:
 // Fix dates - we should decide on a date range
