@@ -2,6 +2,8 @@
 const db = require("../models");
 const axios = require("axios");
 const cheerio = require("cheerio");
+const gavagai = require("gavagai");
+const gavClient = gavagai("77f194d9aedf5fc489b909786631c340");
 
 module.exports = {
 
@@ -17,7 +19,7 @@ module.exports = {
          insertedArticles: []
       };
 
-      let pruneObj = (obj,displayProps) => {
+      let pruneObj = (obj, displayProps) => {
          let displayObj = {};
          for (let prop in obj) {
             if (displayProps.includes(prop)) {
@@ -28,9 +30,7 @@ module.exports = {
       };
 
       let processSite = (siteURL, siteName, shortName, imageSrc) => {
-         // console.log("\n\n***** IN processSite, WITH...", siteName);
-         
-         
+
          console.log("Scraping " + siteName + " at time " + nowTime);
 
          let isArticleContent = par => par.search(/[\w]/) !== -1 && par.indexOf("Advertisement") === -1;
@@ -69,7 +69,7 @@ module.exports = {
 
                            if (docs.length && docs.length > 0) {
                               // console.log("\tduplicate FOUND for article '", title, " with sourceId of ", thisSourceId, ".");
-                             //  console.log("here is dup that was found: ", docs);
+                              //  console.log("here is dup that was found: ", docs);
                               return true; // go to the next iteration of the each loop, because this article is already in the database
 
                            } else {
@@ -91,38 +91,68 @@ module.exports = {
                                        }
                                     });
 
-                                    let data = {
-                                       sourceId: thisSourceId,
+                                    let gavArr = [{
+                                       id: "1",
                                        title: title,
-                                       url: detailURL,
-                                       summary: summary,
-                                       timePublished: timePublished,
-                                       content: content,
-                                       category: category,
-                                       src: imageSrc,
-                                       articleSource: siteName
-                                    };
+                                       body: content.join(" ").replace(/['"]/g, "")
+                                    }];
 
-                                    // Note: the database will only accept records with unique sourceId's, while this code
-                                    // is written to only process articles not yet in the database, there is additional protection
-                                    // from the FakeArticles model, which forces sourceId to be unique
+                                    // get keywords here
+                                    gavClient.keywords(gavArr, (err, data) => {
+                                       if (err) {
+                                          //console.log("ERROR: Gavagai keywords error: ", err);
+                                       } else {
+                                          //console.log("keywords returned for ", title, " are:\n", data.keywords);
 
-                                    db.FakeArticles
-                                       .create(data)
-                                       .then(dbFArticle => {
-                                          scrapeInfo.totalInsertedScrapes++;
-                                          scrapeInfo.insertedArticles.push(pruneObj(dbFArticle,["title","sourceId","id"]));
+                                          if (data && data.numberOfKeywords && data.numberOfKeywords > 0) {
+                                             let frequencyFn = termObj => {
+                                                return (termObj.occurrences > 1);
+                                             };
+                                             let getTermFn = termObj => termObj.term;
+                                             let importantKeywords = (data.keywords).filter(frequencyFn).map(getTermFn);
 
-                                       })
-                                       .catch(err => console.log("db.FakeArticles.create catch: ", err));
 
-                                 } // end axios.get
-                              ); // end then block
-                           } // end else block that covers the case where this record is a new record.
+                                             if (importantKeywords.length === 0) { // if no words occur more than once
+                                                // console.log("\t in loop because no keywords were retained");
+                                                let numOfKeywords = Math.min(5, data.keywords.length);
+                                                importantKeywords = (data.keywords.slice(0, numOfKeywords)).map(getTermFn);
+
+                                                if (importantKeywords.length === 0) { // if there are still zero keywords
+                                                   return true; // then don't move forward with this term
+                                                }
+                                             }
+
+                                             // create document to insert
+                                             let docData = {
+                                                sourceId: thisSourceId,
+                                                title: title,
+                                                url: detailURL,
+                                                summary: summary,
+                                                timePublished: timePublished,
+                                                content: content,
+                                                category: category,
+                                                src: imageSrc,
+                                                articleSource: siteName,
+                                                keywords: importantKeywords
+                                             };
+
+                                             db.FakeArticles
+                                                .create(docData)
+                                                .then(dbFArticle => {
+                                                   scrapeInfo.totalInsertedScrapes++;
+                                                   scrapeInfo.insertedArticles.push(pruneObj(dbFArticle, ["title", "sourceId", "id"]));
+                                                })
+                                                .catch(err => console.log("db.FakeArticles.create catch: ", err));
+
+                                          }
+
+                                       }
+                                    });
+                                 } 
+                              ); 
+                           } 
                         } else { // we have looked for a record, and neither ERR or DOCS has returned as expected
-                           console.log("WEIRD RESULT, no err or docs returned in cb function, expecting 0 or 1 records returned.");
-                           console.log("\tWEIRD RESULT docs: ", docs);
-                           console.log("\tWEIRD RESULT err:", err);
+                           console.log("WEIRD RESULT, no err or docs returned in findOne cb function");
                         }
                      };
 
@@ -142,13 +172,15 @@ module.exports = {
       }; // closing bracket of processSite arrow function
 
 
+      // ISSUE: Cannot get async/await to work with this code. WHY NOT?
+
       axios.all([processSite("http://www.theonion.com", "The Onion", "onion", "https://i.kym-cdn.com/entries/icons/facebook/000/010/280/onion.jpg"),
             processSite("http://www.clickhole.com", "Clickhole", "clickhole", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUkyAHkl2tHsmg7wN07BWT8xEN7BgWUxwWxk0NKM_ZdBeDtfBu")
          ])
-         .then( (resp) => res.json({"message":"Scraping!"}));
+         .then((resp) => res.json({
+            "message": "Scraping!"
+         }));
 
+   } // end scrape method
 
-       } // end scrape method
-
-   }; // end module.exports
-
+}; // end module.exports
