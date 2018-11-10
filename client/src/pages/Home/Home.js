@@ -4,15 +4,11 @@ import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
 import  Card from '../../components/Card';
 import { RealCard } from '../../components/Card';
-import LoginForm from '../../components/Auth/LoginForm';
-import SignupForm from '../../components/Auth/SignupForm';
 // import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
 import API from '../../utils/API'
-import fakefake from '../../fakefake.json';
-const { Header, Footer, Content } = Layout;
-const fakeJSON = fakefake;
+const { Content } = Layout;
 
 class Home extends Component {
     
@@ -67,13 +63,13 @@ class Home extends Component {
                         it is comprised of four columns with variable width, depending on which view we want set*/}
                         <Row style={{ textAlign: 'center', color: 'white' }}>
                             
-                            <Col span={this.state.outerColWidth}>{!this.props.isLoggedIn && <LoginForm login={this.props.login}></LoginForm>}</Col>
+                            <Col span={this.state.outerColWidth}></Col>
 
                             <Col span={this.state.innerColWidth}>
                                 {this.state.fakeNews.map(fake => <Card fake={fake} img={"https://www.vectorlogo.zone/logos/theonion/theonion-card.png"}key={fake.id} displayRealNews={this.displayRealNews} />)}
                             </Col>
                             <Col span={this.state.innerColWidth}>{this.state.realNews && this.state.realNews.map(real=> <RealCard real={real} key={real.id}></RealCard>)}</Col>
-                            <Col span={this.state.outerColWidth}>{!this.props.isLoggedIn && <SignupForm></SignupForm>}</Col>
+                            <Col span={this.state.outerColWidth}></Col>
                         </Row>
                     </Content>
                 </Layout>

@@ -1,12 +1,11 @@
 
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import LoginForm from './components/Auth/LoginForm';
 
 import SignupForm from './components/Auth/SignupForm';
 import { Layout } from 'antd';
-import Nav from "./components/Nav";
 import Home from "./pages/Home/Home";
 import NoMatch from "./pages/NoMatch";
 import HeaderDiv from "./components/HeaderDiv";
@@ -15,7 +14,7 @@ import "./App.css";
 import Navbar from "./components/NavBarAnt";
 import SigninDrawer from "./pages/SignupDrawer";
 import LoginDrawer from "./pages/LoginDrawer";
-import { throws } from 'assert';
+// import { throws } from 'assert';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -103,7 +102,6 @@ class App extends Component {
 
 	render() {
 		return (
-
 			<Router>
 				<div className="App">
 					{this.state.loggedIn && (

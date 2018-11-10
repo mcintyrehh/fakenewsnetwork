@@ -12,11 +12,10 @@ class Card extends Component {
   favStar = () => {
     // 'fas' is a font awesome icon of a solid star, 'far' is a hollow star
     // on clicking the star, the ternary operator switches states to the opposite
-    const updateFav = (this.state.favIcon == 'fas') ? 'far' : 'fas';
-    this.setState({favIcon : updateFav})
+    const updateFav = (this.state.favIcon === 'fas') ? 'far' : 'fas';
+    this.setState({favIcon : updateFav});
   }
   render() {
-    console.log(this.state)
     return (
       <Row className="card-div">
         <Col span={6} className="side-info-holder">

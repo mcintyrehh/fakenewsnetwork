@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker } from 'antd';
-import AUTH from '../../utils/AUTH';
+import { Drawer, Form, Button, Col, Row, Input } from 'antd';
+// import AUTH from '../../utils/AUTH';
 
-const { Option } = Select;
+// const { Option } = Select;
 
 class DrawerForm extends React.Component {
   constructor(props) {
