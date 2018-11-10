@@ -4,9 +4,8 @@ import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
 import  Card from '../../components/Card';
 import { RealCard } from '../../components/Card';
-// import Toggle from '../../components/Toggle'
 import '../../App.css';
-import './Home.css';
+import './Saved.css';
 import API from '../../utils/API'
 import axios from 'axios';
 const { Content } = Layout;
@@ -67,18 +66,6 @@ class Home extends Component {
     onChangeUserName = (e) => {
         this.setState({ userName: e.target.value });
     }
-    saved = (userID, articleID, articleType) => {
-        let data = {
-            fakeArticleId: articleID
-        }
-		API.updateUserSavedArticles(userID, data, articleType)
-		.then(function (response) {
-            console.log(response.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-	}
     render() {
         console.log(this.state)
         return (
@@ -93,7 +80,7 @@ class Home extends Component {
                             <Col span={this.state.outerColWidth}></Col>
 
                             <Col span={this.state.innerColWidth}>
-                                {this.state.fakeNews.map(fake => <Card fake={fake} user={this.props.user} img={"https://www.vectorlogo.zone/logos/theonion/theonion-card.png"} saved={this.saved} key={fake._id} displayRealNews={this.displayRealNews} />)}
+                                {this.state.fakeNews.map(fake => <Card fake={fake} img={"https://www.vectorlogo.zone/logos/theonion/theonion-card.png"} key={fake._id} displayRealNews={this.displayRealNews} />)}
                             </Col>
                             <Col span={this.state.innerColWidth}>{this.state.realNews && this.state.realNews.map(real=> <RealCard real={real} key={real.id}></RealCard>)}</Col>
                             <Col span={this.state.outerColWidth}></Col>

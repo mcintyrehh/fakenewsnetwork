@@ -7,9 +7,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignupForm from './components/Auth/SignupForm';
 import { Layout } from 'antd';
 import Home from "./pages/Home/Home";
+import Saved from "./pages/Saved/Saved";
 import NoMatch from "./pages/NoMatch";
 import HeaderDiv from "./components/HeaderDiv";
 import AUTH from './utils/AUTH';
+import API from './utils/API';
 import "./App.css";
 import Navbar from "./components/NavBarAnt";
 import SigninDrawer from "./pages/SignupDrawer";
@@ -27,12 +29,9 @@ class App extends Component {
 			loggedIn: false,
 			user: null,
 			signUpDrawerVisibility: false,
-			loginDrawerVisibility: false,
-			// menuWidth: 256
+			loginDrawerVisibility: false
 		};
-
 	}
-
 	componentDidMount() {
 		AUTH.getUser().then(response => {
 			console.log(response.data);
@@ -50,7 +49,6 @@ class App extends Component {
 		})
 	}
 	onCollapse = (collapsed) => {
-		console.log(collapsed);
 		this.setState({ collapsed });
 	}
 	logout = (event) => {
@@ -124,7 +122,8 @@ class App extends Component {
 								<Content>
 									<div className="main-view">
 										<Switch>
-											<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/" component={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/saved-articles" component={() => <Saved user={this.state.user} />}/>
 											<Route component={NoMatch} />
 										</Switch>
 									</div>
