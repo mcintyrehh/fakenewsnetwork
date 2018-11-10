@@ -59,7 +59,7 @@ module.exports = {
   },
   getAllSavedArticles: (req, res) => {
     db.findById(req.params.id)
-      .populate("FakeArticles", "RealArticles")
+      .populate("savedFake", "savedReal")
       .then(dbUser => res.json({savedFake: dbUser.savedFake, savedReal: dbUser.savedReal, votedOn: dbUser.votedOn}))
       .catch(err => res.status(422).json(err));
   },

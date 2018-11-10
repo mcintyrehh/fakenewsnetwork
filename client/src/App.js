@@ -1,21 +1,22 @@
 
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import LoginForm from './components/Auth/LoginForm';
 
 import SignupForm from './components/Auth/SignupForm';
 import { Layout } from 'antd';
-import Nav from "./components/Nav";
 import Home from "./pages/Home/Home";
+import Saved from "./pages/Saved/Saved";
 import NoMatch from "./pages/NoMatch";
 import HeaderDiv from "./components/HeaderDiv";
 import AUTH from './utils/AUTH';
+import API from './utils/API';
 import "./App.css";
 import Navbar from "./components/NavBarAnt";
 import SigninDrawer from "./pages/SignupDrawer";
 import LoginDrawer from "./pages/LoginDrawer";
-import { throws } from 'assert';
+// import { throws } from 'assert';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -30,9 +31,7 @@ class App extends Component {
 			signUpDrawerVisibility: false,
 			loginDrawerVisibility: false
 		};
-
 	}
-
 	componentDidMount() {
 		AUTH.getUser().then(response => {
 			console.log(response.data);
@@ -50,7 +49,6 @@ class App extends Component {
 		})
 	}
 	onCollapse = (collapsed) => {
-		console.log(collapsed);
 		this.setState({ collapsed });
 	}
 	logout = (event) => {
@@ -102,7 +100,6 @@ class App extends Component {
 
 	render() {
 		return (
-
 			<Router>
 				<div className="App">
 					{this.state.loggedIn && (
@@ -125,7 +122,8 @@ class App extends Component {
 								<Content>
 									<div className="main-view">
 										<Switch>
-											<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/" component={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/saved-articles" component={() => <Saved user={this.state.user} />}/>
 											<Route component={NoMatch} />
 										</Switch>
 									</div>
