@@ -28,8 +28,7 @@ class App extends Component {
 			loggedIn: false,
 			user: null,
 			signUpDrawerVisibility: false,
-			loginDrawerVisibility: false,
-			// menuWidth: 256
+			loginDrawerVisibility: false
 		};
 
 	}
