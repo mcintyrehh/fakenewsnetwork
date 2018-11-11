@@ -28,7 +28,7 @@ class Card extends Component {
             <img alt={`pic for "${this.props.fake.title}" article`} src={this.props.img}></img>
             {/* on clicking this button, it will run the function displayRealNews() and pass UP the object of the fake news article */}
             <Link to={`/articles/${this.props.fake._id}`}>
-              <Button type="primary" icon="search" className="news-btn">Real News</Button>
+              <Button type="primary" icon="search" className="news-btn">Intel</Button>
             </Link>
             
             <span className="fav-div"><i onClick={() => this.favStar(this.props.user._id, this.props.fake._id, this.props.fake.articleType)} className={this.state.favIcon + ' fa-star mx-auto fav btn'}></i></span>

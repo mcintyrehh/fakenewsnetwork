@@ -16,7 +16,7 @@ class DetailCard extends Component {
     // 'fas' is a font awesome icon of a solid star, 'far' is a hollow star
     // on clicking the star, the ternary operator switches states to the opposite
     this.props.saved(userId, articleId, articleType)
-    const updateFav = (this.state.favIcon === 'fas') ? 'far' : 'fas';
+    const updateFav = (this.props.favIcon === 'fas') ? 'far' : 'fas';
     this.setState({favIcon : updateFav});
   }
 
