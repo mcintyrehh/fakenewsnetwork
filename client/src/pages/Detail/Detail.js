@@ -25,47 +25,23 @@ class Detail extends Component {
             outerColWidth: 6,
             innerColWidth: 10,
             fakeNews:{},
+            content: [],
             realNews: []
         };
     }
     componentDidMount() {
         this.loadFakeArticle(this.props.match.params.id);
     }
-    loadFakeArticle = userId => {
-        API.getFakeArticleById(userId)
-        .then(res =>
-            this.setState({ fakeNews: res.data })
-          )
+    loadFakeArticle = articleId => {
+        API.getFakeArticleById(articleId)
+        .then(res => {
+            const { content } = res.data
+            console.log(content);
+            return this.setState({ fakeNews: res.data, content: content })
+        })
           .catch(err => console.log(err));
     }
 
-    displayRealNews = (article) => {
-        console.log('in display real news');
-        console.log(article.keywords);
-        const emptyFakeNewsArray = [];
-        axios.post('/api/real-articles/generate', {
-            keywords: article.keywords
-        }).then(function (response) {
-            console.log(response.data);
-            const realNewsVar = response.data;
-            const emptyNewsArray = [];
-            realNewsVar.map(x=>emptyNewsArray.push(x))
-            this.setState({ realNews: emptyNewsArray });
-    
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        emptyFakeNewsArray.push(article);
-        this.setState({ fakeNews: emptyFakeNewsArray })
-        this.setState({ outerColWidth: 2 }); 
-        this.setState({ innerColWidth: 10 });
-        const realNewsVar = article.associatedRealNews;
-
-    }
-    onChangeUserName = (e) => {
-        this.setState({ userName: e.target.value });
-    }
     saved = (userId, articleId, articleType) => {
         let data = {
             fakeArticleId: articleId
@@ -80,11 +56,11 @@ class Detail extends Component {
     }
 
     changeColor = () => {
-        (this.state.tabColor === 'red') ? this.setState({tabColor: 'cyan'}) : this.setState({tabColor: 'red'});
+        (this.state.tabColor === 'red') ? this.setState({tabColor: 'blue'}) : this.setState({tabColor: 'red'});
     }
     
     render() {
-        console.log("Article Object", this.state.fakeNews);
+        console.log("Content", this.state.content);
         return (
 
             <Wrapper>
@@ -104,11 +80,14 @@ class Detail extends Component {
                                 <Tabs
                                 defaultActiveKey="1"
                                 tabPosition="right"
-                                style={{ height: 220, marginTop: "5vh", color: 'white' }}
+                                style={{ height: 440, marginTop: "5vh", color: 'white', overflowY: "auto", marginLeft: "5vw", marginRight: "2vw" }}
                                 tabBarStyle={{color: this.state.tabColor}}
                                 onChange={this.changeColor}
                                 >
-                                    <TabPane tab="Blue Pill" key="1">Content of tab 1</TabPane>
+                                {/*Mapping Content into p tags */}
+                                    <TabPane tab="Blue Pill" key="1">
+                                    {this.state.content.map(p => <p style={{textAlign: "left", fontSize: "16px"}}>{p}</p>)}
+                                    </TabPane>
 
                                     {/* Real Article Cards Go Here */}
                                     <TabPane tab="Red Pill" key="2">Content of tab 2</TabPane>
