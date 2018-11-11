@@ -1,9 +1,12 @@
 // const mongoose = require("mongoose");
+require("dotenv").config();
+var APIKEY = require("../key");
 const db = require("../models");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const gavagai = require("gavagai");
-const gavClient = gavagai("77f194d9aedf5fc489b909786631c340");
+
+const gavClient = gavagai(APIKEY.gavangi_key);
 
 module.exports = {
 
