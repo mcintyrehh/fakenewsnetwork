@@ -1,0 +1,39 @@
+img {
+    width: 80%;
+    /* height: 100%; */
+}
+.side-info-holder {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    overflow: auto;
+    margin-top: auto 0;
+}
+.side-info-block {
+    /* display: flex;
+    flex-flow: column; */
+    align-items: center;
+    justify-content: start;
+    overflow: auto;
+}
+.card-div {
+    text-align: center;
+    margin-top: 15px;
+    border: thin solid white;
+    border-radius: 25px;
+    overflow: auto;
+}
+.card-title {
+    font-size: 18pt;
+    font-family: 'Roboto', sans-serif;
+}
+.excerpt {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 15pt;
+}
+.fav-div {
+    color: gold;
+}
+.news-btn {
+    margin-top: 10px;
+}

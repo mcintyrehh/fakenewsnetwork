@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 const SubMenu = Menu.SubMenu;
@@ -36,24 +36,21 @@ class Navbar extends React.Component {
             mode="inline"
             inlineCollapsed={this.state.collapsed}
           >
-            <div style={{ textAlign: "center" }} className="logo"> Hello {this.props.user.firstName}</div>
+            <div style={{ textAlign: "center" }} className="logo">RFNi</div> 
 
             <SubMenu key="sub1" title={<span><Icon type="home" /><span>FNN</span></span>}>
               <MenuItemGroup key="g1" title="Articles">
-                <Menu.Item key="1">The Fake News</Menu.Item>
+                <Menu.Item key="1"><Link to="/">The Fake News</Link></Menu.Item>
                 <Menu.Item key="2">Just Reality</Menu.Item>
               </MenuItemGroup>
             </SubMenu>
             <SubMenu key="sub2" title={<span><Icon type="user" /><span>User</span></span>}>
-              <SubMenu key="sub3" title={<span><Icon type="gold" /><span>My Stories To Watch</span></span>}>
-                <Menu.Item key="5">
-                  <Link to="/saved-articles">Saved Fake Articles</Link>
-                </Menu.Item>
-                <Menu.Item key="6">Saved Real Articles</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub4" title="Manage Account">
+              <SubMenu key="sub3" title="Manage Account">
                 <Menu.Item key="9"><div style={{ width: "100%" }} onClick={this.props.logout}>Logout</div></Menu.Item>
               </SubMenu>
+            </SubMenu>
+            <SubMenu key="sub4" title={<span><Icon type="gold" /><span>My Stories to Watch</span></span>}>
+                <Menu.Item key="5"><Link to="/saved-articles">Saved Articles</Link></Menu.Item>
             </SubMenu>
           </Menu>
         </div>
@@ -68,7 +65,7 @@ class Navbar extends React.Component {
             inlineCollapsed={this.state.collapsed}
           >
 
-             <div style={{ textAlign: "center" }} className="logo"> RFN</div> 
+             <div style={{ textAlign: "center" }} className="logo">RFNi</div> 
 
             <SubMenu key="sub1" title={<span><Icon type="home" /><span>FNN</span></span>}>
               <MenuItemGroup key="g1" title="Articles">
@@ -77,14 +74,9 @@ class Navbar extends React.Component {
               </MenuItemGroup>
             </SubMenu>
             <SubMenu key="sub2" title={<span><Icon type="user" /><span>User</span></span>}>
-              <SubMenu key="sub3" title={<span><Icon type="gold" /><span>My Stories To Watch</span></span>}>
-                <Menu.Item key="5">Saved Fake Articles</Menu.Item>
-                <Menu.Item key="6">Saved Real Articles</Menu.Item>
-              </SubMenu>
-              <SubMenu key="sub4" title="Manage Account">
+              <SubMenu key="sub3" title="Manage Account">
                 <Menu.Item key="7"><div style={{ width: "100%" }} onClick={this.props.clickDrawer}>Register</div></Menu.Item>
                 <Menu.Item key="8"><div style={{ width: "100%" }} onClick={this.props.clickLoginDrawer}>Login</div></Menu.Item>
-                <Menu.Item key="9"><div style={{ width: "100%" }} onClick={this.props.logout}>Logout</div></Menu.Item>
               </SubMenu>
             </SubMenu>
           </Menu>
