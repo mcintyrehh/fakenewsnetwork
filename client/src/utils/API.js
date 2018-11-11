@@ -25,8 +25,8 @@ export default {
     axios.get(`/api/real-articles/${id}`)
   ),
   //user specific routes
-  getAllUserSavedArticles: id => (
-    axios.get(`api/users/saved-articles/${id}`)
+  getAllUserSavedArticles: userId => (
+    axios.get(`api/users/saved-articles/${userId}`)
   ),
   updateUserSavedArticles: (id, data, articleType) => {
     if (articleType === "fake") {

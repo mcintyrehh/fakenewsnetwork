@@ -24,9 +24,9 @@ class Detail extends Component {
             favIcon: 'far'
         };
     }
-    componentDidMount() {
+    componentWillMount() {
         this.loadFakeArticle(this.props.match.params.id);
-        this.checkIfFakeArticleSaved(this.props.user._id)
+        this.grabUserSaved(this.props.user._id);
     }
     loadFakeArticle = articleId => {
         API.getFakeArticleById(articleId)
@@ -37,12 +37,20 @@ class Detail extends Component {
           .catch(err => console.log(err));
     }
 
-    checkIfFakeArticleSaved = userId => {
-        API.getAllUserSavedArticles(userId)
-            .then(result => {
-                console.log("All Saved", result);
-            })
+    grabUserSaved = ID => {
+        console.log(ID);
+        API.getAllUserSavedArticles(ID)
+        .then(res => {
+            console.log(res.data);
+            // const { savedFake, savedReal, votedOn } = res.data;
+            // const savedFake = res.data.savedFake;
+            // const savedReal = res.data.savedReal;
+            // const votedOn = res.data.votedOn;
+            // this.setState({savedFake, savedReal, votedOn})
+        })
+          .catch(err => console.log(err));
     }
+
     saved = (userId, articleId, articleType) => {
         let data = {
             fakeArticleId: articleId
