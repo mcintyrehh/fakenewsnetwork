@@ -93,7 +93,7 @@ class Home extends Component {
                             <Col span={this.state.outerColWidth}></Col>
 
                             <Col span={this.state.innerColWidth}>
-                                {this.state.fakeNews.map(fake => <Card fake={fake} user={this.props.user} img={"https://www.vectorlogo.zone/logos/theonion/theonion-card.png"} saved={this.saved} key={fake._id} displayRealNews={this.displayRealNews} />)}
+                                {this.state.fakeNews.map(fake => <Card fake={fake} user={this.props.user} img={fake.src} saved={this.saved} key={fake._id} displayRealNews={this.displayRealNews} />)}
                             </Col>
                             <Col span={this.state.innerColWidth}>{this.state.realNews && this.state.realNews.map(real=> <RealCard real={real} key={real.id}></RealCard>)}</Col>
                             <Col span={this.state.outerColWidth}></Col>

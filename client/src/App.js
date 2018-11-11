@@ -106,9 +106,9 @@ class App extends Component {
 					{this.state.loggedIn && (
 						<Layout>
 							<Header>
-								{/* <Nav user={this.state.user} logout={this.logout} /> */}
+								
 								<Header style={{ textAlign: 'right' }}>
-									<HeaderDiv></HeaderDiv>
+									<HeaderDiv user={this.state.user}/>
 								</Header>
 							</Header>
 							<Layout>
@@ -138,7 +138,7 @@ class App extends Component {
 						<div className="auth-wrapper">
 							<Layout>
 								<Header className="header" style={{ textAlign: 'right' }}>
-									<HeaderDiv></HeaderDiv>
+									<HeaderDiv />
 								</Header>
 								<Layout className="content">
 									<Sider
