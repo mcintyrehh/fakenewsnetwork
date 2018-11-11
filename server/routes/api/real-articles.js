@@ -17,6 +17,7 @@ router
    .put(realNewsController.update)
    .delete(realNewsController.remove);
 
+// "/api/real-articles/generate
 router
    .route("/generate")
    .post(realNewsGenerator.generate);

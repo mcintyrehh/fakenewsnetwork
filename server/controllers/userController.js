@@ -57,11 +57,12 @@ module.exports = {
 		}
 		res.json({ user: cleanUser });
   },
+  //populating seperately, as '.populate("savedFake", "savedReal") would just try to populate the 'savedReal field of "savedFake"
   getAllSavedArticles: (req, res) => {
-    db.User
-      .findById(req.params.id)
+    db.User.findById(req.params.id)
       .populate("savedFake")
-      .then(dbUser => res.json({ savedFake: dbUser.savedFake}))
+      .populate("savedReal")
+      .then(dbUser => res.json({savedFake: dbUser.savedFake, savedReal: dbUser.savedReal, votedOn: dbUser.votedOn}))
       .catch(err => res.status(422).json(err));
   },
   updateUserSavedFakeArticles: (req, res) => {

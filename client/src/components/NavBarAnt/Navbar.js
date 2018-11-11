@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Menu, Icon } from 'antd';
+import { Link } from 'react-router-dom';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -11,17 +12,18 @@ class Navbar extends React.Component {
       collapsed: false
     }
   }
-
   toggle = () => {
     this.setState({ collapsed: !this.state.collapsed });
   }
-
   toggleCollapsed = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   }
-
+  savedArticles = () => {
+    console.log("in saved articles");
+    <Link to="/saved-articles"></Link>
+  }
   render() {
     return (
       (this.props.user) ?
