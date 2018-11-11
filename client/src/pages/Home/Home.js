@@ -86,8 +86,6 @@ class Home extends Component {
             <Wrapper>
                 <Layout>
                     <Content className="main">
-                        {/* Here is where the main content will be displayed
-                        it is comprised of four columns with variable width, depending on which view we want set*/}
                         <Row style={{ textAlign: 'center', color: 'white' }}>
                             
                             <Col span={this.state.outerColWidth}></Col>

@@ -58,9 +58,10 @@ module.exports = {
 		res.json({ user: cleanUser });
   },
   getAllSavedArticles: (req, res) => {
-    db.findById(req.params.id)
-      .populate("savedFake", "savedReal")
-      .then(dbUser => res.json({savedFake: dbUser.savedFake, savedReal: dbUser.savedReal, votedOn: dbUser.votedOn}))
+    db.User
+      .findById(req.params.id)
+      .populate("savedFake")
+      .then(dbUser => res.json({ savedFake: dbUser.savedFake}))
       .catch(err => res.status(422).json(err));
   },
   updateUserSavedFakeArticles: (req, res) => {
