@@ -8,9 +8,12 @@ const gavClient = gavagai("77f194d9aedf5fc489b909786631c340");
 module.exports = {
 
    scrape: (req, res) => {
-      let now = new Date();
-      let nowTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+      const now = new Date();
+      const nowTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+      const nReturnedKeywords = 20; 
 
+      // This scrapeInfo object will only be used for debugging
+      // Though it is not being used now, it may be used later
       var scrapeInfo = {
          totalScrapes: 0,
          totalValidScrapes: 0,
@@ -19,7 +22,10 @@ module.exports = {
          insertedArticles: []
       };
 
-      let pruneObj = (obj, displayProps) => {
+      // This pruneObj function is just for debugging purposes
+      // It prunes objects so that they when they are console logged, we can focus on only the most important information
+      // Sample usage: console.log(  pruneObj(myObj,["name","id"])    )
+      const pruneObj = (obj, displayProps) => {
          let displayObj = {};
          for (let prop in obj) {
             if (displayProps.includes(prop)) {
@@ -33,11 +39,16 @@ module.exports = {
 
          console.log("Scraping " + siteName + " at time " + nowTime);
 
+         // this isArticleContent function is used by an Array.filter method to check if paragraphs
+         // that are scraped from a page are ones we want to keep.
+         // We keep the paragraph text if it includes word characters, and if it is not an advertisement
          let isArticleContent = par => par.search(/[\w]/) !== -1 && par.indexOf("Advertisement") === -1;
 
          axios.get(siteURL).then(response => {
                const $ = cheerio.load(response.data);
                $("article").each(function (i, el) {
+
+                     // this is just for debugging purposes
                      scrapeInfo.totalScrapes++; // we are trying to scrape a new article, to add to total scrapes
 
                      let summaryDivNode = $('div.excerpt', $(el)).get();
@@ -76,81 +87,76 @@ module.exports = {
                               // console.log("\t", title, " IS NOT a duplicate record so it should be inserted into database");
                               // console.log("docs is: ", docs);
 
-                              scrapeInfo.totalUniqueScrapes++;
+                              scrapeInfo.totalUniqueScrapes++; // just for debugging purposes
 
                               axios.get(detailURL).then(detailPage => {
-                                    //console.log("\tin axios.get for detail page ", detailURL);
-                                    const $$ = cheerio.load(detailPage.data); // note the use of $$ instead of just $ here
-                                    let articleNode = $$('article')[0];
-                                    let paragraphNodes = $$('p', articleNode);
+                                 //console.log("\tin axios.get for detail page ", detailURL);
+                                 const $$ = cheerio.load(detailPage.data); // note the use of $$ instead of just $ here
+                                 let articleNode = $$('article')[0];
+                                 let paragraphNodes = $$('p', articleNode);
 
-                                    paragraphNodes.each(function (j, ele) {
-                                       let theText = $$(ele).text();
-                                       if (isArticleContent(theText)) {
-                                          content.push(theText);
-                                       }
-                                    });
+                                 paragraphNodes.each(function (j, ele) {
+                                    let theText = $$(ele).text();
+                                    if (isArticleContent(theText)) {
+                                       content.push(theText);
+                                    }
+                                 });
 
-                                    let gavArr = [{
-                                       id: "1",
-                                       title: title,
-                                       body: content.join(" ").replace(/['"]/g, "")
-                                    }];
+                                 let gavArr = [{
+                                    id: "1",
+                                    title: title,
+                                    body: title + "." + content.join(" ").replace(/['"]/g, "") // adding title to body yields better keywords
+                                 }];
 
-                                    // get keywords here
-                                    gavClient.keywords(gavArr, (err, data) => {
-                                       if (err) {
-                                          //console.log("ERROR: Gavagai keywords error: ", err);
-                                       } else {
-                                          //console.log("keywords returned for ", title, " are:\n", data.keywords);
+                                 // get keywords here
+                                 gavClient.keywords(gavArr, (err, data) => {
+                                    if (err) {
+                                       console.log("ERROR: Gavagai keywords error: ", err);
+                                    } else {
+                                       //console.log("keywords returned for ", title, " are:\n", data.keywords);
 
-                                          if (data && data.numberOfKeywords && data.numberOfKeywords > 0) {
-                                             let frequencyFn = termObj => {
-                                                return (termObj.occurrences > 1);
-                                             };
-                                             let getTermFn = termObj => termObj.term;
-                                             let importantKeywords = (data.keywords).filter(frequencyFn).map(getTermFn);
+                                       if (data && data.numberOfKeywords && data.numberOfKeywords > 0) {
+                                          let getTermFn = termObj => termObj.term;
+                                          let importantKeywords = (data.keywords).slice(0, nReturnedKeywords).map(getTermFn);
 
-
-                                             if (importantKeywords.length === 0) { // if no words occur more than once
-                                                // console.log("\t in loop because no keywords were retained");
-                                                let numOfKeywords = Math.min(5, data.keywords.length);
-                                                importantKeywords = (data.keywords.slice(0, numOfKeywords)).map(getTermFn);
-
-                                                if (importantKeywords.length === 0) { // if there are still zero keywords
-                                                   return true; // then don't move forward with this term
-                                                }
-                                             }
-
-                                             // create document to insert
-                                             let docData = {
-                                                sourceId: thisSourceId,
-                                                title: title,
-                                                url: detailURL,
-                                                summary: summary,
-                                                timePublished: timePublished,
-                                                content: content,
-                                                category: category,
-                                                src: imageSrc,
-                                                articleSource: siteName,
-                                                keywords: importantKeywords
-                                             };
-
-                                             db.FakeArticles
-                                                .create(docData)
-                                                .then(dbFArticle => {
-                                                   scrapeInfo.totalInsertedScrapes++;
-                                                   scrapeInfo.insertedArticles.push(pruneObj(dbFArticle, ["title", "sourceId", "id"]));
-                                                })
-                                                .catch(err => console.log("db.FakeArticles.create catch: ", err));
-
+                                          // if this article doesn't generate any keywords for some strange reason, then just skip it
+                                          // and don't insert it into our database
+                                          if (importantKeywords.length === 0) {
+                                             return true; // returning true from a cheerio each loop is like a for loop "continue"
                                           }
 
+                                          // create document to insert into fake articles collection
+                                          let docData = {
+                                             sourceId: thisSourceId,
+                                             title: title,
+                                             url: detailURL,
+                                             summary: summary,
+                                             timePublished: timePublished,
+                                             content: content,
+                                             category: category,
+                                             src: imageSrc,
+                                             articleSource: siteName,
+                                             keywords: importantKeywords
+                                          };
+
+                                          db.FakeArticles
+                                             .create(docData)
+                                             .then(dbFArticle => {
+                                                // scrapeInfo is for debugging purposes
+                                                scrapeInfo.totalInsertedScrapes++;
+                                                scrapeInfo.insertedArticles.push(pruneObj(dbFArticle, ["title", "sourceId", "id"]));
+                                                console.log("\t Just inserted into database: ", pruneObj(dbFArticle, ["title", "sourceId", "id"]));
+                                             })
+                                             .catch(err => console.log("ERROR in CATCH block of db.FakeArticles.create: ", err));
+
+                                       } else {
+                                          console.log("ERROR: This branch should not be reached, something is wrong.\nIt may be a GAVAGAI keyword parse error of some sort.");
                                        }
-                                    });
-                                 } 
-                              ); 
-                           } 
+
+                                    }
+                                 });
+                              });
+                           }
                         } else { // we have looked for a record, and neither ERR or DOCS has returned as expected
                            console.log("WEIRD RESULT, no err or docs returned in findOne cb function");
                         }
@@ -172,14 +178,15 @@ module.exports = {
       }; // closing bracket of processSite arrow function
 
 
-      // ISSUE: Cannot get async/await to work with this code. WHY NOT?
 
       axios.all([processSite("http://www.theonion.com", "The Onion", "onion", "https://i.kym-cdn.com/entries/icons/facebook/000/010/280/onion.jpg"),
             processSite("http://www.clickhole.com", "Clickhole", "clickhole", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUkyAHkl2tHsmg7wN07BWT8xEN7BgWUxwWxk0NKM_ZdBeDtfBu")
          ])
          .then((resp) => res.json({
             "message": "Scraping!"
-         }));
+         })).catch(err => console.log("ERROR in CATCH block of axios.all: ".err));
+
+
 
    } // end scrape method
 
