@@ -1,12 +1,13 @@
 
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 // import LoginForm from './components/Auth/LoginForm';
 
 import SignupForm from './components/Auth/SignupForm';
 import { Layout } from 'antd';
 import Home from "./pages/Home/Home";
+import Detail from "./pages/Detail/Detail";
 import Saved from "./pages/Saved/Saved";
 import NoMatch from "./pages/NoMatch";
 import HeaderDiv from "./components/HeaderDiv";
@@ -105,9 +106,9 @@ class App extends Component {
 					{this.state.loggedIn && (
 						<Layout>
 							<Header>
-								{/* <Nav user={this.state.user} logout={this.logout} /> */}
+								
 								<Header style={{ textAlign: 'right' }}>
-									<HeaderDiv></HeaderDiv>
+									<HeaderDiv user={this.state.user}/>
 								</Header>
 							</Header>
 							<Layout>
@@ -123,6 +124,7 @@ class App extends Component {
 									<div className="main-view">
 										<Switch>
 											<Route exact path="/" component={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/articles/:id" render={props => <Detail {...props} user={this.state.user} />} />
 											<Route exact path="/saved-articles" component={() => <Saved user={this.state.user} />}/>
 											<Route component={NoMatch} />
 										</Switch>
@@ -136,7 +138,7 @@ class App extends Component {
 						<div className="auth-wrapper">
 							<Layout>
 								<Header className="header" style={{ textAlign: 'right' }}>
-									<HeaderDiv></HeaderDiv>
+									<HeaderDiv />
 								</Header>
 								<Layout className="content">
 									<Sider
@@ -144,13 +146,14 @@ class App extends Component {
 										collapsible
 										collapsed={this.state.collapsed}
 										onCollapse={this.onCollapse} >
-										<Navbar clickDrawer={this.showSignUpDrawer} collapsed={this.onCollapse}clickLoginDrawer={this.showLoginDrawer} />
+										<Navbar clickDrawer={this.showSignUpDrawer} collapsed={this.onCollapse} clickLoginDrawer={this.showLoginDrawer} />
 									</Sider>
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
 												<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
-												<Route exact path="/signup" component={SignupForm} />
+												<Route exact path="/articles/:id" component={() => <Redirect to="/" />}/>
+												<Route exact path="saved-articles" component={() => <Redirect to="/" />}/>
 												<Route component={NoMatch} />
 											</Switch>
 										
