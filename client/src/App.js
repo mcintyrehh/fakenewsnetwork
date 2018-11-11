@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 // import LoginForm from './components/Auth/LoginForm';
 
 import SignupForm from './components/Auth/SignupForm';
@@ -146,13 +146,14 @@ class App extends Component {
 										collapsible
 										collapsed={this.state.collapsed}
 										onCollapse={this.onCollapse} >
-										<Navbar clickDrawer={this.showSignUpDrawer} collapsed={this.onCollapse}clickLoginDrawer={this.showLoginDrawer} />
+										<Navbar clickDrawer={this.showSignUpDrawer} collapsed={this.onCollapse} clickLoginDrawer={this.showLoginDrawer} />
 									</Sider>
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
 												<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
-												<Route exact path="/signup" component={SignupForm} />
+												<Route exact path="/articles/:id" component={() => <Redirect to="/" />}/>
+												<Route exact path="saved-articles" component={() => <Redirect to="/" />}/>
 												<Route component={NoMatch} />
 											</Switch>
 										

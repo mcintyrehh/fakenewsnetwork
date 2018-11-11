@@ -36,7 +36,6 @@ class Detail extends Component {
         API.getFakeArticleById(articleId)
         .then(res => {
             const { content } = res.data
-            console.log(content);
             return this.setState({ fakeNews: res.data, content: content })
         })
           .catch(err => console.log(err));
@@ -60,7 +59,7 @@ class Detail extends Component {
     }
     
     render() {
-        console.log("Content", this.state.content);
+        
         return (
 
             <Wrapper>
@@ -84,8 +83,9 @@ class Detail extends Component {
                                 tabBarStyle={{color: this.state.tabColor}}
                                 onChange={this.changeColor}
                                 >
-                                {/*Mapping Content into p tags */}
+
                                     <TabPane tab="Blue Pill" key="1">
+                                    <h1>The News</h1>
                                     {this.state.content.map(p => <p style={{textAlign: "left", fontSize: "16px"}}>{p}</p>)}
                                     </TabPane>
 
