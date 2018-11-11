@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Layout, Tabs } from 'antd';
 import Wrapper from '../../components/Wrapper';
-import { Row, Col } from 'antd';
+import { Row, Col, Icon } from 'antd';
+import axios from 'axios';
 import DetailCard from '../../components/DetailCard';
+import  Card from '../../components/Card';
 import '../../App.css';
 import './Detail.css';
 import API from '../../utils/API'
@@ -20,19 +22,34 @@ class Detail extends Component {
             innerColWidth: 10,
             fakeNews:{},
             content: [],
+            keywords: [],
             realNews: [],
             favIcon: 'far'
         };
     }
     componentDidMount() {
-        this.loadFakeArticle(this.props.match.params.id);
-        this.checkIfFakeArticleSaved(this.props.user._id)
+        this.loadFakeArticle(this.props.match.params.id)
+        
+        // this.checkIfFakeArticleSaved(this.props.user._id)
     }
     loadFakeArticle = articleId => {
         API.getFakeArticleById(articleId)
         .then(res => {
             const { content } = res.data
-            return this.setState({ fakeNews: res.data, content: content })
+            console.log(res.data);
+            this.setState({ fakeNews: res.data, content: content })
+            const keywordsArray = res.data.keywords;
+            return axios.post("/api/real-articles/generate", {
+                keywords: keywordsArray
+            })
+            .then(res => {
+            console.log(res.data);
+            const realNewsArray = res.data;
+            this.setState({ realNews: realNewsArray })
+            })
+            .catch(function (err) {
+            console.log(err);
+            });
         })
           .catch(err => console.log(err));
     }
@@ -68,9 +85,7 @@ class Detail extends Component {
                 <Layout>
                     <Content className="main">
                         <Row style={{ textAlign: 'center', color: 'white' }}>
-                            
                             <Col span={this.state.outerColWidth}></Col>
-
                             <Col span={this.state.innerColWidth}>
                                 <DetailCard user={this.props.user} title={this.state.fakeNews.title} id={this.state.fakeNews._id}articleType={this.state.fakeNews.articleType} img={this.state.fakeNews.src} url={this.state.fakeNews.url} summary={this.state.fakeNews.summary} favIcon={this.state.favIcon}/> 
                             </Col>
@@ -92,7 +107,13 @@ class Detail extends Component {
                                     </TabPane>
 
                                     {/* Real Article Cards Go Here */}
-                                    <TabPane tab="Real News" key="2">Content of tab 2</TabPane>
+                                    <TabPane tab="Real News" key="2">
+                                        {this.state.realNews ? 
+                                        (this.state.realNews.map(savedArticle => <Card fake={savedArticle} img={savedArticle.urlToImage} key={savedArticle._id} />))
+                                            : <div><Icon type="loading" /></div>
+                                        }
+                                        
+                                    </TabPane> 
                                 
                                 </Tabs>
                             </div>

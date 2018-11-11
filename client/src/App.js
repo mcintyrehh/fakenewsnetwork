@@ -1,14 +1,8 @@
 
 import React, { Component } from 'react';
 
-<<<<<<< HEAD
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Link } from 'react-router-dom';
-=======
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
->>>>>>> 3b08f3075b329bbb074a8e8963cc298aaa18e028
 // import LoginForm from './components/Auth/LoginForm';
-
 import SignupForm from './components/Auth/SignupForm';
 import { Layout } from 'antd';
 import Home from "./pages/Home/Home";
