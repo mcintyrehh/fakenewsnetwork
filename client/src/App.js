@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Link } from 'react-router-dom';
 // import LoginForm from './components/Auth/LoginForm';
 
 import SignupForm from './components/Auth/SignupForm';
@@ -53,7 +54,6 @@ class App extends Component {
 	}
 	logout = (event) => {
 		event.preventDefault();
-
 		AUTH.logout().then(response => {
 			console.log(response.data);
 			if (response.status === 200) {
@@ -64,28 +64,21 @@ class App extends Component {
 			}
 		});
 	}
-
 	showSignUpDrawer = () => {
 		this.setState({ signUpDrawerVisibility: true });
 	}
-
 	hideSignUpDrawer = () => {
 		this.setState({ signUpDrawerVisibility: false });
 	}
-
 	showLoginDrawer = () => {
 		this.setState({ loginDrawerVisibility: true });
 	}
-
 	hideLoginDrawer = () => {
 		this.setState({ loginDrawerVisibility: false });
 	}
-
 	switchDrawers = () => {
 		this.setState({ signUpDrawerVisibility: false, loginDrawerVisibility: true });
 	}
-
-
 	login = (username, password) => {
 		AUTH.login(username, password).then(response => {
 			console.log(response);
@@ -97,7 +90,6 @@ class App extends Component {
 			}
 		});
 	}
-
 	render() {
 		return (
 			<Router>

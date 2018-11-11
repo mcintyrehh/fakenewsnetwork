@@ -1,6 +1,7 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import { Menu, Icon } from 'antd';
+import { Link } from 'react-router-dom';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -11,17 +12,18 @@ class Navbar extends React.Component {
       collapsed: false
     }
   }
-
   toggle = () => {
     this.setState({ collapsed: !this.state.collapsed });
   }
-
   toggleCollapsed = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   }
-
+  savedArticles = () => {
+    console.log("in saved articles");
+    <Link to="/saved-articles"></Link>
+  }
   render() {
     return (
       (this.props.user) ?
@@ -44,7 +46,9 @@ class Navbar extends React.Component {
             </SubMenu>
             <SubMenu key="sub2" title={<span><Icon type="user" /><span>User</span></span>}>
               <SubMenu key="sub3" title={<span><Icon type="gold" /><span>My Stories To Watch</span></span>}>
-                <Menu.Item key="5">Saved Fake Articles</Menu.Item>
+                <Menu.Item key="5">
+                  <Link to="/saved-articles">Saved Fake Articles</Link>
+                </Menu.Item>
                 <Menu.Item key="6">Saved Real Articles</Menu.Item>
               </SubMenu>
               <SubMenu key="sub4" title="Manage Account">
