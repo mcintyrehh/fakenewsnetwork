@@ -3,8 +3,6 @@ import { Layout, Icon, Button } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
 import  Card from '../../components/Card';
-import { RealCard } from '../../components/Card';
-// import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
 import API from '../../utils/API'
@@ -26,25 +24,40 @@ class Home extends Component {
             outerColWidth: 6,
             innerColWidth: 10,
             fakeNews:[],
-            realNews: [],
-            pageIndex: '',
+            pageIndex: 5,
             currentPage: []
 
         };
     }
     componentDidMount() {
         this.loadFakeArticles();
+        
     }
     loadFakeArticles = () => {
         API.getFakeArticles()
-        .then(res =>
+        .then(res => {
             this.setState({ fakeNews: res.data })
-          )
+            this.setCurrentPage();
+        })
           .catch(err => console.log(err));
     }
 
-    arrowRight = () => {
+    setCurrentPage = () => {
+        let currentPage = this.state.fakeNews.filter((a, index) => index < this.state.pageIndex);
+        this.setState({currentPage})
+    }
 
+    arrowRight = () => {
+        if (this.state.pageIndex === 5) {
+            let nPage = this.state.fakeNews.filter((a, index) => (4 < index && index < 10) );
+            this.setState({currentPage: nPage, pageIndex: 10 });
+        } else if (this.state.pageIndex === 10) {
+            let nPage = this.state.fakeNews.filter((a, index) => (9 < index && index < 15) );
+            this.setState({currentPage: nPage, pageIndex: 15 });
+        } else if (this.state.pageIndex === 15) {
+            let nPage = this.state.fakeNews.filter((a, index) => (14 < index && index < 20) );
+            this.setState({currentPage: nPage, pageIndex: 20 });
+        }
     }
 
 
@@ -108,7 +121,7 @@ class Home extends Component {
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh'}}>
-                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}}></Button>
+                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}></Button>
                                 </Col>
                                 <Col span={2}></Col>
                             </Row>
@@ -118,7 +131,7 @@ class Home extends Component {
                         <Row style={{ textAlign: 'center', color: 'white' }}>
                             <Col span={4}></Col>
                             <Col span={16}>
-                                {this.state.fakeNews.map(fake => <Card fake={fake} user={this.props.user} img={fake.src} saved={this.saved} key={fake._id} displayRealNews={this.displayRealNews} />)}
+                                {this.state.currentPage.map(fake => <Card fake={fake} user={this.props.user} img={fake.src} saved={this.saved} key={fake._id} displayRealNews={this.displayRealNews} />)}
                             </Col>
                             <Col span={4}>
 
@@ -137,7 +150,7 @@ class Home extends Component {
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
-                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}}></Button>
+                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}></Button>
                                 </Col>
                                 <Col span={2}></Col>
                             </Row>
