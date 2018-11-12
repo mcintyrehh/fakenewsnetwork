@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Layout } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col, Icon } from 'antd';
-import  Card from '../../components/Card';
+import  { Card } from '../../components/Card';
 // import { RealCard } from '../../components/Card';
 import '../../App.css';
 import './Saved.css';

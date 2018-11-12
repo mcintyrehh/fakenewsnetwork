@@ -4,7 +4,7 @@ import Wrapper from '../../components/Wrapper';
 import { Row, Col, Icon } from 'antd';
 import axios from 'axios';
 import DetailCard from '../../components/DetailCard';
-import  Card from '../../components/Card';
+import  { RealCard } from '../../components/Card';
 import '../../App.css';
 import './Detail.css';
 import API from '../../utils/API'
@@ -109,7 +109,7 @@ class Detail extends Component {
                                     {/* Real Article Cards Go Here */}
                                     <TabPane tab="Real News" key="2">
                                         {this.state.realNews ? 
-                                        (this.state.realNews.map(savedArticle => <Card fake={savedArticle} img={savedArticle.urlToImage} key={savedArticle._id} />))
+                                        (this.state.realNews.map(savedArticle => <RealCard real={savedArticle} saved={this.saved}img={savedArticle.urlToImage} key={savedArticle._id} />))
                                             : <div><Icon type="loading" /></div>
                                         }
                                         
