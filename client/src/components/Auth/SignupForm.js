@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col } from '../../components/Grid';
-import { Card } from '../../components/Card';
+// import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
-import { Auth } from 'antd';
+// import { Auth } from 'antd';
 import AUTH from '../../utils/AUTH';
 
 class SignupForm extends Component {

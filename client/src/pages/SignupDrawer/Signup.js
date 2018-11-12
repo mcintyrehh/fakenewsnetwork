@@ -1,8 +1,8 @@
 import React from 'react';
-import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker } from 'antd';
+import { Drawer, Form, Button, Col, Row, Input } from 'antd';
 import AUTH from "../../utils/AUTH";
 
-const { Option } = Select;
+// const { Option } = Select;
 
 class DrawerForm extends React.Component {
   constructor(props) {

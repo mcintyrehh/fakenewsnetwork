@@ -1,21 +1,28 @@
 
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+<<<<<<< HEAD
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Link } from 'react-router-dom';
+=======
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+>>>>>>> 3b08f3075b329bbb074a8e8963cc298aaa18e028
 // import LoginForm from './components/Auth/LoginForm';
 
 import SignupForm from './components/Auth/SignupForm';
 import { Layout } from 'antd';
-import Nav from "./components/Nav";
 import Home from "./pages/Home/Home";
+import Detail from "./pages/Detail/Detail";
+import Saved from "./pages/Saved/Saved";
 import NoMatch from "./pages/NoMatch";
 import HeaderDiv from "./components/HeaderDiv";
 import AUTH from './utils/AUTH';
+import API from './utils/API';
 import "./App.css";
 import Navbar from "./components/NavBarAnt";
 import SigninDrawer from "./pages/SignupDrawer";
 import LoginDrawer from "./pages/LoginDrawer";
-import { throws } from 'assert';
+// import { throws } from 'assert';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -28,12 +35,9 @@ class App extends Component {
 			loggedIn: false,
 			user: null,
 			signUpDrawerVisibility: false,
-			loginDrawerVisibility: false,
-			// menuWidth: 256
+			loginDrawerVisibility: false
 		};
-
 	}
-
 	componentDidMount() {
 		AUTH.getUser().then(response => {
 			console.log(response.data);
@@ -51,12 +55,10 @@ class App extends Component {
 		})
 	}
 	onCollapse = (collapsed) => {
-		console.log(collapsed);
 		this.setState({ collapsed });
 	}
 	logout = (event) => {
 		event.preventDefault();
-
 		AUTH.logout().then(response => {
 			console.log(response.data);
 			if (response.status === 200) {
@@ -67,28 +69,21 @@ class App extends Component {
 			}
 		});
 	}
-
 	showSignUpDrawer = () => {
 		this.setState({ signUpDrawerVisibility: true });
 	}
-
 	hideSignUpDrawer = () => {
 		this.setState({ signUpDrawerVisibility: false });
 	}
-
 	showLoginDrawer = () => {
 		this.setState({ loginDrawerVisibility: true });
 	}
-
 	hideLoginDrawer = () => {
 		this.setState({ loginDrawerVisibility: false });
 	}
-
 	switchDrawers = () => {
 		this.setState({ signUpDrawerVisibility: false, loginDrawerVisibility: true });
 	}
-
-
 	login = (username, password) => {
 		AUTH.login(username, password).then(response => {
 			console.log(response);
@@ -100,18 +95,16 @@ class App extends Component {
 			}
 		});
 	}
-
 	render() {
 		return (
-
 			<Router>
 				<div className="App">
 					{this.state.loggedIn && (
 						<Layout>
 							<Header>
-								{/* <Nav user={this.state.user} logout={this.logout} /> */}
+								
 								<Header style={{ textAlign: 'right' }}>
-									<HeaderDiv></HeaderDiv>
+									<HeaderDiv user={this.state.user}/>
 								</Header>
 							</Header>
 							<Layout>
@@ -126,7 +119,9 @@ class App extends Component {
 								<Content>
 									<div className="main-view">
 										<Switch>
-											<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/" component={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/articles/:id" render={props => <Detail {...props} user={this.state.user} />} />
+											<Route exact path="/saved-articles" component={() => <Saved user={this.state.user} />}/>
 											<Route component={NoMatch} />
 										</Switch>
 									</div>
@@ -139,7 +134,7 @@ class App extends Component {
 						<div className="auth-wrapper">
 							<Layout>
 								<Header className="header" style={{ textAlign: 'right' }}>
-									<HeaderDiv></HeaderDiv>
+									<HeaderDiv />
 								</Header>
 								<Layout className="content">
 									<Sider
@@ -147,13 +142,14 @@ class App extends Component {
 										collapsible
 										collapsed={this.state.collapsed}
 										onCollapse={this.onCollapse} >
-										<Navbar clickDrawer={this.showSignUpDrawer} collapsed={this.onCollapse}clickLoginDrawer={this.showLoginDrawer} />
+										<Navbar clickDrawer={this.showSignUpDrawer} collapsed={this.onCollapse} clickLoginDrawer={this.showLoginDrawer} />
 									</Sider>
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
 												<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
-												<Route exact path="/signup" component={SignupForm} />
+												<Route exact path="/articles/:id" component={() => <Redirect to="/" />}/>
+												<Route exact path="saved-articles" component={() => <Redirect to="/" />}/>
 												<Route component={NoMatch} />
 											</Switch>
 										

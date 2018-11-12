@@ -10,9 +10,8 @@ let makeFriendlyDate = (dateObj) => {
       let min = (parseInt(minutes) < 10) ? '0' + minutes : minutes;
       let hr = (hours < 12) ? (hours === 0 ? 12 : hours) : (hours % 12);
       return (hr + ':' + min) + ((hours < 12) ? ' AM':' PM');
-    }
-    let friendlyDate = months[dt.getMonth()]  + " " + dt.getDate() + ', ' + dt.getFullYear() + '  '
-                       + formatTime(dt.getHours(), dt.getMinutes());
+    };
+    let friendlyDate = months[dt.getMonth()]  + " " + dt.getDate() + ', ' + dt.getFullYear() + '  '+ formatTime(dt.getHours(), dt.getMinutes());
     return friendlyDate;
 };
 
