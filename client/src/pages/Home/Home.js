@@ -57,6 +57,18 @@ class Home extends Component {
         } else if (this.state.pageIndex === 15) {
             let nPage = this.state.fakeNews.filter((a, index) => (14 < index && index < 20) );
             this.setState({currentPage: nPage, pageIndex: 20 });
+        } else if (this.state.pageIndex === 20) {
+            const lastId = this.state.currentPage[this.state.currentPage.length - 1]._id;
+            console.log(lastId);
+            let query = `?lastId=${lastId}`;
+            console.log(query);
+
+            API.getFakeArticles(query)
+                .then(res => {
+                    this.setState({ fakeNews: res.data});
+                    let currentPage = this.state.fakeNews.filter((a, index) => index < this.state.pageIndex);
+                    this.setState({currentPage: currentPage, pageIndex: 5})
+                })
         }
     }
     arrowLeft = () => {
@@ -115,7 +127,7 @@ class Home extends Component {
           })
 	}
     render() {
-        console.log(this.state)
+        console.log(this.state.pageIndex)
         return (
 
             <Wrapper>
@@ -129,11 +141,11 @@ class Home extends Component {
                             <Row>
                                 <Col span={18}></Col>
                                 <Col span={2} style={{paddingTop: '2vh'}}>
-                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}} onClick={this.arrowLeft}></Button>
+                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}} onClick={this.arrowLeft} shape="circle"></Button>
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh'}}>
-                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}></Button>
+                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}     shape="circle"></Button>
                                 </Col>
                                 <Col span={2}></Col>
                             </Row>
@@ -158,11 +170,11 @@ class Home extends Component {
                             <Row>
                                 <Col span={18}></Col>
                                 <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
-                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}} onClick={this.arrowLeft}></Button>
+                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}} onClick={this.arrowLeft} shape="circle"></Button>
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
-                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}></Button>
+                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}shape="circle"></Button>
                                 </Col>
                                 <Col span={2}></Col>
                             </Row>
