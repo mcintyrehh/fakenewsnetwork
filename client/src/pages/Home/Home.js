@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout } from 'antd';
+import { Layout, Icon, Button } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
 import  Card from '../../components/Card';
@@ -26,7 +26,9 @@ class Home extends Component {
             outerColWidth: 6,
             innerColWidth: 10,
             fakeNews:[],
-            realNews: []
+            realNews: [],
+            pageIndex: '',
+            currentPage: []
 
         };
     }
@@ -40,6 +42,14 @@ class Home extends Component {
           )
           .catch(err => console.log(err));
     }
+
+    arrowRight = () => {
+
+    }
+
+
+
+
     displayRealNews = (article) => {
         console.log('in display real news');
         console.log(article.keywords);
@@ -86,15 +96,53 @@ class Home extends Component {
             <Wrapper>
                 <Layout>
                     <Content className="main">
+                        <Row>
+                            <Col span={12} style={{textAlign: 'left'}}>
+                                <h1 style={{color: 'white', marginLeft: '5vw'}}>Recent Articles</h1>
+                            </Col>
+                            <Col span={11} style={{textAlign: 'right'}}>
+                            <Row>
+                                <Col span={18}></Col>
+                                <Col span={2} style={{paddingTop: '2vh'}}>
+                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}}></Button>
+                                </Col>
+                                
+                                <Col span={2} style={{paddingTop: '2vh'}}>
+                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}}></Button>
+                                </Col>
+                                <Col span={2}></Col>
+                            </Row>
+                            </Col>
+                            <Col span={1}></Col>
+                        </Row>
                         <Row style={{ textAlign: 'center', color: 'white' }}>
-                            
-                            <Col span={this.state.outerColWidth}></Col>
-
-                            <Col span={this.state.innerColWidth}>
+                            <Col span={4}></Col>
+                            <Col span={16}>
                                 {this.state.fakeNews.map(fake => <Card fake={fake} user={this.props.user} img={fake.src} saved={this.saved} key={fake._id} displayRealNews={this.displayRealNews} />)}
                             </Col>
-                            <Col span={this.state.innerColWidth}>{this.state.realNews && this.state.realNews.map(real=> <RealCard real={real} key={real.id}></RealCard>)}</Col>
-                            <Col span={this.state.outerColWidth}></Col>
+                            <Col span={4}>
+
+                            </Col>
+                        </Row>
+                        {/*For Arrow Pagination */}
+                        <Row>
+                            <Col span={12} style={{textAlign: 'left'}}>
+                                
+                            </Col>
+                            <Col span={11} style={{textAlign: 'right'}}>
+                            <Row>
+                                <Col span={18}></Col>
+                                <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
+                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}}></Button>
+                                </Col>
+                                
+                                <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
+                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}}></Button>
+                                </Col>
+                                <Col span={2}></Col>
+                            </Row>
+                            </Col>
+                            <Col span={1}></Col>
                         </Row>
                     </Content>
                 </Layout>
