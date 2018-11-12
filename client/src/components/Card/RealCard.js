@@ -6,8 +6,17 @@ class RealCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favIcon: 'far'
+      favIcon: 'far',
+      content: 'description'
     }
+  }
+  componentDidMount() {
+    // this.setState({content: this.props.real.description})
+  }
+
+  loadMore = () => {
+    const updateContent = (this.state.content === 'description') ? 'content' : 'description';
+    this.setState({ content: updateContent });
   }
   favStar = (userId, articleId, articleType) => {
     console.log(articleId);
@@ -27,8 +36,8 @@ class RealCard extends Component {
             <img alt={`pic for "${this.props.real.title}" article`} src={this.props.real.urlToImage}></img>
             {/* on clicking this button, it will run the function displayRealNews() and pass UP the object of the fake news article */}
             <Button type="primary" icon="search" className="news-btn" 
-            // onClick={() => props.displayRealNews(props.fake)}
-            >Real News</Button>
+            onClick={this.loadMore}
+            >{this.state.content == 'description' ? <span>Load More</span> : <span> Minimize</span>}</Button>
             <span className="fav-div" fav-saved="false"><i className="fas fa-star mx-auto fav btn"></i></span>
           </div>
         </Col>
@@ -37,7 +46,9 @@ class RealCard extends Component {
             <h3 className="card-title">
               <a target="_blank" href={this.props.real.url}>{this.props.real.title}</a>
             </h3>
-            <div className="card-text p-0 excerpt">{this.props.real.description}</div>
+            <div className="card-text p-0 excerpt">
+              {this.state.content === 'description' ? this.props.real.description : this.props.real.content}
+            </div>
           </div>
         </Col>
       </Row>
