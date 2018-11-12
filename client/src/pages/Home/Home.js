@@ -59,6 +59,18 @@ class Home extends Component {
             this.setState({currentPage: nPage, pageIndex: 20 });
         }
     }
+    arrowLeft = () => {
+        if (this.state.pageIndex === 10) {
+            let nPage = this.state.fakeNews.filter((a, index) => index < 5);
+            this.setState({currentPage: nPage, pageIndex: 5 });
+        } else if (this.state.pageIndex === 15) {
+            let nPage = this.state.fakeNews.filter((a, index) => (4 < index && index < 10) );
+            this.setState({currentPage: nPage, pageIndex: 10 });
+        } else if (this.state.pageIndex === 20) {
+            let nPage = this.state.fakeNews.filter((a, index) => (9 < index && index < 15) );
+            this.setState({currentPage: nPage, pageIndex: 15 });
+        }
+    }
 
 
 
@@ -117,7 +129,7 @@ class Home extends Component {
                             <Row>
                                 <Col span={18}></Col>
                                 <Col span={2} style={{paddingTop: '2vh'}}>
-                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}}></Button>
+                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}} onClick={this.arrowLeft}></Button>
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh'}}>
@@ -146,7 +158,7 @@ class Home extends Component {
                             <Row>
                                 <Col span={18}></Col>
                                 <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
-                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}}></Button>
+                                    <Button ghost="true" icon="left" style={{paddingBottom: '1vh'}} onClick={this.arrowLeft}></Button>
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
