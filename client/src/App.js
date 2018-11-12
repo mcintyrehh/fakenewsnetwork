@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
-import { Layout } from 'antd';
+import { Layout, notification } from 'antd';
 import Home from "./pages/Home/Home";
 import Detail from "./pages/Detail/Detail";
 import Saved from "./pages/Saved/Saved";
@@ -59,9 +59,31 @@ class App extends Component {
 					loggedIn: false,
 					user: null
 				});
+				this.loggedOutNotification();
 			}
 		});
 	}
+
+	loggedInNotification = () => {
+		const args = {
+		  message: 'You are now logged in to RFNi',
+		  description: 'Bringing you the fake news that matters.',
+		  placement: 'bottomLeft',
+		  duration: 4,
+		};
+		notification.open(args);
+	};
+
+	loggedOutNotification = () => {
+		const args = {
+		  message: 'Reality must be calling.',
+		  description: 'You are now logged out.',
+		  placement: 'bottomLeft',
+		  duration: 4,
+		};
+		notification.open(args);
+	};
+
 	showSignUpDrawer = () => {
 		this.setState({ signUpDrawerVisibility: true });
 	}
@@ -85,6 +107,7 @@ class App extends Component {
 					loggedIn: true,
 					user: response.data.user
 				});
+				this.loggedInNotification();
 			}
 		});
 	}
