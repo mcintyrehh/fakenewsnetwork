@@ -132,12 +132,14 @@ class App extends Component {
 
 								<Content>
 									<div className="main-view">
-										<Switch>
-											<Route exact path="/" render={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
-											<Route exact path="/articles/:id" render={props => <Detail user={this.state.user} {...props} />} />
-											<Route exact path="/saved-articles" render={() => <Saved user={this.state.user} />}/>
-											<Route component={NoMatch} />
-										</Switch>
+										
+											<Switch>
+												<Route exact path="/" render={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
+												<Route exact path="/articles/:id" render={props => <Detail user={this.state.user} {...props} />} />
+												<Route exact path="/saved-articles" render={() => <Saved user={this.state.user} />}/>
+												<Route component={NoMatch} />
+											</Switch>
+										
 									</div>
 								</Content>
 							</Layout>
