@@ -38,14 +38,24 @@ class Home extends Component {
 
         };
     }
+
     componentDidMount() {
+        this.loadFakeArticles();
+    }
+    componentWillUnmount() {
         API.getFakeArticles()
-        .then(res => {
-            this.setState({ fakeNews: res.data })
-            this.setCurrentPage();
-        })
-          .catch(err => console.log(err));
-        
+            .then(res => {
+                console.log(res.data);
+            })
+          .catch(err => console.log(err)); 
+    }
+    loadFakeArticles = () => {
+        API.getFakeArticles()
+            .then(res => {
+                this.setState({ fakeNews: res.data })
+                this.setCurrentPage();
+            })
+            .catch(err => console.log(err));
     }
 
     setCurrentPage = () => {
