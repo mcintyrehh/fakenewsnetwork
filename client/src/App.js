@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { Layout, notification } from 'antd';
 import Home from "./pages/Home/Home";
 import Detail from "./pages/Detail/Detail";
@@ -111,7 +111,6 @@ class App extends Component {
 	}
 	render() {
 		return (
-			<Router>
 				<div className="App">
 					{this.state.loggedIn && (
 						<Layout>
@@ -179,7 +178,6 @@ class App extends Component {
 						</div>
 					)}
 				</div>
-			</Router>
 		)
 	}
 }
