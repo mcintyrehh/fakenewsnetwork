@@ -7,9 +7,16 @@ export default {
   */
 
   // gets all FakeArticles, see server-side (fakeArticlesController) for implementing paging and search input, send in req.query.
-  getFakeArticles: () => (
-    axios.get("/api/fake-articles")
-  ),
+  getFakeArticles: query => {
+    if (query) {
+      return axios.get(`/api/fake-articles/${query}`);
+    } else {
+      return axios.get("/api/fake-articles");
+    }
+    // } else {
+    //   return axios.put("/api/fake-articles/", data);
+    // }
+  },
   // Get fakeArticle by id
   getFakeArticleById: id => (
     axios.get(`/api/fake-articles/${id}`)
@@ -25,8 +32,8 @@ export default {
     axios.get(`/api/real-articles/${id}`)
   ),
   //user specific routes
-  getAllUserSavedArticles: id => (
-    axios.get(`api/users/saved-articles/${id}`)
+  getAllUserSavedArticles: userId => (
+    axios.get(`api/users/saved-articles/${userId}`)
   ),
   updateUserSavedArticles: (id, data, articleType) => {
     if (articleType === "fake") {
