@@ -29,16 +29,10 @@ class Detail extends Component {
             favIcon: 'far'
         };
     }
-<<<<<<< HEAD
-    componentWillMount() {
-        this.loadFakeArticle(this.props.match.params.id);
-        this.grabUserSaved(this.props.user._id);
-=======
     componentDidMount() {
         this.loadFakeArticle(this.props.match.params.id)
 
         // this.checkIfFakeArticleSaved(this.props.user._id)
->>>>>>> f50bb887a996956db7eeb96831b23763589958f0
     }
     loadFakeArticle = articleId => {
         API.getFakeArticleById(articleId)
