@@ -15,10 +15,15 @@ img {
     align-items: center;
     justify-content: start;
     overflow: auto;
+    margin-right: 5px;
 }
 .card-div {
-    text-align: center;
+    text-align: left;
     margin-top: 15px;
+    padding-top: 20px;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
     border: thin solid white;
     border-radius: 25px;
     overflow: auto;
@@ -26,6 +31,11 @@ img {
 .card-title {
     font-size: 18pt;
     font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+.card-text {
+    text-align: left;
+    margin-bottom: 10px;
 }
 .excerpt {
     font-family: 'Roboto Condensed', sans-serif;
@@ -36,4 +46,5 @@ img {
 }
 .news-btn {
     margin-top: 10px;
+    width: 80%;
 }

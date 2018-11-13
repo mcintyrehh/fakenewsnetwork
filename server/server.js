@@ -1,3 +1,5 @@
+const scrapeController = require("./controllers/scrapeController");
+
 // Loading evnironmental variables here
 if (process.env.NODE_ENV !== 'production') {
 	console.log('loading dev environments');
@@ -14,6 +16,7 @@ const routes = require("./routes");
 const passport = require('./passport');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const path = require('path');
 
 // Middlewares
 app.use(morgan('dev'));
@@ -32,7 +35,6 @@ app.use(passport.session()); // will call the deserializeUser
 
 // If its production environment!
 if (process.env.NODE_ENV === 'production') {
-	const path = require('path');
 	console.log('YOU ARE IN THE PRODUCTION ENV');
 	app.use('/static', express.static(path.join(__dirname, '../client/build/static')));
 	app.get('/', (req, res) => {
@@ -54,3 +56,10 @@ app.use(function(err, req, res, next) {
 app.listen(PORT, () => {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+function scrapeAtIntervals() {
+  scrapeController.scrape();
+}
+
+let scraperInterval = setInterval(scrapeAtIntervals,21600000); // scrape every 6 hours for new articles
+

@@ -1,22 +1,17 @@
 
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Link } from 'react-router-dom';
-// import LoginForm from './components/Auth/LoginForm';
-
-import SignupForm from './components/Auth/SignupForm';
-import { Layout } from 'antd';
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { Layout, notification } from 'antd';
 import Home from "./pages/Home/Home";
 import Detail from "./pages/Detail/Detail";
 import Saved from "./pages/Saved/Saved";
 import NoMatch from "./pages/NoMatch";
 import HeaderDiv from "./components/HeaderDiv";
 import AUTH from './utils/AUTH';
-import API from './utils/API';
 import "./App.css";
 import Navbar from "./components/NavBarAnt";
-import SigninDrawer from "./pages/SignupDrawer";
+import SignUpDrawer from "./pages/SignupDrawer";
 import LoginDrawer from "./pages/LoginDrawer";
 // import { throws } from 'assert';
 
@@ -62,9 +57,31 @@ class App extends Component {
 					loggedIn: false,
 					user: null
 				});
+				this.loggedOutNotification();
 			}
 		});
 	}
+
+	loggedInNotification = () => {
+		const args = {
+		  message: 'You are now logged in to RFNi',
+		  description: 'Bringing you the fake news that matters.',
+		  placement: 'bottomLeft',
+		  duration: 4,
+		};
+		notification.open(args);
+	};
+
+	loggedOutNotification = () => {
+		const args = {
+		  message: 'Reality must be calling.',
+		  description: 'You are now logged out.',
+		  placement: 'bottomLeft',
+		  duration: 4,
+		};
+		notification.open(args);
+	};
+
 	showSignUpDrawer = () => {
 		this.setState({ signUpDrawerVisibility: true });
 	}
@@ -88,6 +105,7 @@ class App extends Component {
 					loggedIn: true,
 					user: response.data.user
 				});
+				this.loggedInNotification();
 			}
 		});
 	}
@@ -115,9 +133,9 @@ class App extends Component {
 								<Content>
 									<div className="main-view">
 										<Switch>
-											<Route exact path="/" component={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
-											<Route exact path="/articles/:id" render={props => <Detail {...props} user={this.state.user} />} />
-											<Route exact path="/saved-articles" component={() => <Saved user={this.state.user} />}/>
+											<Route exact path="/" render={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
+											<Route exact path="/articles/:id" render={props => <Detail user={this.state.user} {...props} />} />
+											<Route exact path="/saved-articles" render={() => <Saved user={this.state.user} />}/>
 											<Route component={NoMatch} />
 										</Switch>
 									</div>
@@ -143,13 +161,13 @@ class App extends Component {
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
-												<Route exact path="/" component={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+												<Route exact path="/" render={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
 												<Route exact path="/articles/:id" component={() => <Redirect to="/" />}/>
 												<Route exact path="saved-articles" component={() => <Redirect to="/" />}/>
 												<Route component={NoMatch} />
 											</Switch>
 										
-											<SigninDrawer visible={this.state.signUpDrawerVisibility} hideDrawer={this.hideSignUpDrawer} triggerLogin={this.switchDrawers}/>
+											<SignUpDrawer visible={this.state.signUpDrawerVisibility} hideDrawer={this.hideSignUpDrawer} triggerLogin={this.switchDrawers} login={this.login}/>
 											<LoginDrawer visible={this.state.loginDrawerVisibility} hideDrawer={this.hideLoginDrawer} login={this.login} />
 										</div>
 									</Content>

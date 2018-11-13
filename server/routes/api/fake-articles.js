@@ -7,11 +7,6 @@ const scrapeController = require("../../controllers/scrapeController");
 router
    .route("/scrape")
    .get(scrapeController.scrape);
-//"/api/fake-articles/clear"
-router
-   .route("/clear")
-   .get(fakeNewsController.clearAll);
-// "/api/fake-articles"
 router
    .route("/")
    .get(fakeNewsController.findAll)
@@ -44,6 +39,13 @@ router
 router
    .route("/real-articles/:id")
    .put(fakeNewsController.updateWithRealNews);
+
+// clear route is for development purposes only, so is now commented out
+//"/api/fake-articles/clear"
+// router
+// .route("/clear")
+//.get(fakeNewsController.clearAll);
+// "/api/fake-articles"
 
 
 module.exports = router;

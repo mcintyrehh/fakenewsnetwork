@@ -1,19 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import './headerdiv.css';
+import API from "../../utils/API";
 
-const HeaderDiv = props => (
-  <Row className="logo">
-    <Col span={4}></Col>
-    <Col className="title" span={12}><span role="img" aria-label="investigator emoji">🕵️‍</span>Real Fake News Intel<span role="img" aria-label="investigator emoji">🕵️️</span></Col>
-    <Col span={8}>
-      <Row>
-        <p style={{textAlign: 'right'}}>Hello {(props.user) ?  props.user.firstName : ""}</p>
-      
-     
+class HeaderDiv extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fakeNews: []
+    }
+  }
+
+  componentDidMount() {
+    this.loadFakeArticles();
+  }
+
+  loadFakeArticles = () => {
+    API.getFakeArticles()
+    .then(res =>
+        this.setState({ fakeNews: res.data })
+      )
+      .catch(err => console.log(err));
+  }
+
+
+
+  render() {
+    return (
+      <Row className="logo">
+        <Col className="title" span={18}>
+          <div style={{textAlign: "right"}}>
+            <span role="img" aria-label="investigator emoji">🕵️‍</span>Real Fake News Intel<span role="img" aria-label="investigator emoji">🕵️️</span>
+          </div>
+        </Col>
+        <Col className="title" span={6}>
+          <p style={{textAlign: "right"}}> {(this.props.user) ? `Hello ${this.props.user.firstName}` : ""} </p>
+        </Col>
       </Row>
-    </Col>
-  </Row>
-);
+    )
+  }
+};
 
 export default HeaderDiv;

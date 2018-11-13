@@ -10,13 +10,25 @@ module.exports = {
                 query --> /?lastId=Object(id) 
                 yields --> {lastId: Object(id)}
                 */
-                .find({_id: {$gte: req.query.lastId}})
+                .find({_id: {$lt: req.query.lastId}})
                 .populate("associatedRealNews.realNewsArticle")
                 .sort({timeScraped: -1})
                 .limit(20)
                 .then(dbFArticles => res.json(dbFArticles))
                 .catch(err => res.status(422).json(err));
-        } else {
+        } else if (req.query.firstId) {
+            db.FakeArticles
+            /* req.query.lastId is truthy
+            query --> /?lastId=Object(id) 
+            yields --> {lastId: Object(id)}
+            */
+            .find({_id: {$gt: req.query.firstId}})
+            .populate("associatedRealNews.realNewsArticle")
+            .sort({timeScraped: -1})
+            .limit(20)
+            .then(dbFArticles => res.json(dbFArticles))
+            .catch(err => res.status(422).json(err));
+        }else {
             db.FakeArticles
                 /* req.query 
                 query --> /?title=GOP 
