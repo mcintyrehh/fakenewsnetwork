@@ -57,7 +57,7 @@ function scrapeAtIntervals() {
 	scrapeController.scrape();
   }
   
-  let scraperInterval = setInterval(scrapeAtIntervals,21600000); // scrape every 6 hours for new articles
+setInterval(scrapeAtIntervals,21600000); // scrape every 6 hours for new articles
 
 // Starting Server
 app.listen(PORT, () => {
