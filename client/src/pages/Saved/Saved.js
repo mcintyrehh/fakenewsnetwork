@@ -7,7 +7,7 @@ import  { Card } from '../../components/Card';
 import '../../App.css';
 import './Saved.css';
 import API from '../../utils/API'
-import axios from 'axios';
+// import axios from 'axios';
 const { Content } = Layout;
 
 class Home extends Component {
