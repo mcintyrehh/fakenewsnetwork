@@ -37,7 +37,7 @@ class RealCard extends Component {
             {/* on clicking this button, it will run the function displayRealNews() and pass UP the object of the fake news article */}
             <Button type="primary" icon="search" className="news-btn" 
             onClick={this.loadMore}
-            >{this.state.content == 'description' ? <span>Load More</span> : <span> Minimize</span>}</Button>
+            >{this.state.content === 'description' ? <span>Load More</span> : <span> Minimize</span>}</Button>
             <span className="fav-div" fav-saved="false"><i className="fas fa-star mx-auto fav btn"></i></span>
           </div>
         </Col>

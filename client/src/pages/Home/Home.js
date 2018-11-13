@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Icon, Button } from 'antd';
+import { Layout, Button } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
 import  { Card } from '../../components/Card';
@@ -9,8 +9,8 @@ import '../../App.css';
 import './Home.css';
 import API from '../../utils/API'
 import axios from 'axios';
-import RightButton from '../../components/RightButton';
-import RightButtonDisabled from '../../components/RightButtonDisabled';
+// import RightButton from '../../components/RightButton';
+// import RightButtonDisabled from '../../components/RightButtonDisabled';
 
 
 
@@ -120,8 +120,6 @@ class Home extends Component {
         this.setState({ fakeNews: emptyFakeNewsArray })
         this.setState({ outerColWidth: 2 }); 
         this.setState({ innerColWidth: 10 });
-        const realNewsVar = article.associatedRealNews;
-
     }
     onChangeUserName = (e) => {
         this.setState({ userName: e.target.value });
