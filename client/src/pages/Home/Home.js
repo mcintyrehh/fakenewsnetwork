@@ -11,16 +11,7 @@ import axios from 'axios';
 const { Content } = Layout;
 
 class Home extends Component {
-    
-    emitEmpty = () => {
-        this.userNameInput.focus();
-        this.setState({ userName: '' });
-    }
-    constructor() {
-        super();
-        this.state = {
-            username: '',
-            password: '',
+        state = {
             redirectTo: null,
             outerColWidth: 6,
             innerColWidth: 10,
@@ -28,7 +19,6 @@ class Home extends Component {
             pageIndex: 5,
             currentPage: [],
         };
-    }
 
     componentDidMount() {
         this.loadFakeArticles();

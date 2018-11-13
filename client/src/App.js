@@ -133,7 +133,7 @@ class App extends Component {
 									<div className="main-view">
 										
 											<Switch>
-												<Route exact path="/" render={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
+												<Route exact path="/" component={Home} />
 												<Route exact path="/articles/:id" render={props => <Detail user={this.state.user} {...props} />} />
 												<Route exact path="/saved-articles" render={() => <Saved user={this.state.user} />}/>
 												<Route component={NoMatch} />
@@ -162,7 +162,7 @@ class App extends Component {
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
-												<Route exact path="/" render={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+												<Route exact path="/" component={Home} />
 												<Route exact path="/articles/:id" component={() => <Redirect to="/" />}/>
 												<Route exact path="saved-articles" component={() => <Redirect to="/" />}/>
 												<Route component={NoMatch} />
