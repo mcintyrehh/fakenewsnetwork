@@ -1,3 +1,5 @@
+const scrapeController = require("./controllers/scrapeController");
+
 // Loading evnironmental variables here
 if (process.env.NODE_ENV !== 'production') {
 	console.log('loading dev environments');
@@ -54,3 +56,10 @@ app.use(function(err, req, res, next) {
 app.listen(PORT, () => {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+function scrapeAtIntervals() {
+  scrapeController.scrape();
+}
+
+let scraperInterval = setInterval(scrapeAtIntervals,21600000); // scrape every 6 hours for new articles
+
