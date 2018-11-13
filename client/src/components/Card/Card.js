@@ -39,7 +39,7 @@ class Card extends Component {
             <h3 className="card-title">
               <a target="_blank" href={this.props.fake.url}>{this.props.fake.title}</a>
             </h3>
-            <div className="card-text p-0 summary">{this.props.fake.summary}</div>
+            <div className="card-text summary">{this.props.fake.summary}</div>
           </div>
         </Col>
       </Row>
@@ -47,4 +47,4 @@ class Card extends Component {
   }
 }
 
-export default Card;
+export { Card };

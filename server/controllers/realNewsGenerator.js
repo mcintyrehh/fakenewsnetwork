@@ -1,7 +1,12 @@
 require("dotenv").config();
 const NewsAPI = require('newsapi');
 const apiKey = require('../key');
-const newsapi = new NewsAPI("apiKey.newsapi_key");
+const newsAPIKey = apiKey.newsapi.newsapi_key;
+console.log('printing key');
+console.log(newsAPIKey);
+const newsapi = new NewsAPI('1d3bd9dddd5f45c2ba17eb1897e9ddd5');
+console.log('printing newsapi');
+console.log(newsapi);
 
 module.exports = {
    generate: function (req, res) {
