@@ -7,6 +7,11 @@ import '../../App.css';
 import './Home.css';
 import API from '../../utils/API'
 import axios from 'axios';
+import RightButton from '../../components/RightButton';
+import RightButtonDisabled from '../../components/RightButtonDisabled';
+
+
+
 const { Content } = Layout;
 
 class Home extends Component {
@@ -25,7 +30,9 @@ class Home extends Component {
             innerColWidth: 10,
             fakeNews:[],
             pageIndex: 5,
-            currentPage: []
+            currentPage: [],
+            rightArrowDisabled: "false",
+            leftArrowDisabled: "false" 
 
         };
     }
@@ -50,28 +57,31 @@ class Home extends Component {
     arrowRight = () => {
         if (this.state.pageIndex === 5) {
             let nPage = this.state.fakeNews.filter((a, index) => (4 < index && index < 10) );
-            this.setState({currentPage: nPage, pageIndex: 10 });
+            
+            (nPage.length < 5) ?
+            this.setState({currentPage: nPage, pageIndex: 10, rightArrowDisabled: "true" }) : this.setState({currentPage: nPage, pageIndex: 10 });
         } else if (this.state.pageIndex === 10) {
             let nPage = this.state.fakeNews.filter((a, index) => (9 < index && index < 15) );
-            this.setState({currentPage: nPage, pageIndex: 15 });
+            (nPage.length < 5) ?
+            this.setState({currentPage: nPage, pageIndex: 15, rightArrowDisabled: "true" }) : this.setState({currentPage: nPage, pageIndex: 15 });
         } else if (this.state.pageIndex === 15) {
             let nPage = this.state.fakeNews.filter((a, index) => (14 < index && index < 20) );
-            this.setState({currentPage: nPage, pageIndex: 20 });
+            (nPage.length < 5) ?
+            this.setState({currentPage: nPage, pageIndex: 20, rightArrowDisabled: "true" }) : this.setState({currentPage: nPage, pageIndex: 20 });
         } else if (this.state.pageIndex === 20) {
             const lastId = this.state.currentPage[this.state.currentPage.length - 1]._id;
-            console.log(lastId);
             let query = `?lastId=${lastId}`;
-            console.log(query);
-
             API.getFakeArticles(query)
                 .then(res => {
                     this.setState({ fakeNews: res.data});
-                    let currentPage = this.state.fakeNews.filter((a, index) => index < this.state.pageIndex);
-                    this.setState({currentPage: currentPage, pageIndex: 5})
-                })
+                    let currentPage = this.state.fakeNews.filter((a, index) => index < 5);
+                    (currentPage.length < 5) ?
+                    this.setState({currentPage: currentPage, pageIndex: 5, rightArrowDisabled: "true"}) : this.setState({currentPage: currentPage, pageIndex: 5}); 
+                });
         }
     }
     arrowLeft = () => {
+        this.setState({rightArrowDisabled: "false"});
         if (this.state.pageIndex === 10) {
             let nPage = this.state.fakeNews.filter((a, index) => index < 5);
             this.setState({currentPage: nPage, pageIndex: 5 });
@@ -127,7 +137,7 @@ class Home extends Component {
           })
 	}
     render() {
-        console.log(this.state.pageIndex)
+        console.log(this.state.pageIndex, this.state.currentPage.length, this.state.rightArrowDisabled);
         return (
 
             <Wrapper>
@@ -145,7 +155,10 @@ class Home extends Component {
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh'}}>
-                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}     shape="circle"></Button>
+                                    {/* {(this.state.rightArrowDisabled) ? <RightButtonDisabled /> : <RightButton />} */}
+
+
+                                    {(this.state.rightArrowDisabled) ? <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} shape="circle"></Button> : <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}shape="circle"></Button>}
                                 </Col>
                                 <Col span={2}></Col>
                             </Row>
@@ -174,7 +187,8 @@ class Home extends Component {
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
-                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}shape="circle"></Button>
+                                    {(this.state.rightArrowDisabled) ? <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}shape="circle"></Button> : <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}shape="circle"></Button>}
+                                    
                                 </Col>
                                 <Col span={2}></Col>
                             </Row>
