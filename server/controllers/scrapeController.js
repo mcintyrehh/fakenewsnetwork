@@ -8,9 +8,14 @@ const gavClient = gavagai("77f194d9aedf5fc489b909786631c340");
 module.exports = {
 
    scrape: (req, res) => {
+
+      const onionCategories = ["news", "news in brief", "sports news in brief"];
+      const clickholeCategories = ["news"];
+      const onionLogo = "https://i.kym-cdn.com/entries/icons/facebook/000/010/280/onion.jpg";
+      const clickholeLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUkyAHkl2tHsmg7wN07BWT8xEN7BgWUxwWxk0NKM_ZdBeDtfBu";
       const now = new Date();
       const nowTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-      const nReturnedKeywords = 20; 
+      const nReturnedKeywords = 20; // currently, only 10 are being returned by default anyway, keeeping in here in case api changes default behavior
 
       // This scrapeInfo object will only be used for debugging
       // Though it is not being used now, it may be used later
@@ -35,9 +40,10 @@ module.exports = {
          return displayObj;
       };
 
-      let processSite = (siteURL, siteName, shortName, imageSrc) => {
+      let processSite = (siteURL, siteName, shortName, imageSrc, validCategories, hardCodedCategory) => {
 
          console.log("Scraping " + siteName + " at time " + nowTime);
+
 
          // this isArticleContent function is used by an Array.filter method to check if paragraphs
          // that are scraped from a page are ones we want to keep.
@@ -53,24 +59,60 @@ module.exports = {
 
                      let summaryDivNode = $('div.excerpt', $(el)).get();
                      let summary = $('p', summaryDivNode).text();
+                     console.log("scraping: ", shortName,":",summary);
                      if (!summary) {
-                        return true; // go to the next iteration if there is no summary
+                        console.log("\tand there is no summary, shucks!");
+                        return true; // go to the next article iteration in each loop if there is no summary
                      } else {
                         scrapeInfo.totalValidScrapes++;
                      }
 
+                     let category = "";
+                     if (shortName === "onion") {
+                        category = hardCodedCategory;
+                     } else { // we are on the clickhole site, and need to determine the category
+                        let categoryNode = $('a.js_storytype-type', $(el));
+
+                        category = (categoryNode) ? categoryNode.text() : "";
+                        // console.log("And category is: ", category);
+                        if (!validCategories.includes(category.toLowerCase())) {
+                          //  console.log("category is ", category, " and it was not found in the list of allowed categories");
+                           return true; // go to the next article iteration in each loop if article has a category that we are not interested in
+                        }
+                        // console.log(category, " is an allowed category!");
+                     }
+
+
                      let thisSourceId = shortName + $(el).attr('id').replace(/[^\d]/g, "");
+                     console.log("\t",shortName," and the sourceId is:, ",thisSourceId);
                      let theLinks = $('a', $(el));
-                     let linkFilterFn = (ind, aLink) => $(aLink).attr('class') && $(aLink).attr('class') === 'js_entry-link';
+                     let linkFilterFn = (ind, aLink) => $(aLink).attr('class') && ($(aLink).attr('class') === 'js_entry-link' || $(aLink).attr('class') === 'js_link');
                      let linkMapFn = (ind, aLink) => $(aLink).attr('href');
-                     let titleMapFn = (ind, aLink) => $(aLink).text();
+                     let titleMapFn = (ind, aLink) => {
+                        let maybeText = $(aLink).text();
+                        if (maybeText) {
+                           return maybeText;
+                        } else {
+                          // don't do anything, we might use this branch later
+                        }
+                      
+                     };
                      let titleNodeArr = theLinks.filter(linkFilterFn);
+                   
+                
                      let title = titleNodeArr.map(titleMapFn)[0];
+                
+                     //console.log("\t",shortName," and the title is:, ", title);
                      let detailURL = titleNodeArr.map(linkMapFn)[0];
-                     let category = "News in Brief";
+                    
+                     //console.log("\t",shortName," and the detailURL is:, ", detailURL);
                      let timeNode = $('time', $(el));
                      let timePublished = new Date(timeNode.attr('datetime'));
+
+                  
+   
                      let content = [];
+                  
 
                      let findOneCallbackFn = (err, docs) => {
                         if (err) {
@@ -147,7 +189,7 @@ module.exports = {
                                                 scrapeInfo.insertedArticles.push(pruneObj(dbFArticle, ["title", "sourceId", "id"]));
                                                 console.log("\t Just inserted into database: ", pruneObj(dbFArticle, ["title", "sourceId", "id"]));
                                              })
-                                             .catch(err => console.log("ERROR in CATCH block of db.FakeArticles.create: ", err));
+                                             .catch(err => {}); // do nothing, for now
 
                                        } else {
                                           console.log("ERROR: This branch should not be reached, something is wrong.\nIt may be a GAVAGAI keyword parse error of some sort.");
@@ -179,9 +221,12 @@ module.exports = {
 
 
 
-      axios.all([processSite("http://www.theonion.com", "The Onion", "onion", "https://i.kym-cdn.com/entries/icons/facebook/000/010/280/onion.jpg"),
-            processSite("http://www.clickhole.com", "Clickhole", "clickhole", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUkyAHkl2tHsmg7wN07BWT8xEN7BgWUxwWxk0NKM_ZdBeDtfBu")
-         ])
+      axios.all(
+            [processSite("https://www.theonion.com/c/news", "The Onion", "onion", onionLogo, onionCategories, "News"),
+             processSite("https://www.theonion.com/c/news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "News in Brief"),
+             processSite("https://www.theonion.com/c/sports-news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "Sports News in Brief"),
+             processSite("http://www.clickhole.com", "Clickhole", "clickhole", clickholeLogo, clickholeCategories)
+            ])
          .then((resp) => res.json({
             "message": "Scraping!"
          })).catch(err => console.log("ERROR in CATCH block of axios.all: ".err));
