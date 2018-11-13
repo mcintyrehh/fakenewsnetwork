@@ -33,9 +33,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // will call the deserializeUser
 
-// Add routes, both API and view
-app.use(routes);
-
 
 // If its production environment!
 if (process.env.NODE_ENV === 'production') {
@@ -46,6 +43,9 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 
+// Add routes, both API and view
+app.use(routes);
+
 // Error handler
 app.use(function(err, req, res, next) {
 	console.log('====== ERROR =======');
@@ -53,14 +53,15 @@ app.use(function(err, req, res, next) {
 	res.status(500);
 });
 
+function scrapeAtIntervals() {
+	scrapeController.scrape();
+  }
+  
+  let scraperInterval = setInterval(scrapeAtIntervals,21600000); // scrape every 6 hours for new articles
+
 // Starting Server
 app.listen(PORT, () => {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-function scrapeAtIntervals() {
-  scrapeController.scrape();
-}
-
-let scraperInterval = setInterval(scrapeAtIntervals,21600000); // scrape every 6 hours for new articles
 
