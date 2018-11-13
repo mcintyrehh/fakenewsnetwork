@@ -42,8 +42,6 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 
-console.log(path.join(__dirname, '../client/build/static'));
-
 // Add routes, both API and view
 app.use(routes);
 
