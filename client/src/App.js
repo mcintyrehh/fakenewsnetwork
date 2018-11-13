@@ -13,7 +13,7 @@ import "./App.css";
 import Navbar from "./components/NavBarAnt";
 import SignUpDrawer from "./pages/SignupDrawer";
 import LoginDrawer from "./pages/LoginDrawer";
-// import { throws } from 'assert';
+
 
 const { Header, Footer, Sider, Content } = Layout;
 
