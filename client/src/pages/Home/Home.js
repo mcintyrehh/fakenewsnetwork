@@ -4,7 +4,7 @@ import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
 import  { Card } from '../../components/Card';
 import '../../App.css';
-import './Home.css';
+// import './Home.css';
 import API from '../../utils/API'
 import axios from 'axios';
 
@@ -53,28 +53,48 @@ class Home extends Component {
 
     arrowRight = () => {
         if (this.state.pageIndex === 5) {
-            let nPage = this.state.fakeNews.filter((a, index) => (4 < index && index < 10) );
-            
-            (nPage.length < 5) ?
-            this.setState({currentPage: nPage, pageIndex: 10, rightArrowDisabled: "true" }) : this.setState({currentPage: nPage, pageIndex: 10 });
+            if (this.state.currentPage.length < 5) {
+                console.log("Reached end of article history.");
+            } else {
+                let nPage = this.state.fakeNews.filter((a, index) => (4 < index && index < 10) );
+                
+                (nPage.length < 5) ?
+                this.setState({currentPage: nPage, pageIndex: 21}) : this.setState({currentPage: nPage, pageIndex: 10 });
+            }
         } else if (this.state.pageIndex === 10) {
-            let nPage = this.state.fakeNews.filter((a, index) => (9 < index && index < 15) );
-            (nPage.length < 5) ?
-            this.setState({currentPage: nPage, pageIndex: 15, rightArrowDisabled: "true" }) : this.setState({currentPage: nPage, pageIndex: 15 });
+            if (this.state.currentPage.length < 5) {
+                console.log("Reached end of article history.");
+            } else {
+                let nPage = this.state.fakeNews.filter((a, index) => (9 < index && index < 15) );
+                (nPage.length < 5) ?
+                this.setState({currentPage: nPage, pageIndex: 21}) : this.setState({currentPage: nPage, pageIndex: 15 });
+            }
         } else if (this.state.pageIndex === 15) {
-            let nPage = this.state.fakeNews.filter((a, index) => (14 < index && index < 20) );
-            (nPage.length < 5) ?
-            this.setState({currentPage: nPage, pageIndex: 20, rightArrowDisabled: "true" }) : this.setState({currentPage: nPage, pageIndex: 20 });
+            if (this.state.currentPage.length < 5) {
+                console.log("Reached end of article history.");
+            } else {
+                let nPage = this.state.fakeNews.filter((a, index) => (14 < index && index < 20) );
+                (nPage.length < 5) ?
+                this.setState({currentPage: nPage, pageIndex: 21}) : this.setState({currentPage: nPage, pageIndex: 20 });
+            }
         } else if (this.state.pageIndex === 20) {
             const lastId = this.state.currentPage[this.state.currentPage.length - 1]._id;
             let query = `?lastId=${lastId}`;
+
+            if (this.state.currentPage.length < 5) {
+                console.log("Reached end of article history.");
+            } else {
+
             API.getFakeArticles(query)
                 .then(res => {
                     this.setState({ fakeNews: res.data});
                     let currentPage = this.state.fakeNews.filter((a, index) => index < 5);
                     (currentPage.length < 5) ?
-                    this.setState({currentPage: currentPage, pageIndex: 5, rightArrowDisabled: "true"}) : this.setState({currentPage: currentPage, pageIndex: 5}); 
+                    this.setState({currentPage: currentPage, pageIndex: 21}) : this.setState({currentPage: currentPage, pageIndex: 5}); 
                 });
+            }
+        } else if (this.state.pageIndex === 21) {
+            console.log("Reached end of article history.");
         }
     }
     arrowLeft = () => {
@@ -85,7 +105,7 @@ class Home extends Component {
         } else if (this.state.pageIndex === 15) {
             let nPage = this.state.fakeNews.filter((a, index) => (4 < index && index < 10) );
             this.setState({currentPage: nPage, pageIndex: 10 });
-        } else if (this.state.pageIndex === 20) {
+        } else if (this.state.pageIndex >= 20) {
             let nPage = this.state.fakeNews.filter((a, index) => (9 < index && index < 15) );
             this.setState({currentPage: nPage, pageIndex: 15 });
         }
@@ -152,8 +172,7 @@ class Home extends Component {
                                 <Col span={2} style={{paddingTop: '2vh'}}>
                                     {/* {(this.state.rightArrowDisabled) ? <RightButtonDisabled /> : <RightButton />} */}
 
-
-                                    {(this.state.rightArrowDisabled) ? <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} shape="circle"></Button> : <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}shape="circle"></Button>}
+                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight} shape="circle"></Button>
                                 </Col>
                                 <Col span={2}></Col>
                             </Row>
@@ -182,8 +201,7 @@ class Home extends Component {
                                 </Col>
                                 
                                 <Col span={2} style={{paddingTop: '2vh', paddingBottom: '2vh'}}>
-                                    {(this.state.rightArrowDisabled) ? <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}shape="circle"></Button> : <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight}shape="circle"></Button>}
-                                    
+                                    <Button ghost="true" icon="right" style={{paddingBottom: '1vh'}} onClick={this.arrowRight} shape="circle"></Button>
                                 </Col>
                                 <Col span={2}></Col>
                             </Row>
