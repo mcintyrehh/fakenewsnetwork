@@ -164,7 +164,7 @@ class App extends Component {
 											<Switch>
 												<Route exact path="/" component={Home} />
 												<Route exact path="/articles/:id" component={() => <Redirect to="/" />}/>
-												<Route exact path="saved-articles" component={() => <Redirect to="/" />}/>
+												<Route exact path="/saved-articles" component={() => <Redirect to="/" />}/>
 												<Route component={NoMatch} />
 											</Switch>
 										
