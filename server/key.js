@@ -1,5 +1,5 @@
-exports.gavangi = {
-    gavangi_key: process.env.GAVANGI_APIKEY,
+exports.gavagai = {
+    gavagai_key: process.env.GAVAGAI_APIKEY,
 }
 
 exports.newsapi = {
