@@ -36,20 +36,7 @@ class Home extends Component {
     componentDidMount() {
         this.loadFakeArticles();
     }
-    componentWillUnmount() {
-        this.setState({
-            username: '',
-            password: '',
-            redirectTo: null,
-            outerColWidth: 6,
-            innerColWidth: 10,
-            fakeNews:[],
-            pageIndex: 5,
-            currentPage: [],
-            rightArrowDisabled: "false",
-            leftArrowDisabled: "false" 
-        })
-    }
+    
     loadFakeArticles = () => {
         API.getFakeArticles()
             .then(res => {
