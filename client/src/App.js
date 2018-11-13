@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-
+// import LoginForm from './components/Auth/LoginForm';
+import SignupForm from './components/Auth/SignupForm';
 import { Layout, notification } from 'antd';
 import Home from "./pages/Home/Home";
 import Detail from "./pages/Detail/Detail";

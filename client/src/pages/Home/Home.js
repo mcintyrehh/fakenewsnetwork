@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Layout, Icon, Button } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
-import  Card from '../../components/Card';
+import  { Card } from '../../components/Card';
+// import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
 import API from '../../utils/API'
