@@ -59,6 +59,7 @@ module.exports = {
   },
   //populating seperately, as '.populate("savedFake", "savedReal") would just try to populate the 'savedReal field of "savedFake"
   getAllSavedArticles: (req, res) => {
+    console.log(req);
     db.User.findById(req.params.id)
       .populate("savedFake")
       .populate("savedReal")
