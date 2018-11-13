@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Carousel } from 'antd';
+import { Row, Col } from 'antd';
 import './headerdiv.css';
 import API from "../../utils/API";
 
@@ -33,7 +33,7 @@ class HeaderDiv extends Component {
             <span role="img" aria-label="investigator emoji">🕵️‍</span>Real Fake News Intel<span role="img" aria-label="investigator emoji">🕵️️</span>
           </div>
         </Col>
-        <Col classname="title" span={6}>
+        <Col className="title" span={6}>
           <p style={{textAlign: "right"}}> {(this.props.user) ? `Hello ${this.props.user.firstName}` : ""} </p>
         </Col>
       </Row>

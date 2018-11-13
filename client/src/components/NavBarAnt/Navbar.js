@@ -27,6 +27,7 @@ class Navbar extends React.Component {
     return (
       (this.props.user) ?
         <div style={{ width: 256 }}>
+          <div style={{ textAlign: "center" }} className="logo">RFNi</div>
           <Menu
             theme="dark"
             onClick={this.handleClick}
@@ -35,8 +36,6 @@ class Navbar extends React.Component {
             mode="inline"
             inlineCollapsed={this.state.collapsed}
           >
-            <div style={{ textAlign: "center" }} className="logo">RFNi</div> 
-
             <SubMenu key="sub1" title={<span><Icon type="home" /><span>FNN</span></span>}>
               <MenuItemGroup key="g1" title="Articles">
                 <Menu.Item key="1"><Link to="/">The Fake News</Link></Menu.Item>
@@ -49,12 +48,13 @@ class Navbar extends React.Component {
               </SubMenu>
             </SubMenu>
             <SubMenu key="sub4" title={<span><Icon type="gold" /><span>My Stories to Watch</span></span>}>
-                <Menu.Item key="5"><Link to="/saved-articles">Saved Articles</Link></Menu.Item>
+              <Menu.Item key="5"><Link to="/saved-articles">Saved Articles</Link></Menu.Item>
             </SubMenu>
           </Menu>
         </div>
         :
         <div style={{ width: 256 }}>
+          <div style={{ textAlign: "center" }} className="logo">RFNi</div>
           <Menu
             theme="dark"
             onClick={this.handleClick}
@@ -63,9 +63,6 @@ class Navbar extends React.Component {
             mode="inline"
             inlineCollapsed={this.state.collapsed}
           >
-
-             <div style={{ textAlign: "center" }} className="logo">RFNi</div> 
-
             <SubMenu key="sub1" title={<span><Icon type="home" /><span>FNN</span></span>}>
               <MenuItemGroup key="g1" title="Articles">
                 <Menu.Item key="1">The Fake News</Menu.Item>
