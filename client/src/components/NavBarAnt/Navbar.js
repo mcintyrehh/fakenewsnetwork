@@ -19,10 +19,10 @@ class Navbar extends React.Component {
       collapsed: !this.state.collapsed,
     });
   }
-  savedArticles = () => {
-    console.log("in saved articles");
-    <Link to="/saved-articles"></Link>
-  }
+  // savedArticles = () => {
+  //   console.log("in saved articles");
+  //   <Link to="/saved-articles"></Link>
+  // }
   render() {
     return (
       (this.props.user) ?

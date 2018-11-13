@@ -3,16 +3,10 @@ import { Layout, Button } from 'antd';
 import Wrapper from '../../components/Wrapper';
 import { Row, Col } from 'antd';
 import  { Card } from '../../components/Card';
-
-// import Toggle from '../../components/Toggle'
 import '../../App.css';
 import './Home.css';
 import API from '../../utils/API'
 import axios from 'axios';
-// import RightButton from '../../components/RightButton';
-// import RightButtonDisabled from '../../components/RightButtonDisabled';
-
-
 
 const { Content } = Layout;
 
@@ -43,11 +37,18 @@ class Home extends Component {
         this.loadFakeArticles();
     }
     componentWillUnmount() {
-        API.getFakeArticles()
-            .then(res => {
-                console.log(res.data);
-            })
-          .catch(err => console.log(err)); 
+        this.setState({
+            username: '',
+            password: '',
+            redirectTo: null,
+            outerColWidth: 6,
+            innerColWidth: 10,
+            fakeNews:[],
+            pageIndex: 5,
+            currentPage: [],
+            rightArrowDisabled: "false",
+            leftArrowDisabled: "false" 
+        })
     }
     loadFakeArticles = () => {
         API.getFakeArticles()
@@ -144,7 +145,7 @@ class Home extends Component {
           })
 	}
     render() {
-        console.log(this.state.pageIndex, this.state.currentPage.length, this.state.rightArrowDisabled);
+        
         return (
 
             <Wrapper>
