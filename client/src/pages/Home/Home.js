@@ -39,16 +39,13 @@ class Home extends Component {
         };
     }
     componentDidMount() {
-        this.loadFakeArticles();
-        
-    }
-    loadFakeArticles = () => {
         API.getFakeArticles()
         .then(res => {
             this.setState({ fakeNews: res.data })
             this.setCurrentPage();
         })
           .catch(err => console.log(err));
+        
     }
 
     setCurrentPage = () => {
