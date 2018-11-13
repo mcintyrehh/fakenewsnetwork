@@ -111,7 +111,6 @@ class App extends Component {
 	}
 	render() {
 		return (
-			<Router>
 				<div className="App">
 					{this.state.loggedIn && (
 						<Layout>
@@ -179,7 +178,6 @@ class App extends Component {
 						</div>
 					)}
 				</div>
-			</Router>
 		)
 	}
 }
