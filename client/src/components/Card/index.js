@@ -1,2 +1,2 @@
-export { default }  from "./Card";
-export * from "./RealCard"
+export { Card }  from "./Card";
+export { RealCard } from "./RealCard"

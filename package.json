@@ -1,5 +1,5 @@
 {
-  "name": "reactreadinglist-auth-server",
+  "name": "real-fake-news-intel",
   "version": "1.0.0",
   "description": "Full Stack React App with Authentication",
   "main": "server/server.js",
@@ -34,6 +34,7 @@
     "react-addons-test-utils": "^15.6.2"
   },
   "dependencies": {
+    "@google-cloud/language": "^2.0.0",
     "antd": "^3.10.2",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.2",

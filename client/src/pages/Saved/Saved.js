@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
 import Wrapper from '../../components/Wrapper';
-import { Row, Col } from 'antd';
-import  Card from '../../components/Card';
+import { Row, Col, Icon } from 'antd';
+import  { Card } from '../../components/Card';
 // import { RealCard } from '../../components/Card';
 import '../../App.css';
 import './Saved.css';
 import API from '../../utils/API'
-import axios from 'axios';
+// import axios from 'axios';
 const { Content } = Layout;
 
 class Home extends Component {
@@ -36,9 +36,7 @@ class Home extends Component {
         API.getAllUserSavedArticles(ID)
         .then(res => {
             console.log(res.data);
-            const savedFake = res.data.savedFake;
-            const savedReal = res.data.savedReal;
-            const votedOn = res.data.votedOn;
+            const { savedFake, savedReal, votedOn } = res.data;
             this.setState({savedFake, savedReal, votedOn})
         })
           .catch(err => console.log(err));
@@ -56,7 +54,7 @@ class Home extends Component {
                             <Col span={this.state.outerColWidth}></Col>
 
                             <Col span={this.state.innerColWidth}>
-                                {this.state.savedFake ? this.state.savedFake.map(savedArticle => <Card fake={savedArticle} img={"https://www.vectorlogo.zone/logos/theonion/theonion-card.png"} key={savedArticle._id} />) : <div></div>}
+                                {this.state.savedFake ? this.state.savedFake.map(savedArticle => <Card fake={savedArticle} img={"https://www.vectorlogo.zone/logos/theonion/theonion-card.png"} key={savedArticle._id} />) : <div><Icon type="loading" /></div>}
                             </Col>
                             <Col span={this.state.innerColWidth}></Col>
                             <Col span={this.state.outerColWidth}></Col>

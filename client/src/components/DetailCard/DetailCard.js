@@ -1,7 +1,7 @@
-import { Row, Col, Button } from 'antd';
+import { Row, Col } from 'antd';
 import './DetailCard.css'
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class DetailCard extends Component {
   constructor(props) {
