@@ -226,8 +226,8 @@ module.exports = {
 
          axios.all(
                [processSite("https://www.theonion.com/c/news", "The Onion", "onion", onionLogo, onionCategories, "News"),
-                  processSite("https://www.theonion.com/c/news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "News in Brief"),
-                  processSite("https://www.theonion.com/c/sports-news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "Sports News in Brief"),
+                  // processSite("https://www.theonion.com/c/news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "News in Brief"),
+                 // processSite("https://www.theonion.com/c/sports-news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "Sports News in Brief"),
                   processSite("http://www.clickhole.com", "Clickhole", "clickhole", clickholeLogo, clickholeCategories)
                ])
             .then( (resp) => {
