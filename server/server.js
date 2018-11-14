@@ -53,8 +53,6 @@ app.use(function(err, req, res, next) {
 	res.status(500);
 });
 
-scrapeController.scrape();
-
 function scrapeAtIntervals() {
 	scrapeController.scrape();
   }
