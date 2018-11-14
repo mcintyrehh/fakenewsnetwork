@@ -56,6 +56,9 @@ module.exports = {
             axios.get(siteURL).then(response => {
                   const $ = cheerio.load(response.data);
                   $("article").each(function (i, el) {
+                        if (i > 5) { // heroku test, to see if it fixes memory error
+                              return true;
+                        }
 
                         // this is just for debugging purposes
                         scrapeInfo.totalScrapes++; // we are trying to scrape a new article, to add to total scrapes
