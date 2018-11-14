@@ -6,7 +6,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const gavagai = require("gavagai");
 
-const gavClient = gavagai("APIKEY.gavagai_key");
+const gavClient = gavagai("77f194d9aedf5fc489b909786631c340");
 
 module.exports = {
 
