@@ -60,6 +60,7 @@ app.listen(PORT, () => {
 });
 
 scrapeController.scrape();
+
 function scrapeAtIntervals() {
 	scrapeController.scrape();
   }
