@@ -53,15 +53,16 @@ app.use(function(err, req, res, next) {
 	res.status(500);
 });
 
-function scrapeAtIntervals() {
-	scrapeController.scrape();
-  }
-  
-setInterval(scrapeAtIntervals,21600000); // scrape every 6 hours for new articles
 
 // Starting Server
 app.listen(PORT, () => {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
+scrapeController.scrape();
+function scrapeAtIntervals() {
+	scrapeController.scrape();
+  }
+  
+setInterval(scrapeAtIntervals, 21600000); // scrape every 6 hours for new articles
 
