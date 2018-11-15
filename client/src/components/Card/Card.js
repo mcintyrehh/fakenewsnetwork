@@ -30,6 +30,7 @@ class Card extends Component {
             <Link to={`/articles/${this.props.fake._id}`}>
               <Button type="primary" icon="search" className="news-btn">Intel</Button>
             </Link>
+            <br/>
             
             <span className="fav-div"><i onClick={() => this.favStar(this.props.user._id, this.props.fake._id, this.props.fake.articleType)} className={this.state.favIcon + ' fa-star mx-auto fav btn'}></i></span>
           </div>
