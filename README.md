@@ -37,4 +37,7 @@ Login:
 
 ## Contributors & Maintenance of RFNi
 
+This project is maintained by Hava Edelstein, Henry McIntyre,
+John Contratto, and Christopher Dixon. The project is open source. Individuals wanting to contribute can contact us on github and we will get back to them as soon as we can. For the next version of the application, we are currently working on refining our scraping algorithms, implementing up-voting/down-voting for real and fake articles, implementing a breaking news feature, and implementing discussion boards. 
+
 
