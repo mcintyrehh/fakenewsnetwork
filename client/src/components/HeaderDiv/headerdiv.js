@@ -24,7 +24,6 @@ class HeaderDiv extends Component {
   }
 
 
-
   render() {
     return (
       <Row className="logo">
@@ -34,7 +33,7 @@ class HeaderDiv extends Component {
           </div>
         </Col>
         <Col className="title" span={6}>
-          <p style={{textAlign: "right"}}> {(this.props.user) ? `Hello ${this.props.user.firstName}` : ""} </p>
+          <h5 style={{textAlign: "right", paddingTop: "2vh", color: "white"}}> {(this.props.user) ? `Hello ${this.props.user.firstName}` : ""} </h5>
         </Col>
       </Row>
     )
