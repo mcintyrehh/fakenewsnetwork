@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { Layout, notification } from 'antd';
 import Home from "./pages/Home/Home";
 import Detail from "./pages/Detail/Detail";
@@ -13,7 +13,7 @@ import "./App.css";
 import Navbar from "./components/NavBarAnt";
 import SignUpDrawer from "./pages/SignupDrawer";
 import LoginDrawer from "./pages/LoginDrawer";
-// import { throws } from 'assert';
+
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -111,7 +111,6 @@ class App extends Component {
 	}
 	render() {
 		return (
-			<Router>
 				<div className="App">
 					{this.state.loggedIn && (
 						<Layout>
@@ -132,12 +131,14 @@ class App extends Component {
 
 								<Content>
 									<div className="main-view">
-										<Switch>
-											<Route exact path="/" render={() => <Home user={this.state.user} isLoggedIn={this.state.loggedIn} login={this.login} />} />
-											<Route exact path="/articles/:id" render={props => <Detail user={this.state.user} {...props} />} />
-											<Route exact path="/saved-articles" render={() => <Saved user={this.state.user} />}/>
-											<Route component={NoMatch} />
-										</Switch>
+										
+											<Switch>
+												<Route exact path="/" component={Home} />
+												<Route exact path="/articles/:id" render={props => <Detail user={this.state.user} {...props} />} />
+												<Route exact path="/saved-articles" render={() => <Saved user={this.state.user} />}/>
+												<Route component={NoMatch} />
+											</Switch>
+										
 									</div>
 								</Content>
 							</Layout>
@@ -161,9 +162,9 @@ class App extends Component {
 									<Content>
 										<div className="auth-wrapper">
 											<Switch>
-												<Route exact path="/" render={() => <Home isLoggedIn={this.state.loggedIn} login={this.login} />} />
+												<Route exact path="/" component={Home} />
 												<Route exact path="/articles/:id" component={() => <Redirect to="/" />}/>
-												<Route exact path="saved-articles" component={() => <Redirect to="/" />}/>
+												<Route exact path="/saved-articles" component={() => <Redirect to="/" />}/>
 												<Route component={NoMatch} />
 											</Switch>
 										
@@ -177,7 +178,6 @@ class App extends Component {
 						</div>
 					)}
 				</div>
-			</Router>
 		)
 	}
 }

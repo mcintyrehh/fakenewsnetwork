@@ -6,7 +6,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const gavagai = require("gavagai");
 
-const gavClient = gavagai("APIKEY.gavagai_key");
+const gavClient = gavagai("77f194d9aedf5fc489b909786631c340");
 
 module.exports = {
 
@@ -56,6 +56,9 @@ module.exports = {
             axios.get(siteURL).then(response => {
                   const $ = cheerio.load(response.data);
                   $("article").each(function (i, el) {
+                        if (i > 5) { // heroku test, to see if it fixes memory error
+                              return true;
+                        }
 
                         // this is just for debugging purposes
                         scrapeInfo.totalScrapes++; // we are trying to scrape a new article, to add to total scrapes
@@ -226,8 +229,8 @@ module.exports = {
 
          axios.all(
                [processSite("https://www.theonion.com/c/news", "The Onion", "onion", onionLogo, onionCategories, "News"),
-                  processSite("https://www.theonion.com/c/news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "News in Brief"),
-                  processSite("https://www.theonion.com/c/sports-news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "Sports News in Brief"),
+                  // processSite("https://www.theonion.com/c/news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "News in Brief"),
+                 // processSite("https://www.theonion.com/c/sports-news-in-brief", "The Onion", "onion", onionLogo, onionCategories, "Sports News in Brief"),
                   processSite("http://www.clickhole.com", "Clickhole", "clickhole", clickholeLogo, clickholeCategories)
                ])
             .then( (resp) => {

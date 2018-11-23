@@ -38,6 +38,7 @@ class RealCard extends Component {
             <Button type="primary" icon="search" className="news-btn" 
             onClick={this.loadMore}
             >{this.state.content === 'description' ? <span>Load More</span> : <span> Minimize</span>}</Button>
+            <br/>
             <span className="fav-div" fav-saved="false"><i className="fas fa-star mx-auto fav btn"></i></span>
           </div>
         </Col>
